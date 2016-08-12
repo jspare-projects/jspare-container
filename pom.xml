@@ -43,7 +43,7 @@
 		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<maven.source.version>2.0.4</maven.source.version>
-		<surefire.reportplugin.version>2.18.1</surefire.reportplugin.version>
+		<cobertura.version>2.7</cobertura.version>
 		<lombok.version>1.16.8</lombok.version>
 		<logback.version>1.1.6</logback.version>
 		<junit.version>4.12</junit.version>
@@ -74,14 +74,27 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.eluder.coveralls</groupId>
-				<artifactId>coveralls-maven-plugin</artifactId>
-				<version>4.2.0</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>${cobertura.version}</version>
 				<configuration>
-					<repoToken>H6Lxrtpc8bSOcZ7ha9E5g8dcA1JeW3l6e</repoToken>
+					<configuration>
+						<formats>
+							<format>xml</format>
+						</formats>
+						<maxmem>256m</maxmem>
+						<aggregate>true</aggregate>
+					</configuration>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>cobertura</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 
@@ -93,25 +106,22 @@
 				<version>2.5</version>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>${surefire.reportplugin.version}</version>
-			</plugin>
-
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>${cobertura.version}</version>
+				<version>2.7</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>cobertura</report>
+						</reports>
+					</reportSet>
+				</reportSets>
 				<configuration>
-					<configuration>
+					<formats>
 						<format>xml</format>
-						<maxmem>256m</maxmem>
-						<!-- aggregated reports for multi-module projects -->
-						<aggregate>true</aggregate>
-					</configuration>
+					</formats>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</reporting>
 

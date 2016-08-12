@@ -1,2 +1,3 @@
-# jspare-core
-The core environment container. Write componentized and modern java applications.
+# JSpare Container
+
+The Java core environment container. Write for componentized and modern Java 8 applications.

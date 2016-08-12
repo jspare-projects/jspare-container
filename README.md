@@ -1,5 +1,11 @@
 # JSpare Container
 
+## Status
+
+[![Build Status](https://travis-ci.org/jspare-projects/jspare-container.svg?branch=master)](https://travis-ci.org/jspare-projects/jspare-container)
+
+## Description
+
 The JSpare Container provide an core environment container for your java 8 applications. Prepare applications uncoupled and componentized. Using JSpare Container your application will contain several features that can help to define your application, such as:
 
 * Application container

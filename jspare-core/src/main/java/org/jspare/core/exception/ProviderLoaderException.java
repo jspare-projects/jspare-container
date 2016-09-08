@@ -15,6 +15,8 @@
  */
 package org.jspare.core.exception;
 
+import org.jspare.core.exception.InfraException;
+
 /**
  * The Class ExternalException.
  *

@@ -17,10 +17,13 @@ package org.jspare.core.config;
 
 import static org.jspare.core.commons.Definitions.COMMON_FILE_TO_LOAD;
 
+import java.util.Map;
+
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.jspare.core.config.CommonsConfig;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,10 +62,10 @@ public class CommonsConfigImpl implements CommonsConfig {
 	 * java.lang.Object)
 	 */
 	@Override
-	public String get(String name, Object defaultValue) {
-
+	@SuppressWarnings("unchecked")
+	public <T> T get(String name, Object defaultValue) {
 		String result = configuration.getString(name);
-		return StringUtils.isEmpty(result) ? defaultValue.toString() : result;
+		return ((T) (StringUtils.isEmpty(result) ? defaultValue.toString() : result));
 	}
 
 	/*
@@ -115,6 +118,18 @@ public class CommonsConfigImpl implements CommonsConfig {
 	/*
 	 * (non-Javadoc)
 	 *
+	 * @see org.jspare.core.config.CommonsConfig#put(java.lang.String,
+	 * java.lang.String, boolean)
+	 */
+	@Override
+	public void putAll(Map<String, String> parameters, boolean overwrite) {
+
+		parameters.forEach((k, v) -> put(k, v, overwrite));
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see org.jspare.core.config.CommonsConfig#remove(java.lang.String)
 	 */
 	@Override
@@ -133,13 +148,13 @@ public class CommonsConfigImpl implements CommonsConfig {
 
 		try {
 
-			PropertiesConfiguration targetConfiguration = new PropertiesConfiguration(this.fileToLoad);
+			PropertiesConfiguration targetConfiguration = new PropertiesConfiguration(fileToLoad);
 			configuration.getKeys().forEachRemaining(k -> targetConfiguration.setProperty(k, configuration.getProperties(k)));
 			targetConfiguration.save();
 
 		} catch (ConfigurationException e) {
 
-			log.error("Error when trying to save a configuration [{}] - Message [{}]", this.fileToLoad, e.getMessage());
+			log.error("Error when trying to save a configuration [{}] - Message [{}]", fileToLoad, e.getMessage());
 		}
 	}
 }

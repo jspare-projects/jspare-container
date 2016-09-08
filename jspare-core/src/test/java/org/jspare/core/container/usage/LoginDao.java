@@ -13,8 +13,12 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.loader;
+package org.jspare.core.container.usage;
 
-public class ResourceLoaderTest {
+import org.jspare.core.container.Component;
 
+@Component
+public interface LoginDao {
+
+	boolean validate(String username, String password);
 }

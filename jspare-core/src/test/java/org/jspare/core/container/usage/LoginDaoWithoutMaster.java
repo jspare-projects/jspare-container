@@ -13,8 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.loader;
 
-public class ResourceLoaderTest {
+package org.jspare.core.container.usage;
 
+public class LoginDaoWithoutMaster implements LoginDao {
+
+	@Override
+	public boolean validate(String username, String password) {
+
+		if (username.equals("admin")) {
+			return false;
+		}
+
+		return username.equals(password);
+	}
 }

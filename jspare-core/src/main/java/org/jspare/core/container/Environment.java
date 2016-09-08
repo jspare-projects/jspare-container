@@ -1,4 +1,18 @@
-/** The Constant $LOCK. */
+/*
+ * Copyright 2016 JSpare.org.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 /*
  * Copyright 2016 JSpare.org.
  *
@@ -22,9 +36,14 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.StringUtils;
+import org.jspare.core.commons.Definitions;
 import org.jspare.core.config.CommonsConfig;
+import org.jspare.core.container.ContainerUtils;
+import org.jspare.core.container.Key;
+import org.jspare.core.container.Qualifier;
 import org.jspare.core.exception.EnvironmentException;
 
+import lombok.AllArgsConstructor;
 import lombok.Synchronized;
 
 /**
@@ -34,6 +53,12 @@ import lombok.Synchronized;
  * @since 05/10/2015
  */
 public abstract class Environment {
+
+	@AllArgsConstructor
+	public static enum Type {
+
+		DES, HOM, PRD;
+	}
 
 	/** The Constant componentKeys. */
 	private static final Map<Key, Class<?>> componentKeys = new ConcurrentHashMap<>();
@@ -75,12 +100,38 @@ public abstract class Environment {
 
 		try {
 
-			return clazzImpl.newInstance();
+			return ContainerUtils.instatiate(clazzImpl);
 
 		} catch (Exception e) {
 
 			throw new EnvironmentException(e);
 		}
+	}
+
+	/**
+	 * Return {@link Type} setted on environment
+	 *
+	 * @return Type, the environment type
+	 */
+	public static Type getEnv() {
+
+		String env = System.getProperty(Definitions.ENVIRONMENT_KEY);
+		if (StringUtils.isEmpty(env)) {
+
+			env = CONFIG.get(Definitions.ENVIRONMENT_KEY, Type.DES.toString());
+		}
+		return Type.valueOf(env);
+	}
+
+	/**
+	 * Validate type of system
+	 *
+	 * @param type
+	 * @return
+	 */
+	public static boolean isType(Type type) {
+
+		return type.equals(getEnv());
 	}
 
 	/**
@@ -175,7 +226,9 @@ public abstract class Environment {
 	}
 
 	/**
-	 * Release.
+	 * Release the container; <br>
+	 * Note: Carefull with this method, all components will be cleared.
+	 *
 	 */
 	public static void release() {
 
@@ -216,7 +269,7 @@ public abstract class Environment {
 
 			if (!StringUtils.isEmpty(qualifier)) {
 				throw new EnvironmentException(
-						String.format("None implementation registered for class {} with Qualifier [{}]", clazz.getSimpleName(), qualifier));
+						String.format("None implementation registered for class %s with Qualifier [%s]", clazz.getSimpleName(), qualifier));
 			}
 
 			clazzImpl = (Class<T>) ContainerUtils.findClazzImpl(clazz);

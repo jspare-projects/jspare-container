@@ -22,11 +22,26 @@ import static org.jspare.core.container.Environment.registryComponent;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
+import org.jspare.core.container.After;
+import org.jspare.core.container.Component;
+import org.jspare.core.container.ContainerUtils;
+import org.jspare.core.container.Factory;
+import org.jspare.core.container.Inject;
+import org.jspare.core.container.Injector;
+import org.jspare.core.container.ParameterizedTypeRetention;
+import org.jspare.core.container.Qualifier;
+import org.jspare.core.container.Scope;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.scanner.ComponentScanner;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -34,6 +49,11 @@ public class ContainerUtils {
 
 	/** The Constant SUFIX_DEFAULT_IMPL. */
 	private static final String SUFIX_DEFAULT_IMPL = "Impl";
+
+	public static boolean containsInterfaceClass(Class<?> clazzImpl, Class<?> interfaceClazz){
+		
+		return collecInterfaces(clazzImpl).contains(interfaceClazz);
+	}
 
 	/**
 	 * Process injection.
@@ -43,14 +63,26 @@ public class ContainerUtils {
 	 * @param result
 	 *            the result
 	 */
+	@SneakyThrows(InstantiationException.class)
 	public static void processInjection(Class<?> clazz, Object result) {
 		try {
-
-			for (Field field : clazz.getDeclaredFields()) {
+			
+			for (Field field : collectFields(clazz)) {
 				if (field.isAnnotationPresent(Inject.class)) {
+
+					Inject inject = field.getAnnotation(Inject.class);
+					if (!inject.injector().equals(Injector.DefaultInjection.class)) {
+
+						@SuppressWarnings("rawtypes")
+						Injector perform = inject.injector().newInstance();
+						field.setAccessible(true);
+						field.set(result, perform.inject());
+						return;
+					}
+
 					if (!field.getType().isInterface()) {
 						throw new EnvironmentException(
-								"none interface with annotation @Component founded (" + field.getType().getName() + ")");
+								"none interface with annotation @Component founded (" + field.getType().getName() + ") or any Injector class delegate to instantiation");
 					}
 
 					String qualifier = Qualifier.EMPTY;
@@ -84,6 +116,28 @@ public class ContainerUtils {
 			throw new EnvironmentException("Invalid component injection founded.");
 
 		}
+	}
+	
+	private static List<Class<?>> collecInterfaces(Class<?> clazz) {
+		List<Class<?>> interfaces = new ArrayList<>();
+		interfaces.addAll(Arrays.asList( clazz.getInterfaces()));
+
+		if(clazz.getSuperclass() != null){
+			
+			interfaces.addAll(Arrays.asList(clazz.getSuperclass().getInterfaces()));
+		}
+		return interfaces;
+	}
+
+	private static List<Field> collectFields(Class<?> clazz) {
+		List<Field> fields = new ArrayList<>();
+		fields.addAll(Arrays.asList( clazz.getDeclaredFields()));
+
+		if(clazz.getSuperclass() != null){
+			
+			fields.addAll(Arrays.asList( clazz.getSuperclass().getDeclaredFields()));
+		}
+		return fields;
 	}
 
 	/**
@@ -143,6 +197,12 @@ public class ContainerUtils {
 	protected static <T> T instatiate(Class<T> clazz) throws InstantiationException, IllegalAccessException {
 
 		T result = clazz.newInstance();
+		
+		if(containsInterfaceClass(clazz, ParameterizedTypeRetention.class)){
+			
+			Type[] types = ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments();
+			((ParameterizedTypeRetention) result).setTypes(types);
+		}
 
 		ContainerUtils.processInjection(clazz, result);
 
@@ -188,7 +248,7 @@ public class ContainerUtils {
 
 		return !component.scope().equals(Scope.FACTORY);
 	}
-
+	
 	/**
 	 * Perform component scanner.
 	 *
@@ -213,10 +273,10 @@ public class ContainerUtils {
 			}
 		}
 
-		my(ComponentScanner.class).scanAndExecute(componentScanner, (clazzName) -> {
+		my(ComponentScanner.class).scanAndExecute(componentScanner, clazzName -> {
 			try {
 
-				Class<?> clazz = Class.forName((String) clazzName[0]);
+				Class<?> clazz = Class.forName(clazzName);
 
 				if (isAvailableForRegister(clazz)) {
 					registryComponent(clazz);
@@ -226,8 +286,6 @@ public class ContainerUtils {
 
 				log.error(e.getMessage(), e);
 			}
-			return Void.TYPE;
 		});
-
 	}
 }

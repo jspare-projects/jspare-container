@@ -13,8 +13,16 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.loader;
+package org.jspare.core.container.usage;
 
-public class ResourceLoaderTest {
+import java.util.Optional;
 
+import org.jspare.core.container.Component;
+
+@Component
+public interface LoginService {
+
+	Optional<String> login(String username, String password);
+
+	boolean validate(String token);
 }

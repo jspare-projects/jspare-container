@@ -13,8 +13,25 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.loader;
+package org.jspare.core.container;
 
-public class ResourceLoaderTest {
+import org.jspare.core.container.Injector;
 
+import lombok.AllArgsConstructor;
+
+@FunctionalInterface
+public interface Injector<T> {
+
+	T inject();
+
+	@AllArgsConstructor
+	class DefaultInjection implements Injector<Object> {
+
+		private final Object object;
+		
+		@Override
+		public Object inject() {
+			return object;
+		}
+	}
 }

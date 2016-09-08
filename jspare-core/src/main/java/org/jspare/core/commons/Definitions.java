@@ -25,4 +25,6 @@ public interface Definitions {
 
 	/** Define path of common configurations. */
 	String COMMON_FILE_TO_LOAD = "conf/config.ini";
+
+	String ENVIRONMENT_KEY = "env";
 }

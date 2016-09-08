@@ -19,6 +19,7 @@ import java.lang.reflect.Type;
 
 import org.jspare.core.container.Component;
 import org.jspare.core.exception.SerializationException;
+import org.jspare.core.serializer.Json;
 
 @Component
 public interface Json {

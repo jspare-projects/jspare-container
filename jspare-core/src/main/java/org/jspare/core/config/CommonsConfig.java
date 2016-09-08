@@ -15,6 +15,8 @@
  */
 package org.jspare.core.config;
 
+import java.util.Map;
+
 import org.jspare.core.container.Component;
 import org.jspare.core.container.Scope;
 
@@ -44,7 +46,7 @@ public interface CommonsConfig {
 	 * @param defaultValue
 	 * @return
 	 */
-	String get(String name, Object defaultValue);
+	<T> T get(String name, Object defaultValue);
 
 	/**
 	 * Load file.
@@ -75,6 +77,18 @@ public interface CommonsConfig {
 	 *            the overwrite
 	 */
 	void put(String name, String value, boolean overwrite);
+
+	/**
+	 * Put.
+	 *
+	 * @param name
+	 *            the name
+	 * @param value
+	 *            the value
+	 * @param overwrite
+	 *            the overwrite
+	 */
+	void putAll(Map<String, String> parameters, boolean overwrite);
 
 	/**
 	 * Removes the.

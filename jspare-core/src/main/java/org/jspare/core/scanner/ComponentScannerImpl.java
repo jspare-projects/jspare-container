@@ -18,7 +18,8 @@ package org.jspare.core.scanner;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jspare.core.util.Perform;
+import org.jspare.core.scanner.ComponentScanner;
+import org.jspare.core.util.PerformAsync;
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 
@@ -38,12 +39,13 @@ public class ComponentScannerImpl implements ComponentScanner {
 	 * org.jspare.core.util.Perform)
 	 */
 	@Override
-	public void scanAndExecute(String packageConvetion, Perform<Class<Void>> perform) {
-
-		String packageForScan = packageConvetion.substring(0, packageConvetion.length() - 2);
+	public void scanAndExecute(String packageConvetion, PerformAsync<String> perform) {
+		String packageForScan = packageConvetion;
+		if (packageForScan.endsWith(".*")) {
+			packageForScan = packageForScan.substring(0, packageForScan.length() - 2);
+		}
 
 		List<String> matchingClasses = new ArrayList<>();
-
 		new FastClasspathScanner(packageForScan).scan().getNamesOfAllClasses().forEach(matchingClasses::add);
 
 		matchingClasses.forEach(clazzName -> {

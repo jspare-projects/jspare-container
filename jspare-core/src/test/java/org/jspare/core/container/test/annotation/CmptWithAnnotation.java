@@ -20,7 +20,7 @@ import org.jspare.core.container.Component;
 /**
  * The Interface CmptWithAnnotation.
  *
- * @author pflima
+ * @author pflimaw
  * @since 30/03/2016
  */
 @Component

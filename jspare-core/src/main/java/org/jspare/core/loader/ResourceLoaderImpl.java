@@ -26,12 +26,24 @@ import java.io.InputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.jspare.core.loader.ResourceLoader;
 
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ResourceLoaderImpl implements ResourceLoader {
+
+	@Override
+	public boolean exist(String resource) {
+
+		if (new File(resource).exists()) {
+
+			return true;
+		}
+		InputStream in = getClass().getResourceAsStream(String.format("%s%s", File.separator, resource));
+		return in != null;
+	}
 
 	/*
 	 * (non-Javadoc)

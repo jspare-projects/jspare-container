@@ -16,6 +16,7 @@
 package org.jspare.core.container;
 
 import static org.jspare.core.container.Environment.my;
+import static org.jspare.core.container.Environment.registryComponent;
 import static org.junit.Assert.assertTrue;
 
 import org.jspare.core.container.test.application.CmptAutoLoader;
@@ -29,6 +30,7 @@ public class ApplicationComponentScanningTest extends AbstractApplicationTest {
 	@Test
 	public void testScanning() {
 
+		registryComponent(CmptAutoLoaderOneImpl.class);
 		CmptAutoLoader cmptAutoLoader = my(CmptAutoLoader.class);
 		assertTrue(cmptAutoLoader instanceof CmptAutoLoaderOneImpl);
 

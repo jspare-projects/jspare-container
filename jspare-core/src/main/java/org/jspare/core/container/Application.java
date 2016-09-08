@@ -72,6 +72,8 @@ public abstract class Application {
 	 */
 	protected void start() throws InfraException {
 
+		long start = System.currentTimeMillis();
+
 		log.info("Starting Application");
 		initialize();
 
@@ -81,5 +83,7 @@ public abstract class Application {
 		buildAll();
 
 		load();
+
+		log.debug("Application started at {} ms", System.currentTimeMillis() - start);
 	}
 }

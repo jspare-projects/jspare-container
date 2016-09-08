@@ -18,6 +18,8 @@ package org.jspare.core.container;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import org.jspare.core.container.Scope;
+
 /**
  * The Interface Component.
  *

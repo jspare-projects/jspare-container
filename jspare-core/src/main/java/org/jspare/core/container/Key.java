@@ -15,6 +15,8 @@
  */
 package org.jspare.core.container;
 
+import org.jspare.core.container.Qualifier;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,6 +49,6 @@ public class Key {
 	 */
 	public Key(Class<?> clazzInterface) {
 		this.clazzInterface = clazzInterface;
-		this.qualifier = Qualifier.EMPTY;
+		qualifier = Qualifier.EMPTY;
 	}
 }

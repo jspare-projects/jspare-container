@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jspare.core.exception.ProviderLoaderException;
+import org.jspare.core.provider.ApplicationProvider;
+import org.jspare.core.provider.Factory;
 
 /**
  * The Class ApplicationProviderImpl.

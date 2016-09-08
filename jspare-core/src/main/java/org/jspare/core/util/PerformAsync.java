@@ -13,8 +13,25 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.loader;
+package org.jspare.core.util;
 
-public class ResourceLoaderTest {
+/**
+ * The Interface Perform.
+ *
+ * @author pflima
+ * @param <T>
+ *            the generic type
+ * @since 30/03/2016
+ */
+@FunctionalInterface
+public interface PerformAsync<T> {
 
+	/**
+	 * Do it.
+	 *
+	 * @param objects
+	 *            the objects
+	 * @return the t
+	 */
+	void doIt(T t);
 }

@@ -16,7 +16,7 @@
 package org.jspare.core.scanner;
 
 import org.jspare.core.container.Component;
-import org.jspare.core.util.Perform;
+import org.jspare.core.util.PerformAsync;
 
 /**
  * The Interface ComponentScanner.
@@ -38,5 +38,5 @@ public interface ComponentScanner {
 	 * @param perform
 	 *            the perform
 	 */
-	void scanAndExecute(String packageConvetion, Perform<Class<Void>> perform);
+	void scanAndExecute(String packageConvetion, PerformAsync<String> perform);
 }

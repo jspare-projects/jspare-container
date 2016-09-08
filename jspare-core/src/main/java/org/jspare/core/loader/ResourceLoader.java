@@ -33,6 +33,15 @@ public interface ResourceLoader {
 	String CLASSPATH_PREFIX_PATTERN = "classpath:";
 
 	/**
+	 *
+	 * Validate if resource exist at file location or classpath
+	 *
+	 * @param resource
+	 * @return
+	 */
+	boolean exist(String resource);
+
+	/**
 	 * Read file to input stream.
 	 *
 	 * @param resource
@@ -62,4 +71,5 @@ public interface ResourceLoader {
 	 * @return the string
 	 */
 	String readFileToStringIfExist(String resource);
+
 }

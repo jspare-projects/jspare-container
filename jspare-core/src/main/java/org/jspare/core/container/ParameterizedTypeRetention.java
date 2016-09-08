@@ -13,8 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.loader;
+package org.jspare.core.container;
 
-public class ResourceLoaderTest {
+import java.lang.reflect.Type;
 
+public interface ParameterizedTypeRetention {
+	
+	void setTypes(Type[] types);
 }

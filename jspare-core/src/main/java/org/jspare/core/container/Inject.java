@@ -20,6 +20,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.jspare.core.container.Injector;
+
 /**
  * The Interface Component.
  *
@@ -52,4 +54,7 @@ public @interface Inject {
 	 * @return the class
 	 */
 	Class<?> value() default NotDefined.class;
+
+	@SuppressWarnings("rawtypes")
+	Class<? extends Injector> injector() default Injector.DefaultInjection.class;
 }

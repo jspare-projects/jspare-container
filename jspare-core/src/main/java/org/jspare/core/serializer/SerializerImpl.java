@@ -18,8 +18,6 @@ package org.jspare.core.serializer;
 import java.beans.PropertyEditor;
 import java.beans.PropertyEditorManager;
 
-import org.jspare.core.serializer.Serializer;
-
 /**
  * The Class SerializerImpl.
  *

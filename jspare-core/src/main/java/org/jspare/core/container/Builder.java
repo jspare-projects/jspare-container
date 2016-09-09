@@ -18,6 +18,8 @@ package org.jspare.core.container;
 /**
  * The Interface Builder.
  *
+ * Used to aid in the construction of an Application
+ *
  * @author pflima
  * @since 26/07/2016
  */

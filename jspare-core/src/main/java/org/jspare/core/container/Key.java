@@ -15,8 +15,6 @@
  */
 package org.jspare.core.container;
 
-import org.jspare.core.container.Qualifier;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

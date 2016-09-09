@@ -23,6 +23,10 @@ import org.jspare.core.container.Scope;
 /**
  * The Interface CommonsConfig.
  *
+ * <br>
+ *
+ * It is used for manipulating configuration applications
+ *
  * @author pflima
  * @since 30/03/2016
  */
@@ -67,7 +71,7 @@ public interface CommonsConfig {
 	void put(String name, String value);
 
 	/**
-	 * Put.
+	 * Put new property overwriting the current property if it has.
 	 *
 	 * @param name
 	 *            the name
@@ -79,7 +83,7 @@ public interface CommonsConfig {
 	void put(String name, String value, boolean overwrite);
 
 	/**
-	 * Put.
+	 * Put new property.
 	 *
 	 * @param name
 	 *            the name
@@ -91,7 +95,7 @@ public interface CommonsConfig {
 	void putAll(Map<String, String> parameters, boolean overwrite);
 
 	/**
-	 * Removes the.
+	 * Removes the property.
 	 *
 	 * @param name
 	 *            the name
@@ -99,7 +103,7 @@ public interface CommonsConfig {
 	void remove(String name);
 
 	/**
-	 * Store.
+	 * Store configuration.
 	 */
 	void store();
 }

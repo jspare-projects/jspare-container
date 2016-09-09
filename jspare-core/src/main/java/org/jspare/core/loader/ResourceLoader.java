@@ -23,6 +23,8 @@ import org.jspare.core.container.Component;
 /**
  * The Interface ResourceLoader.
  *
+ * Reads a resource both with classpath like a resource file.
+ *
  * @author pflima
  * @since 30/03/2016
  */

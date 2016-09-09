@@ -22,6 +22,8 @@ import java.lang.annotation.Target;
 
 /**
  * The Interface Factory.
+ * 
+ * Indicate to environment that you need one new Instance of component.
  *
  * @author pflima
  * @since 05/10/2015

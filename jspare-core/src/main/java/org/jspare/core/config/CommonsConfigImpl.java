@@ -23,7 +23,6 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.lang.StringUtils;
-import org.jspare.core.config.CommonsConfig;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -65,7 +64,7 @@ public class CommonsConfigImpl implements CommonsConfig {
 	@SuppressWarnings("unchecked")
 	public <T> T get(String name, Object defaultValue) {
 		String result = configuration.getString(name);
-		return ((T) (StringUtils.isEmpty(result) ? defaultValue.toString() : result));
+		return (T) (StringUtils.isEmpty(result) ? defaultValue.toString() : result);
 	}
 
 	/*

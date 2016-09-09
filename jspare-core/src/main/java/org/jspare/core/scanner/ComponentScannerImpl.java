@@ -18,7 +18,6 @@ package org.jspare.core.scanner;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jspare.core.scanner.ComponentScanner;
 import org.jspare.core.util.PerformAsync;
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;

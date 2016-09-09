@@ -18,10 +18,18 @@ package org.jspare.core.container;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import org.jspare.core.container.Scope;
-
 /**
  * The Interface Component.
+ *
+ * <br>
+ *
+ * A component defines an interface that is capable of being manipulated and
+ * managed by the environment. <br>
+ * The behavior that exerts a component in an interface provides the usage is
+ * made by inverting control between objects. Thus, when a component is declared
+ * to have an implementation registered in the environment must, by default and
+ * convention container, any kind suffixed <b>Impl</b> It will be assumed to
+ * default implementation, provided it is in the same package structure.
  *
  * @author pflima
  * @since 05/10/2015
@@ -30,7 +38,8 @@ import org.jspare.core.container.Scope;
 public @interface Component {
 
 	/**
-	 * Scope.
+	 * Scope of Component on Environment, default is Application thaht represent
+	 * one Singleton.
 	 *
 	 * @return the scope
 	 */

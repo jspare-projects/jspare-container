@@ -22,17 +22,42 @@ import org.jspare.core.exception.InfraException;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * The Class Application.
+ *
+ * <br>
+ *
+ * Class used to perform the bootstrapping an application using the framework
+ *
+ * The life cycle used when start are called following methods of the class:
+ * <ul>
+ * <li>initialize</li>
+ * <li>mySupport</li>
+ * <li>load</li>
+ * </ul>
+ */
 @Slf4j
 public abstract class Application {
 
+	/** The Constant builders. */
 	private static final List<Builder> builders = new ArrayList<>();
 
+	/**
+	 * Builder.
+	 *
+	 * @param builder
+	 *            the builder
+	 * @return the application
+	 */
 	public Application builder(Builder builder) {
 
 		builders.add(builder);
 		return this;
 	}
 
+	/**
+	 * Builds the all.
+	 */
 	private void buildAll() {
 
 		builders.forEach(b -> b.build());
@@ -50,9 +75,15 @@ public abstract class Application {
 		System.exit(status);
 	}
 
+	/**
+	 * Initialize.
+	 */
 	protected void initialize() {
 	}
 
+	/**
+	 * Load.
+	 */
 	protected void load() {
 	}
 

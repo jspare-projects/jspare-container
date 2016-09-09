@@ -38,9 +38,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.lang.StringUtils;
 import org.jspare.core.commons.Definitions;
 import org.jspare.core.config.CommonsConfig;
-import org.jspare.core.container.ContainerUtils;
-import org.jspare.core.container.Key;
-import org.jspare.core.container.Qualifier;
 import org.jspare.core.exception.EnvironmentException;
 
 import lombok.AllArgsConstructor;
@@ -48,6 +45,11 @@ import lombok.Synchronized;
 
 /**
  * The Class Environment.
+ *
+ * Responsible for the whole framework of the container control. The environment
+ * is responsible for the retention and display of framework components. Through
+ * this class has access to static methods that ensure secure access to
+ * instances of components registered in the environment.
  *
  * @author pflima
  * @since 05/10/2015
@@ -137,6 +139,15 @@ public abstract class Environment {
 	/**
 	 * My.
 	 *
+	 * This method is responsible for retrieving the implementation of a
+	 * component of the environment, the instance of the class will be recovered
+	 * which is registered in the environment, noting that the scope and other
+	 * states should be set to register a new component in the environment when
+	 * performing this method will be recovered an implementation that is
+	 * already registered in the environment, if the component has not yet been
+	 * registered, the method should register a common implementation, this one
+	 * is is available and provide a memory reference.
+	 *
 	 * @param <T>
 	 *            the generic type
 	 * @param clazz
@@ -149,6 +160,18 @@ public abstract class Environment {
 
 	/**
 	 * My.
+	 *
+	 * This method is responsible for retrieving the implementation of a
+	 * component of the environment, the instance of the class will be recovered
+	 * which is registered in the environment, noting that the scope and other
+	 * states should be set to register a new component in the environment when
+	 * performing this method will be recovered an implementation that is
+	 * already registered in the environment, if the component has not yet been
+	 * registered, the method should register a common implementation, this one
+	 * is is available and provide a memory reference.
+	 *
+	 * Receive the qualifier for qualify the injection, note: the implementation
+	 * class need be annotated with {@link Qualifier}
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -184,7 +207,10 @@ public abstract class Environment {
 	}
 
 	/**
-	 * Registry component.
+	 * Registry component on Environment.
+	 *
+	 * Registering your class implementation on environment your component are
+	 * holded by Environmet, and available for invertion of control.
 	 *
 	 * @param clazzImpl
 	 *            the clazz impl
@@ -210,7 +236,8 @@ public abstract class Environment {
 	}
 
 	/**
-	 * Registry component.
+	 * Registering your intance implementation on environment your component are
+	 * holded by Environmet, and available for invertion of control.
 	 *
 	 * @param component
 	 *            the component

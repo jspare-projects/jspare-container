@@ -15,23 +15,47 @@
  */
 package org.jspare.core.container;
 
-import org.jspare.core.container.Injector;
-
 import lombok.AllArgsConstructor;
 
+/**
+ * The Interface Injector.
+ *
+ * It is responsible for defining the way of instantiation of a component used
+ * by the annotation injection.
+ *
+ * @param <T>
+ *            the generic type
+ */
 @FunctionalInterface
 public interface Injector<T> {
 
-	T inject();
-
+	/**
+	 * Instantiates a new default injection.
+	 *
+	 * @param object
+	 *            the object
+	 */
 	@AllArgsConstructor
 	class DefaultInjection implements Injector<Object> {
 
+		/** The object. */
 		private final Object object;
-		
+
+		/*
+		 * (non-Javadoc)
+		 *
+		 * @see org.jspare.core.container.Injector#inject()
+		 */
 		@Override
 		public Object inject() {
 			return object;
 		}
 	}
+
+	/**
+	 * Inject.
+	 *
+	 * @return the t
+	 */
+	T inject();
 }

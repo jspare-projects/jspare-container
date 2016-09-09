@@ -21,16 +21,17 @@ import static org.jspare.core.container.Environment.scanAndRegistryComponents;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jspare.core.container.Builder;
-import org.jspare.core.container.Bundle;
-import org.jspare.core.container.Environment;
-import org.jspare.core.container.EnvironmentBuilder;
 import org.jspare.core.exception.EnvironmentException;
 
 import lombok.extern.slf4j.Slf4j;
 
 /** The Constant log. */
 @Slf4j
+/**
+ *
+ * Builder your Environment with this implementation of Builder.
+ *
+ */
 public class EnvironmentBuilder implements Builder {
 
 	/**

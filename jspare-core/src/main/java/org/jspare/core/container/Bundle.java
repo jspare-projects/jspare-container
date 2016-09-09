@@ -16,7 +16,8 @@
 package org.jspare.core.container;
 
 /**
- * The Interface Bundle.
+ * The Interface Bundle. <br>
+ * Create a package shares to be used in called by Builder
  *
  * @author pflima
  * @since 30/03/2016

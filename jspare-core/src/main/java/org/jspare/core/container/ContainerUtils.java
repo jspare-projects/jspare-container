@@ -29,29 +29,37 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.jspare.core.container.After;
-import org.jspare.core.container.Component;
-import org.jspare.core.container.ContainerUtils;
-import org.jspare.core.container.Factory;
-import org.jspare.core.container.Inject;
-import org.jspare.core.container.Injector;
-import org.jspare.core.container.ParameterizedTypeRetention;
-import org.jspare.core.container.Qualifier;
-import org.jspare.core.container.Scope;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.scanner.ComponentScanner;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * The Class ContainerUtils.
+ *
+ *  Used by Environment for Container actions
+ *
+ */
+
+/** The Constant log. */
 @Slf4j
 public class ContainerUtils {
 
 	/** The Constant SUFIX_DEFAULT_IMPL. */
 	private static final String SUFIX_DEFAULT_IMPL = "Impl";
 
-	public static boolean containsInterfaceClass(Class<?> clazzImpl, Class<?> interfaceClazz){
-		
+	/**
+	 * Contains interface class.
+	 *
+	 * @param clazzImpl
+	 *            the clazz impl
+	 * @param interfaceClazz
+	 *            the interface clazz
+	 * @return true, if successful
+	 */
+	public static boolean containsInterfaceClass(Class<?> clazzImpl, Class<?> interfaceClazz) {
+
 		return collecInterfaces(clazzImpl).contains(interfaceClazz);
 	}
 
@@ -66,7 +74,7 @@ public class ContainerUtils {
 	@SneakyThrows(InstantiationException.class)
 	public static void processInjection(Class<?> clazz, Object result) {
 		try {
-			
+
 			for (Field field : collectFields(clazz)) {
 				if (field.isAnnotationPresent(Inject.class)) {
 
@@ -81,8 +89,8 @@ public class ContainerUtils {
 					}
 
 					if (!field.getType().isInterface()) {
-						throw new EnvironmentException(
-								"none interface with annotation @Component founded (" + field.getType().getName() + ") or any Injector class delegate to instantiation");
+						throw new EnvironmentException("none interface with annotation @Component founded (" + field.getType().getName()
+								+ ") or any Injector class delegate to instantiation");
 					}
 
 					String qualifier = Qualifier.EMPTY;
@@ -117,25 +125,39 @@ public class ContainerUtils {
 
 		}
 	}
-	
+
+	/**
+	 * Collec interfaces.
+	 *
+	 * @param clazz
+	 *            the clazz
+	 * @return the list
+	 */
 	private static List<Class<?>> collecInterfaces(Class<?> clazz) {
 		List<Class<?>> interfaces = new ArrayList<>();
-		interfaces.addAll(Arrays.asList( clazz.getInterfaces()));
+		interfaces.addAll(Arrays.asList(clazz.getInterfaces()));
 
-		if(clazz.getSuperclass() != null){
-			
+		if (clazz.getSuperclass() != null) {
+
 			interfaces.addAll(Arrays.asList(clazz.getSuperclass().getInterfaces()));
 		}
 		return interfaces;
 	}
 
+	/**
+	 * Collect fields.
+	 *
+	 * @param clazz
+	 *            the clazz
+	 * @return the list
+	 */
 	private static List<Field> collectFields(Class<?> clazz) {
 		List<Field> fields = new ArrayList<>();
-		fields.addAll(Arrays.asList( clazz.getDeclaredFields()));
+		fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
 
-		if(clazz.getSuperclass() != null){
-			
-			fields.addAll(Arrays.asList( clazz.getSuperclass().getDeclaredFields()));
+		if (clazz.getSuperclass() != null) {
+
+			fields.addAll(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
 		}
 		return fields;
 	}
@@ -197,9 +219,9 @@ public class ContainerUtils {
 	protected static <T> T instatiate(Class<T> clazz) throws InstantiationException, IllegalAccessException {
 
 		T result = clazz.newInstance();
-		
-		if(containsInterfaceClass(clazz, ParameterizedTypeRetention.class)){
-			
+
+		if (containsInterfaceClass(clazz, ParameterizedTypeRetention.class)) {
+
 			Type[] types = ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments();
 			((ParameterizedTypeRetention) result).setTypes(types);
 		}
@@ -248,7 +270,7 @@ public class ContainerUtils {
 
 		return !component.scope().equals(Scope.FACTORY);
 	}
-	
+
 	/**
 	 * Perform component scanner.
 	 *

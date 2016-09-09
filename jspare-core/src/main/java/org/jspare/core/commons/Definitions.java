@@ -18,6 +18,9 @@ package org.jspare.core.commons;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * The Interface Definitions for Jspare Framework.
+ */
 public interface Definitions {
 
 	/** Define the default charset for applications */

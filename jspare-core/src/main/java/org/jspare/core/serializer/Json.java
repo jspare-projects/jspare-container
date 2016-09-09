@@ -19,22 +19,101 @@ import java.lang.reflect.Type;
 
 import org.jspare.core.container.Component;
 import org.jspare.core.exception.SerializationException;
-import org.jspare.core.serializer.Json;
 
+/**
+ * The Interface Json.
+ */
 @Component
 public interface Json {
 
+	/**
+	 * From JSON.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonObject
+	 *            the json object
+	 * @param clazz
+	 *            the clazz
+	 * @return the t
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	<T> T fromJSON(Object jsonObject, Class<T> clazz) throws SerializationException;
 
+	/**
+	 * From JSON.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonObject
+	 *            the json object
+	 * @param type
+	 *            the type
+	 * @return the t
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	<T> T fromJSON(Object jsonObject, Type type) throws SerializationException;
 
+	/**
+	 * From JSON.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param json
+	 *            the json
+	 * @param clazz
+	 *            the clazz
+	 * @return the t
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	<T> T fromJSON(String json, Class<T> clazz) throws SerializationException;
 
+	/**
+	 * From JSON.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param json
+	 *            the json
+	 * @param type
+	 *            the type
+	 * @return the t
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	<T> T fromJSON(String json, Type type) throws SerializationException;
 
+	/**
+	 * Checks if is valid json.
+	 *
+	 * @param json
+	 *            the json
+	 * @return true, if is valid json
+	 */
 	boolean isValidJson(String json);
 
+	/**
+	 * Registry json converter.
+	 *
+	 * @param converter
+	 *            the converter
+	 * @return the json
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	Json registryJsonConverter(Object converter) throws SerializationException;
 
+	/**
+	 * To JSON.
+	 *
+	 * @param instance
+	 *            the instance
+	 * @return the string
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	String toJSON(Object instance) throws SerializationException;
 }

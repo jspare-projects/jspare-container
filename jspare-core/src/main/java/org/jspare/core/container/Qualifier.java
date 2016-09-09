@@ -21,7 +21,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The Interface Qualifier.
+ * The Interface Qualifier. <br>
+ * Responsible for qualify the injection of a dependency
  *
  * @author pflima
  * @since 05/10/2015

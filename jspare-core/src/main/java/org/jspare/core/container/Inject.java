@@ -20,10 +20,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.jspare.core.container.Injector;
-
 /**
- * The Interface Component.
+ * The Inject Annotation. <br>
+ * With the injection of annotation you indicate to the container that needs to
+ * do the injection of a particular component. It is important to note that your
+ * appeal will be injected if it is part of the container life cycle, ie its
+ * injection must have been made by intânciação of a component or used the
+ * environmental support methods.
  *
  * @author pflima
  * @since 05/10/2015
@@ -48,13 +51,13 @@ public @interface Inject {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
+	Class<? extends Injector> injector() default Injector.DefaultInjection.class;
+
 	/**
 	 * Value.
 	 *
 	 * @return the class
 	 */
 	Class<?> value() default NotDefined.class;
-
-	@SuppressWarnings("rawtypes")
-	Class<? extends Injector> injector() default Injector.DefaultInjection.class;
 }

@@ -19,8 +19,6 @@ import java.lang.reflect.Type;
 
 import org.jspare.core.exception.InfraRuntimeException;
 import org.jspare.core.exception.SerializationException;
-import org.jspare.core.serializer.Json;
-import org.jspare.core.serializer.JsonConverter;
 import org.jspare.core.serializer.converter.LocalDateConverter;
 import org.jspare.core.serializer.converter.LocalDateTimeConverter;
 import org.jspare.core.serializer.converter.LocalTimeConverter;
@@ -31,11 +29,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapterFactory;
 
+/**
+ * The Class JsonImpl.
+ */
 public class JsonImpl implements Json {
 
 	/** The builder. */
 	private static GsonBuilder builder = new GsonBuilder();
 
+	/**
+	 * Instantiates a new json impl.
+	 */
 	public JsonImpl() {
 
 		try {
@@ -49,30 +53,59 @@ public class JsonImpl implements Json {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Json#fromJSON(java.lang.Object,
+	 * java.lang.Class)
+	 */
 	@Override
 	public <T> T fromJSON(Object jsonObject, Class<T> clazz) throws SerializationException {
 
 		return getGson().fromJson((JsonElement) jsonObject, clazz);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Json#fromJSON(java.lang.Object,
+	 * java.lang.reflect.Type)
+	 */
 	@Override
 	public <T> T fromJSON(Object jsonObject, Type type) throws SerializationException {
 
 		return getGson().fromJson((JsonElement) jsonObject, type);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Json#fromJSON(java.lang.String,
+	 * java.lang.Class)
+	 */
 	@Override
 	public <T> T fromJSON(String json, Class<T> clazz) throws SerializationException {
 
 		return getGson().fromJson(json, clazz);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Json#fromJSON(java.lang.String,
+	 * java.lang.reflect.Type)
+	 */
 	@Override
 	public <T> T fromJSON(String json, Type type) throws SerializationException {
 
 		return getGson().fromJson(json, type);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Json#isValidJson(java.lang.String)
+	 */
 	@Override
 	public boolean isValidJson(String json) {
 
@@ -86,6 +119,12 @@ public class JsonImpl implements Json {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.jspare.core.serializer.Json#registryJsonConverter(java.lang.Object)
+	 */
 	@Override
 	public Json registryJsonConverter(Object converter) throws SerializationException {
 
@@ -104,12 +143,22 @@ public class JsonImpl implements Json {
 				String.format("Cannot register converter [%s] invalid instance type.", converter.getClass().getName()));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Json#toJSON(java.lang.Object)
+	 */
 	@Override
 	public String toJSON(Object instance) throws SerializationException {
 
 		return getGson().toJson(instance);
 	}
 
+	/**
+	 * Gets the gson.
+	 *
+	 * @return the gson
+	 */
 	protected Gson getGson() {
 
 		return builder.create();

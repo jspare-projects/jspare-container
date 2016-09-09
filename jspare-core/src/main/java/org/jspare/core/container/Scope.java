@@ -18,6 +18,8 @@ package org.jspare.core.container;
 /**
  * The Enum Scope.
  *
+ * Define a scope of the compoenent.
+ *
  * @author pflima
  * @since 30/03/2016
  */

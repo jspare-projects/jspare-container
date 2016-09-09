@@ -26,8 +26,16 @@ import org.jspare.core.exception.SerializationException;
 
 import lombok.Cleanup;
 
+/**
+ * The Class Base64Impl.
+ */
 public class Base64Impl implements org.jspare.core.serializer.Base64 {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Base64#fromBase64(java.lang.String)
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T fromBase64(String data) throws SerializationException {
@@ -46,12 +54,22 @@ public class Base64Impl implements org.jspare.core.serializer.Base64 {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Base64#toBase64(byte[])
+	 */
 	@Override
 	public String toBase64(byte[] bytes) throws SerializationException {
 
 		return Base64.getEncoder().encodeToString(bytes);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.serializer.Base64#toBase64(java.lang.Object)
+	 */
 	@Override
 	public String toBase64(Object instance) throws SerializationException {
 

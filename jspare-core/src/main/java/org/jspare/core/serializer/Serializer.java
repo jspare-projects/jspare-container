@@ -17,9 +17,23 @@ package org.jspare.core.serializer;
 
 import org.jspare.core.container.Component;
 
+/**
+ * The Interface Serializer.
+ */
 @Component
 @FunctionalInterface
 public interface Serializer {
 
+	/**
+	 * Convert.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
+	 * @param value
+	 *            the value
+	 * @return the t
+	 */
 	<T> T convert(Class<T> clazz, String value);
 }

@@ -21,7 +21,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The Interface Component.
+ * The Interface After. <br>
+ * It is used in the life cycle in the instantiation of a new object using the
+ * container. Whenever an object is instantiated in his anger lifecycle execute
+ * the method is annotated with annotation, it is important that the method is
+ * public in the class.
  *
  * @author pflima
  * @since 05/10/2015

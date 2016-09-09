@@ -18,12 +18,44 @@ package org.jspare.core.serializer;
 import org.jspare.core.container.Component;
 import org.jspare.core.exception.SerializationException;
 
+/**
+ * The Interface Base64.
+ */
 @Component
 public interface Base64 {
 
+	/**
+	 * From base 64.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param data
+	 *            the data
+	 * @return the t
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	<T> T fromBase64(String data) throws SerializationException;
 
+	/**
+	 * To base 64.
+	 *
+	 * @param bytes
+	 *            the bytes
+	 * @return the string
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	String toBase64(byte[] bytes) throws SerializationException;
 
+	/**
+	 * To base 64.
+	 *
+	 * @param instance
+	 *            the instance
+	 * @return the string
+	 * @throws SerializationException
+	 *             the serialization exception
+	 */
 	String toBase64(Object instance) throws SerializationException;
 }

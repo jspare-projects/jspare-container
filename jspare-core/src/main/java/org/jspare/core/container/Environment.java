@@ -126,10 +126,10 @@ public abstract class Environment {
 	}
 
 	/**
-	 * Validate type of system
+	 * Checks if is type.
 	 *
-	 * @param type
-	 * @return
+	 * @param type the type
+	 * @return true, if is type
 	 */
 	public static boolean isType(Type type) {
 

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jspare</groupId>
 	<artifactId>jspare-parent</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>JSpare Parent</name>
@@ -43,6 +43,7 @@
 		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<maven.source.version>2.0.4</maven.source.version>
+		<maven.javadoc.version>2.10.4</maven.javadoc.version>
 		<cobertura.version>2.7</cobertura.version>
 		<lombok.version>1.16.8</lombok.version>
 		<logback.version>1.1.6</logback.version>
@@ -67,6 +68,19 @@
 				<executions>
 					<execution>
 						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven.javadoc.version}</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>

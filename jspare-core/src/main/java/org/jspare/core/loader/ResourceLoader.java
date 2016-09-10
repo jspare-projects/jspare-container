@@ -35,11 +35,10 @@ public interface ResourceLoader {
 	String CLASSPATH_PREFIX_PATTERN = "classpath:";
 
 	/**
+	 * Validate if resource exist at file location or classpatha
 	 *
-	 * Validate if resource exist at file location or classpath
-	 *
-	 * @param resource
-	 * @return
+	 * @param resource the resource
+	 * @return true, if successful
 	 */
 	boolean exist(String resource);
 

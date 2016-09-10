@@ -30,10 +30,7 @@ import lombok.AllArgsConstructor;
 public interface Injector<T> {
 
 	/**
-	 * Instantiates a new default injection.
-	 *
-	 * @param object
-	 *            the object
+	 * The Class DefaultInjection.
 	 */
 	@AllArgsConstructor
 	class DefaultInjection implements Injector<Object> {

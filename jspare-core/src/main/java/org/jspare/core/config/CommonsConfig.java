@@ -36,74 +36,62 @@ public interface CommonsConfig {
 	/**
 	 * Gets the.
 	 *
-	 * @param name
-	 *            the name
+	 * @param name the name
 	 * @return the string
 	 */
 	String get(String name);
 
 	/**
+	 * Gets the.
 	 *
-	 * The default value will be called as toString method.
-	 *
-	 * @param name
-	 * @param defaultValue
-	 * @return
+	 * @param <T> the generic type
+	 * @param name the name
+	 * @param defaultValue the default value
+	 * @return the t
 	 */
 	<T> T get(String name, Object defaultValue);
 
 	/**
 	 * Load file.
 	 *
-	 * @param fileToLoad
-	 *            the file to load
+	 * @param fileToLoad the file to load
 	 */
 	void loadFile(String fileToLoad);
 
 	/**
 	 * Put.
 	 *
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param name the name
+	 * @param value the value
 	 */
 	void put(String name, String value);
 
 	/**
-	 * Put new property overwriting the current property if it has.
+	 * Put.
 	 *
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * @param overwrite
-	 *            the overwrite
+	 * @param name the name
+	 * @param value the value
+	 * @param overwrite the overwrite
 	 */
 	void put(String name, String value, boolean overwrite);
 
 	/**
-	 * Put new property.
+	 * Put all.
 	 *
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * @param overwrite
-	 *            the overwrite
+	 * @param parameters the parameters
+	 * @param overwrite the overwrite
 	 */
 	void putAll(Map<String, String> parameters, boolean overwrite);
 
 	/**
-	 * Removes the property.
+	 * Removes the.
 	 *
-	 * @param name
-	 *            the name
+	 * @param name the name
 	 */
 	void remove(String name);
 
 	/**
-	 * Store configuration.
+	 * Store.
 	 */
 	void store();
 }

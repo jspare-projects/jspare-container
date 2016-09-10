@@ -29,9 +29,7 @@ public interface PerformAsync<T> {
 	/**
 	 * Do it.
 	 *
-	 * @param objects
-	 *            the objects
-	 * @return the t
+	 * @param t the t
 	 */
 	void doIt(T t);
 }

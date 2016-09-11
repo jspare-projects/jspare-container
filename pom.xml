@@ -9,6 +9,9 @@
 
 	<name>JSpare Parent</name>
 	<url>http://jspare.org</url>
+	<description>
+       The JSpare Framework core environment container. Write componentized and modern java applications.
+    </description>
 	<organization>
 		<name>JSpare.org</name>
 		<url>http://jspare.org</url>
@@ -20,6 +23,12 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
+
+	<scm>
+		<url>https://github.com/jspare-projects/jspare-container</url>
+		<connection>scm:git:git://github.com/jspare-projects/jspare-container.git</connection>
+		<developerConnection>scm:git:git@github.com:jspare-projects/jspare-container.git</developerConnection>
+	</scm>
 
 	<issueManagement>
 		<url>https://github.com/jspare-projects/jspare-container/issues</url>

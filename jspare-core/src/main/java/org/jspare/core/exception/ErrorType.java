@@ -15,34 +15,40 @@
  */
 package org.jspare.core.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
-/**
- * The Class EnvironmentException.
- *
- * @author pflima
- * @since 05/10/2015
- */
-public class EnvironmentException extends RuntimeException {
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Accessors(fluent = true)
+public class ErrorType {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+	public static ErrorType create(int code, String message) {
 
-	/** The Constant FORMATTED_MESSAGE. */
-	private static final String FORMATTED_MESSAGE = "EX%s - %s";
+		return new ErrorType(code, message);
+	}
 
-	/** The error. */
 	@Getter
-	private final ErrorType error;
+	private final int code;
 
-	/**
-	 * Instantiates a new environment exception.
-	 *
-	 * @param error the error
-	 */
-	public EnvironmentException(ErrorType error) {
+	private final String message;
 
-		super(String.format(FORMATTED_MESSAGE, error.code(), error.message()), error.throwable());
-		this.error = error;
+	@Getter
+	@Setter
+	private Throwable throwable;
+
+	private Object[] arguments;
+
+	public ErrorType arguments(Object... arguments) {
+		this.arguments = arguments;
+		return this;
+	}
+
+	public String message() {
+
+		return String.format(message, arguments);
 	}
 }

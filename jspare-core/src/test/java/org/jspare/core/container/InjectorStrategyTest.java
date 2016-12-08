@@ -13,12 +13,27 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.container;
 
-import org.jspare.core.annotation.Component;
+import static org.jspare.core.container.Environment.my;
 
-@Component
-public interface LoginDao {
+import org.jspare.core.dummy.DummyBar;
+import org.jspare.core.dummy.DummyBarStrategy;
+import org.jspare.core.dummy.FooDummyResource;
+import org.junit.Assert;
+import org.junit.Test;
 
-	boolean validate(String username, String password);
+public class InjectorStrategyTest {
+
+	@Test
+	public void injectStrategyTest() {
+
+		Environment.release();
+		Environment.registryInjector(DummyBar.class, new DummyBarStrategy());
+
+		FooDummyResource foo = my(FooDummyResource.class);
+
+		Assert.assertNotNull(foo.getBar());
+	}
+
 }

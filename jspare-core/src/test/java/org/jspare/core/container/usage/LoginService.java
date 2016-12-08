@@ -17,7 +17,7 @@ package org.jspare.core.container.usage;
 
 import java.util.Optional;
 
-import org.jspare.core.container.Component;
+import org.jspare.core.annotation.Component;
 
 @Component
 public interface LoginService {

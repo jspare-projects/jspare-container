@@ -13,36 +13,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.exception;
+package org.jspare.core.annotation;
 
-import lombok.Getter;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * The Class EnvironmentException.
+ * The Interface Qualifier. <br>
+ * Responsible for qualify the injection of a dependency
  *
  * @author pflima
  * @since 05/10/2015
  */
-public class EnvironmentException extends RuntimeException {
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.TYPE, ElementType.FIELD })
+public @interface Qualifier {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
-	/** The Constant FORMATTED_MESSAGE. */
-	private static final String FORMATTED_MESSAGE = "EX%s - %s";
-
-	/** The error. */
-	@Getter
-	private final ErrorType error;
+	/** The Constant EMPTY. */
+	public static final String EMPTY = "";
 
 	/**
-	 * Instantiates a new environment exception.
+	 * Value.
 	 *
-	 * @param error the error
+	 * @return the string
 	 */
-	public EnvironmentException(ErrorType error) {
-
-		super(String.format(FORMATTED_MESSAGE, error.code(), error.message()), error.throwable());
-		this.error = error;
-	}
+	String value();
 }

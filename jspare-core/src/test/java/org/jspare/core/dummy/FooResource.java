@@ -13,12 +13,19 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.dummy;
 
-import org.jspare.core.annotation.Component;
+import org.jspare.core.annotation.Resource;
 
-@Component
-public interface LoginDao {
+import lombok.Getter;
+import lombok.Setter;
 
-	boolean validate(String username, String password);
+@Resource
+public class FooResource {
+
+	public static final String DEFAULT = "Default";
+
+	@Getter
+	@Setter
+	private String defaultName = DEFAULT;
 }

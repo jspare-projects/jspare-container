@@ -15,22 +15,24 @@
  */
 package org.jspare.core.config;
 
-import static org.jspare.core.commons.Definitions.COMMON_FILE_TO_LOAD;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
-import org.apache.commons.lang.StringUtils;
 
+import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CommonsConfigImpl implements CommonsConfig {
+@AllArgsConstructor
+public class CommonsConfigImpl extends PropertiesConfiguration implements CommonsConfig {
 
-	/** The file to load. */
-	private String fileToLoad;
+	/** The file to load with default value 'conf/config.ini'. */
+	@Setter
+	private String fileToLoad = "conf/config.ini";
 
 	/** The configuration. */
 	private Configuration configuration;
@@ -40,7 +42,7 @@ public class CommonsConfigImpl implements CommonsConfig {
 	 */
 	public CommonsConfigImpl() {
 
-		loadFile(COMMON_FILE_TO_LOAD);
+		loadFile(fileToLoad);
 	}
 
 	/*
@@ -61,10 +63,9 @@ public class CommonsConfigImpl implements CommonsConfig {
 	 * java.lang.Object)
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public <T> T get(String name, Object defaultValue) {
-		String result = configuration.getString(name);
-		return (T) (StringUtils.isEmpty(result) ? defaultValue.toString() : result);
+	public String get(String name, String defaultValue) {
+
+		return configuration.getString(name, defaultValue);
 	}
 
 	/*
@@ -93,9 +94,9 @@ public class CommonsConfigImpl implements CommonsConfig {
 	 * java.lang.String)
 	 */
 	@Override
-	public void put(String name, String value) {
+	public void put(String key, Object value) {
 
-		put(name, value, false);
+		put(key, value, false);
 	}
 
 	/*
@@ -105,13 +106,13 @@ public class CommonsConfigImpl implements CommonsConfig {
 	 * java.lang.String, boolean)
 	 */
 	@Override
-	public void put(String name, String value, boolean overwrite) {
+	public void put(String key, Object value, boolean overwrite) {
 
-		if (!overwrite && configuration.containsKey(name)) {
+		if (!overwrite && configuration.containsKey(key)) {
 
 			return;
 		}
-		configuration.setProperty(name, value);
+		configuration.setProperty(key, value);
 	}
 
 	/*
@@ -121,20 +122,9 @@ public class CommonsConfigImpl implements CommonsConfig {
 	 * java.lang.String, boolean)
 	 */
 	@Override
-	public void putAll(Map<String, String> parameters, boolean overwrite) {
+	public void putAll(Map<String, Object> parameters, boolean overwrite) {
 
 		parameters.forEach((k, v) -> put(k, v, overwrite));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.jspare.core.config.CommonsConfig#remove(java.lang.String)
-	 */
-	@Override
-	public void remove(String name) {
-
-		configuration.clearProperty(name);
 	}
 
 	/*
@@ -155,5 +145,17 @@ public class CommonsConfigImpl implements CommonsConfig {
 
 			log.error("Error when trying to save a configuration [{}] - Message [{}]", fileToLoad, e.getMessage());
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.jspare.core.config.CommonsConfig#values()
+	 */
+	@Override
+	public Map<String, Object> values() {
+		Map<String, Object> values = new HashMap<>();
+		configuration.getKeys().forEachRemaining(k -> values.put(k, configuration.getString(k)));
+		return values;
 	}
 }

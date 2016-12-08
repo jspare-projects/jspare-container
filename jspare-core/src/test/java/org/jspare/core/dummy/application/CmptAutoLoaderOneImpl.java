@@ -13,12 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.dummy.application;
 
-import org.jspare.core.annotation.Component;
+/**
+ * The Class CmptAutoLoaderOneImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class CmptAutoLoaderOneImpl implements CmptAutoLoader {
 
-@Component
-public interface LoginDao {
-
-	boolean validate(String username, String password);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.jspare.core.context.additional.CmptAutoLoader#test()
+	 */
+	@Override
+	public String test() {
+		return getClass().getSimpleName();
+	}
 }

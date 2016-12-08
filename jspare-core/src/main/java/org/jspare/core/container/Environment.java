@@ -13,34 +13,22 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-/*
- * Copyright 2016 JSpare.org.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
- */
 package org.jspare.core.container;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.StringUtils;
-import org.jspare.core.commons.Definitions;
+import org.jspare.core.annotation.Inject;
+import org.jspare.core.annotation.Qualifier;
 import org.jspare.core.config.CommonsConfig;
+import org.jspare.core.container.strategy.InjectStrategy;
 import org.jspare.core.exception.EnvironmentException;
+import org.jspare.core.exception.Errors;
 
-import lombok.AllArgsConstructor;
 import lombok.Synchronized;
 
 /**
@@ -56,23 +44,48 @@ import lombok.Synchronized;
  */
 public abstract class Environment {
 
-	@AllArgsConstructor
-	public static enum Type {
+	/** The Constant RES_INITIAL_CAPACITY. */
+	private static final int RES_INITIAL_CAPACITY = 10;
 
-		DES, HOM, PRD;
-	}
+	/** The Constant RES_LOAD_FACTOR. */
+	private static final float RES_LOAD_FACTOR = 0.85f;
+
+	/** The Constant INJECTORS_INITIAL_CAPACITY. */
+	private static final int INJECTORS_INITIAL_CAPACITY = 8;
+
+	/** The Constant INJECTORS_LOAD_FACTOR. */
+	private static final float INJECTORS_LOAD_FACTOR = 0.5f;
+
+	/** The Constant INJECTORS. */
+	protected static final Map<Class<? extends Annotation>, InjectorStrategy> INJECTORS = new ConcurrentHashMap<>(
+			INJECTORS_INITIAL_CAPACITY, INJECTORS_LOAD_FACTOR);;
 
 	/** The Constant componentKeys. */
-	private static final Map<Key, Class<?>> componentKeys = new ConcurrentHashMap<>();
+	private static final Map<ComponentKey, Class<?>> KEY_2_IMPL = new ConcurrentHashMap<>(RES_INITIAL_CAPACITY, RES_LOAD_FACTOR);
 
 	/** The Constant instances. */
-	private static final Map<Class<?>, Object> instances = new ConcurrentHashMap<>();
-
-	/** The Constant CONFIG. */
-	public static final CommonsConfig CONFIG = my(CommonsConfig.class);
+	private static final Map<Class<?>, Object> IMPL_2_INSTANCE = new ConcurrentHashMap<>(RES_INITIAL_CAPACITY, RES_LOAD_FACTOR);
 
 	/**
-	 * Factory.
+	 * The Constant CONFIG. Through the CONFIG variable the default settings
+	 * interface is exposed by the environment being available in a static way
+	 * for every application. This is done to aid and facilitate access to this
+	 * standard component within an application.
+	 */
+	public static final CommonsConfig CONFIG = my(CommonsConfig.class);
+
+	static {
+
+		// Initialize Injectors of Environment
+		registryInjector(Inject.class, new InjectStrategy());
+	}
+
+	/**
+	 * The Factory method
+	 *
+	 * Is responsible for retrieving a new instance of a system component or
+	 * resource, processing and injecting dependency into a class retrieved
+	 * through this method obeys the injection cycle normally.
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -82,12 +95,18 @@ public abstract class Environment {
 	 */
 	public static <T> T factory(Class<T> clazz) {
 
-		return factory(clazz, StringUtils.EMPTY);
+		return factory(clazz, Qualifier.EMPTY);
 	}
 
 	/**
-	 * Factory.
-	 *
+	 * The Factory Method
+	 * 
+	 * Is responsible for retrieving a new instance of a system component or
+	 * resource, processing and injecting dependency into a class retrieved
+	 * through this method obeys the injection cycle normally. <br>
+	 * When passing a qualifier the class registered as qualified will be the
+	 * one instantiated.
+	 * 
 	 * @param <T>
 	 *            the generic type
 	 * @param clazz
@@ -98,42 +117,14 @@ public abstract class Environment {
 	 */
 	public static <T> T factory(Class<T> clazz, String qualifier) {
 
-		Class<T> clazzImpl = retrieveClazzImpl(clazz, qualifier);
+		if (ContainerUtils.isValidResource(clazz)) {
 
-		try {
+			return ContainerUtils.instatiate(clazz);
+		} else {
 
+			Class<T> clazzImpl = retrieveClazzImpl(clazz, qualifier);
 			return ContainerUtils.instatiate(clazzImpl);
-
-		} catch (Exception e) {
-
-			throw new EnvironmentException(e);
 		}
-	}
-
-	/**
-	 * Return {@link Type} setted on environment
-	 *
-	 * @return Type, the environment type
-	 */
-	public static Type getEnv() {
-
-		String env = System.getProperty(Definitions.ENVIRONMENT_KEY);
-		if (StringUtils.isEmpty(env)) {
-
-			env = CONFIG.get(Definitions.ENVIRONMENT_KEY, Type.DES.toString());
-		}
-		return Type.valueOf(env);
-	}
-
-	/**
-	 * Checks if is type.
-	 *
-	 * @param type the type
-	 * @return true, if is type
-	 */
-	public static boolean isType(Type type) {
-
-		return type.equals(getEnv());
 	}
 
 	/**
@@ -155,6 +146,7 @@ public abstract class Environment {
 	 * @return the t
 	 */
 	public static <T> T my(Class<T> clazz) {
+
 		return my(clazz, Qualifier.EMPTY);
 	}
 
@@ -181,29 +173,14 @@ public abstract class Environment {
 	 *            the qualifier
 	 * @return the t
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T my(Class<T> clazz, String qualifier) {
 
-		Class<T> clazzImpl = retrieveClazzImpl(clazz, qualifier);
+		if (ContainerUtils.isValidResource(clazz)) {
 
-		if (!instances.containsKey(clazzImpl)) {
-
-			try {
-
-				T instance = ContainerUtils.instatiate(clazzImpl);
-
-				if (ContainerUtils.isAvailableForStoreInstantiate(clazzImpl)) {
-					instances.put(clazzImpl, instance);
-				}
-
-				return instance;
-
-			} catch (Exception e) {
-				throw new EnvironmentException(e);
-			}
+			return transformResource(clazz);
 		}
 
-		return (T) instances.get(clazzImpl);
+		return transformComponent(clazz, qualifier);
 	}
 
 	/**
@@ -221,8 +198,8 @@ public abstract class Environment {
 		Optional<Class<?>> optionalClazzInterface = ContainerUtils.findComponentInterface(clazzImpl);
 
 		if (!optionalClazzInterface.isPresent() || !ContainerUtils.isAvailableForRegister(clazzImpl)) {
-			throw new EnvironmentException(
-					String.format("None interface with annotation @Component founded for [%s]", clazzImpl.getName()));
+
+			throw new EnvironmentException(Errors.NO_COMPONENT_FOUNDED_CLASS.arguments(clazzImpl.getName()));
 		}
 
 		Class<?> clazzInterface = optionalClazzInterface.get();
@@ -230,9 +207,9 @@ public abstract class Environment {
 		String qualifierName = clazzImpl.isAnnotationPresent(Qualifier.class) ? clazzImpl.getAnnotation(Qualifier.class).value()
 				: Qualifier.EMPTY;
 
-		Key key = new Key(clazzInterface, qualifierName);
+		ComponentKey key = new ComponentKey(clazzInterface, qualifierName);
 
-		componentKeys.put(key, clazzImpl);
+		KEY_2_IMPL.put(key, clazzImpl);
 	}
 
 	/**
@@ -247,9 +224,47 @@ public abstract class Environment {
 
 		registryComponent(component.getClass());
 
-		if (ContainerUtils.isAvailableForStoreInstantiate(component.getClass())) {
-			instances.put(component.getClass(), component);
+		if (ContainerUtils.isValidComponent(component.getClass())) {
+			IMPL_2_INSTANCE.put(component.getClass(), component);
 		}
+	}
+
+	/**
+	 * Registry injector method
+	 * 
+	 * Method responsible for registering in the environment all the injection
+	 * dependency injection strategy and inversion of the application.
+	 * 
+	 * It is necessary to make the identification of the dependency and pass the
+	 * instance already started to the environment
+	 *
+	 * @param annClazz
+	 *            the ann clazz
+	 * @param injector
+	 *            the injector
+	 */
+	public static void registryInjector(Class<? extends Annotation> annClazz, InjectorStrategy injector) {
+
+		INJECTORS.put(annClazz, injector);
+	}
+
+	/**
+	 * Registry resource on Environment.
+	 * 
+	 * Registering your class implementation on environment your component are
+	 * holded by Environmet, and available for invertion of control.
+	 *
+	 * @param resource
+	 *            the resource
+	 */
+	public static void registryResource(Object resource) {
+
+		if (!ContainerUtils.isValidResource(resource.getClass())) {
+
+			throw new EnvironmentException(Errors.INVALID_RESOURCE_CLASS.arguments(resource.getClass()));
+		}
+
+		IMPL_2_INSTANCE.put(resource.getClass(), resource);
 	}
 
 	/**
@@ -259,8 +274,8 @@ public abstract class Environment {
 	 */
 	public static void release() {
 
-		componentKeys.clear();
-		instances.clear();
+		KEY_2_IMPL.clear();
+		IMPL_2_INSTANCE.clear();
 	}
 
 	/**
@@ -273,6 +288,36 @@ public abstract class Environment {
 	 */
 	public static void scanAndRegistryComponents(List<String> componentsPackage) throws EnvironmentException {
 		componentsPackage.forEach(ContainerUtils::performComponentScanner);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected static <T> T transformComponent(Class<T> clazz, String qualifier) {
+		Class<T> clazzImpl = retrieveClazzImpl(clazz, qualifier);
+
+		if (!IMPL_2_INSTANCE.containsKey(clazzImpl)) {
+
+			T instance = ContainerUtils.instatiate(clazzImpl);
+
+			if (ContainerUtils.isValidComponent(clazzImpl)) {
+				IMPL_2_INSTANCE.put(clazzImpl, instance);
+			}
+
+			return instance;
+		}
+
+		return (T) IMPL_2_INSTANCE.get(clazzImpl);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected static <T> T transformResource(Class<T> clazz) {
+		if (!IMPL_2_INSTANCE.containsKey(clazz)) {
+
+			T instance = ContainerUtils.instatiate(clazz);
+			IMPL_2_INSTANCE.put(clazz, instance);
+			return instance;
+
+		}
+		return (T) IMPL_2_INSTANCE.get(clazz);
 	}
 
 	/**
@@ -288,15 +333,15 @@ public abstract class Environment {
 	 */
 	@SuppressWarnings("unchecked")
 	private static <T> Class<T> retrieveClazzImpl(Class<T> clazz, String qualifier) {
-		Key key = new Key(clazz, qualifier);
+
+		ComponentKey key = new ComponentKey(clazz, qualifier);
 
 		Class<T> clazzImpl = null;
 
-		if (!componentKeys.containsKey(key)) {
+		if (!KEY_2_IMPL.containsKey(key)) {
 
-			if (!StringUtils.isEmpty(qualifier)) {
-				throw new EnvironmentException(
-						String.format("None implementation registered for class %s with Qualifier [%s]", clazz.getSimpleName(), qualifier));
+			if (StringUtils.isNotEmpty(qualifier)) {
+				throw new EnvironmentException(Errors.NO_QUALIFIER_REGISTERED.arguments(clazz.getSimpleName(), qualifier));
 			}
 
 			clazzImpl = (Class<T>) ContainerUtils.findClazzImpl(clazz);
@@ -304,7 +349,7 @@ public abstract class Environment {
 
 		} else {
 
-			clazzImpl = (Class<T>) componentKeys.get(key);
+			clazzImpl = (Class<T>) KEY_2_IMPL.get(key);
 		}
 		return clazzImpl;
 	}

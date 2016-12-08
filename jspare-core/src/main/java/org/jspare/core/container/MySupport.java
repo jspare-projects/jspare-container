@@ -15,6 +15,8 @@
  */
 package org.jspare.core.container;
 
+import org.jspare.core.bootstrap.Application;
+
 /**
  *
  * MySupport Class

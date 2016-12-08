@@ -13,12 +13,28 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.container;
 
-import org.jspare.core.annotation.Component;
+import java.lang.reflect.Field;
 
-@Component
-public interface LoginDao {
+/**
+ * The Interface Injector.
+ *
+ * It is responsible for defining the way of instantiation of a component used
+ * by the annotation injection.
+ *
+ */
+public interface InjectorStrategy {
 
-	boolean validate(String username, String password);
+	/**
+	 * Inject method.
+	 * 
+	 * It is called when container invoke the process of injection of control.
+	 *
+	 * @param result
+	 *            the result
+	 * @param field
+	 *            the field
+	 */
+	void inject(Object result, Field field);
 }

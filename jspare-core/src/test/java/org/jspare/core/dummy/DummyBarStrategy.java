@@ -13,12 +13,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.dummy;
 
-import org.jspare.core.annotation.Component;
+import java.lang.reflect.Field;
 
-@Component
-public interface LoginDao {
+import org.jspare.core.container.InjectorStrategy;
 
-	boolean validate(String username, String password);
+import lombok.SneakyThrows;
+
+public class DummyBarStrategy implements InjectorStrategy {
+
+	@Override
+	@SneakyThrows
+	public void inject(Object result, Field field) {
+
+		field.setAccessible(true);
+		field.set(result, new Bar());
+	}
 }

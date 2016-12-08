@@ -13,12 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.dummy.usage;
 
 import org.jspare.core.annotation.Component;
 
+/**
+ * The Interface Cmpt.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
 @Component
-public interface LoginDao {
+public interface Cmpt {
 
-	boolean validate(String username, String password);
+	/**
+	 * Prints the.
+	 *
+	 * @return the string
+	 */
+	String print();
 }

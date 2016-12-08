@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.jspare.core.container.Inject;
+import org.jspare.core.annotation.Inject;
 
 public class LoginServiceImpl implements LoginService {
 

@@ -13,12 +13,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.container;
 
-import org.jspare.core.annotation.Component;
+import org.jspare.core.annotation.Inject;
+import org.jspare.core.dummy.FooResource;
+import org.junit.Assert;
+import org.junit.Test;
 
-@Component
-public interface LoginDao {
+public class MySupportTest extends MySupport {
 
-	boolean validate(String username, String password);
+	@Inject
+	private FooResource foo;
+
+	@Test
+	public void mySupportInjectionTest() {
+
+		Assert.assertNotNull(foo);
+	}
 }

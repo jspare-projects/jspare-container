@@ -13,12 +13,28 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.bootstrap;
 
-import org.jspare.core.annotation.Component;
+import org.junit.Assert;
+import org.junit.Test;
 
-@Component
-public interface LoginDao {
+public class ApplicationContextTest {
 
-	boolean validate(String username, String password);
+	private static final String KEY = "key";
+
+	@Test
+	public void contextTest() {
+
+		Application application = new Application() {
+
+			@Override
+			public void start() {
+
+				getContext().put(KEY, true);
+			}
+		};
+		application.run();
+
+		Assert.assertTrue(application.getContext().getAs(KEY));
+	}
 }

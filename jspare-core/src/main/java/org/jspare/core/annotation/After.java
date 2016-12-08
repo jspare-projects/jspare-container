@@ -13,24 +13,25 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.util;
+package org.jspare.core.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * The Interface Perform.
+ * The Interface After. <br>
+ * It is used in the life cycle in the instantiation of a new object using the
+ * container. Whenever an object is instantiated in his anger lifecycle execute
+ * the method is annotated with annotation, it is important that the method is
+ * public in the class.
  *
  * @author pflima
- * @param <T>
- *            the generic type to perform
- * @since 30/03/2016
+ * @since 05/10/2015
  */
-@FunctionalInterface
-public interface Perform<T> {
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.METHOD })
+public @interface After {
 
-	/**
-	 * Do it.
-	 *
-	 * @param t
-	 *            the t
-	 */
-	void doIt(T t);
 }

@@ -13,12 +13,20 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.bootstrap;
 
-import org.jspare.core.annotation.Component;
+/**
+ * The Interface Bundle. <br>
+ * Create a package shares to be used in called by Builder
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+@FunctionalInterface
+public interface Bundle {
 
-@Component
-public interface LoginDao {
-
-	boolean validate(String username, String password);
+	/**
+	 * Registry components.
+	 */
+	void registryComponents();
 }

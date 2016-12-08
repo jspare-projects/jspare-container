@@ -13,36 +13,47 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.exception;
+package org.jspare.core.dummy.annotation;
+
+import org.jspare.core.annotation.Inject;
+import org.jspare.core.container.MySupport;
 
 import lombok.Getter;
 
 /**
- * The Class EnvironmentException.
+ * The Class ClassInjected.
  *
  * @author pflima
- * @since 05/10/2015
+ * @since 30/03/2016
  */
-public class EnvironmentException extends RuntimeException {
+public class ClassInjected extends MySupport {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
-	/** The Constant FORMATTED_MESSAGE. */
-	private static final String FORMATTED_MESSAGE = "EX%s - %s";
-
-	/** The error. */
-	@Getter
-	private final ErrorType error;
+	/** The cmpt. */
+	@Inject
 
 	/**
-	 * Instantiates a new environment exception.
+	 * Gets the cmpt.
 	 *
-	 * @param error the error
+	 * @return the cmpt
 	 */
-	public EnvironmentException(ErrorType error) {
 
-		super(String.format(FORMATTED_MESSAGE, error.code(), error.message()), error.throwable());
-		this.error = error;
-	}
+	/**
+	 * Gets the cmpt.
+	 *
+	 * @return the cmpt
+	 */
+
+	/**
+	 * Gets the cmpt.
+	 *
+	 * @return the cmpt
+	 */
+
+	/**
+	 * Gets the cmpt.
+	 *
+	 * @return the cmpt
+	 */
+	@Getter
+	private CmptWithAnnotation cmpt;
 }

@@ -13,12 +13,34 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core;
 
-import org.jspare.core.annotation.Component;
+import org.jspare.core.bootstrap.Application;
+import org.jspare.core.bootstrap.EnvironmentBuilder;
+import org.junit.Before;
 
-@Component
-public interface LoginDao {
+public abstract class AbstractApplicationTest {
 
-	boolean validate(String username, String password);
+	class BootstrapUnitTest extends Application {
+
+		@Override
+		public void start() {
+
+		}
+
+		@Override
+		protected void setup() {
+
+			builder(toLoad());
+		}
+	}
+
+	@Before
+	public void setup() {
+
+		// Simulate static main invocation
+		new BootstrapUnitTest().run();
+	}
+
+	protected abstract EnvironmentBuilder toLoad();
 }

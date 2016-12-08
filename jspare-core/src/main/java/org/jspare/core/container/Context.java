@@ -13,24 +13,37 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.util;
+package org.jspare.core.container;
+
+import java.util.HashMap;
+
+import org.jspare.core.annotation.Resource;
 
 /**
- * The Interface Perform.
+ * The Class Context.
  *
- * @author pflima
- * @param <T>
- *            the generic type to perform
- * @since 30/03/2016
+ * Used for store context of application. Your implementation extends the
+ * {@link HashMap }.
  */
-@FunctionalInterface
-public interface Perform<T> {
+@Resource
+public class Context extends HashMap<Object, Object> {
 
 	/**
-	 * Do it.
 	 *
-	 * @param t
-	 *            the t
 	 */
-	void doIt(T t);
+	private static final long serialVersionUID = 2876291977103253345L;
+
+
+	/**
+	 * Gets the generic type expected.
+	 *
+	 * @param <T> the generic type
+	 * @param key the key
+	 * @return the as
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T getAs(Object key) {
+
+		return (T) get(key);
+	}
 }

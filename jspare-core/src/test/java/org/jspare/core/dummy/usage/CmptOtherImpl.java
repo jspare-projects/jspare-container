@@ -13,12 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.dummy.usage;
 
-import org.jspare.core.annotation.Component;
+/**
+ * The Class CmptOtherImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class CmptOtherImpl implements Cmpt {
 
-@Component
-public interface LoginDao {
-
-	boolean validate(String username, String password);
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.jspare.core.container.additional.usage.Cmpt#print()
+	 */
+	@Override
+	public String print() {
+		return getClass().getSimpleName();
+	}
 }

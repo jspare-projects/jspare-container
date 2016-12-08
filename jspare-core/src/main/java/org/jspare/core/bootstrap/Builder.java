@@ -13,12 +13,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.bootstrap;
 
-import org.jspare.core.annotation.Component;
+/**
+ * The Interface Builder.
+ *
+ * Used to aid in the construction of an Application
+ *
+ * @author pflima
+ * @since 26/07/2016
+ */
+@FunctionalInterface
+public interface Builder {
 
-@Component
-public interface LoginDao {
-
-	boolean validate(String username, String password);
+	/**
+	 * Invoke build of resource.
+	 */
+	void build();
 }

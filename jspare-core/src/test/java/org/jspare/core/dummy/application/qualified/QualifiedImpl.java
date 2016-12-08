@@ -13,12 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.dummy.application.qualified;
 
-import org.jspare.core.annotation.Component;
+/**
+ * The Class MultipleImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class QualifiedImpl implements Qualified {
 
-@Component
-public interface LoginDao {
-
-	boolean validate(String username, String password);
 }

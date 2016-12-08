@@ -13,12 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.dummy.annotation;
 
-import org.jspare.core.annotation.Component;
+/**
+ * The Class CmptWithAnnotationImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class CmptWithAnnotationImpl implements CmptWithAnnotation {
 
-@Component
-public interface LoginDao {
-
-	boolean validate(String username, String password);
 }

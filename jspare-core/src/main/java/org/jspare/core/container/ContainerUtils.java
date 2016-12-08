@@ -15,8 +15,6 @@
  */
 package org.jspare.core.container;
 
-import static org.jspare.core.container.Environment.factory;
-import static org.jspare.core.container.Environment.my;
 import static org.jspare.core.container.Environment.registryComponent;
 
 import java.lang.reflect.Field;
@@ -28,11 +26,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.jspare.core.annotation.After;
+import org.jspare.core.annotation.Component;
+import org.jspare.core.annotation.Resource;
 import org.jspare.core.exception.EnvironmentException;
-import org.jspare.core.scanner.ComponentScanner;
+import org.jspare.core.exception.Errors;
+import org.jspare.core.util.Perform;
 
-import lombok.SneakyThrows;
+import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -43,26 +46,17 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 /** The Constant log. */
+
+/** The Constant log. */
 @Slf4j
-public class ContainerUtils {
+public final class ContainerUtils {
 
 	/** The Constant SUFIX_DEFAULT_IMPL. */
 	private static final String SUFIX_DEFAULT_IMPL = "Impl";
 
-	/**
-	 * Contains interface class.
-	 *
-	 * @param clazzImpl
-	 *            the clazz impl
-	 * @param interfaceClazz
-	 *            the interface clazz
-	 * @return true, if successful
-	 */
-	public static boolean containsInterfaceClass(Class<?> clazzImpl, Class<?> interfaceClazz) {
-
-		return collecInterfaces(clazzImpl).contains(interfaceClazz);
-	}
-
+	/** The Constant ALL_SCAN_QUOTE. */
+	private static final String ALL_SCAN_QUOTE = ".*";
+	
 	/**
 	 * Process injection.
 	 *
@@ -71,42 +65,12 @@ public class ContainerUtils {
 	 * @param result
 	 *            the result
 	 */
-	@SneakyThrows(InstantiationException.class)
 	public static void processInjection(Class<?> clazz, Object result) {
 		try {
 
 			for (Field field : collectFields(clazz)) {
-				if (field.isAnnotationPresent(Inject.class)) {
 
-					Inject inject = field.getAnnotation(Inject.class);
-					if (!inject.injector().equals(Injector.DefaultInjection.class)) {
-
-						@SuppressWarnings("rawtypes")
-						Injector perform = inject.injector().newInstance();
-						field.setAccessible(true);
-						field.set(result, perform.inject());
-						return;
-					}
-
-					if (!field.getType().isInterface()) {
-						throw new EnvironmentException("none interface with annotation @Component founded (" + field.getType().getName()
-								+ ") or any Injector class delegate to instantiation");
-					}
-
-					String qualifier = Qualifier.EMPTY;
-					if (field.isAnnotationPresent(Qualifier.class)) {
-						qualifier = field.getAnnotation(Qualifier.class).value();
-					}
-					field.setAccessible(true);
-
-					if (field.isAnnotationPresent(Factory.class)) {
-
-						field.set(result, factory(Class.forName(field.getType().getName()), qualifier));
-					} else {
-
-						field.set(result, my(Class.forName(field.getType().getName()), qualifier));
-					}
-				}
+				setField(result, field);
 			}
 
 			for (Method method : clazz.getDeclaredMethods()) {
@@ -115,14 +79,12 @@ public class ContainerUtils {
 					method.setAccessible(true);
 					method.invoke(result);
 				}
-
 			}
 
 		} catch (StackOverflowError | IllegalArgumentException | IllegalAccessException | ClassNotFoundException
 				| InvocationTargetException e) {
 
-			throw new EnvironmentException("Invalid component injection founded.");
-
+			throw new EnvironmentException(Errors.INVALID_INJECTION);
 		}
 	}
 
@@ -133,7 +95,7 @@ public class ContainerUtils {
 	 *            the clazz
 	 * @return the list
 	 */
-	private static List<Class<?>> collecInterfaces(Class<?> clazz) {
+	protected static List<Class<?>> collecInterfaces(Class<?> clazz) {
 		List<Class<?>> interfaces = new ArrayList<>();
 		interfaces.addAll(Arrays.asList(clazz.getInterfaces()));
 
@@ -151,7 +113,7 @@ public class ContainerUtils {
 	 *            the clazz
 	 * @return the list
 	 */
-	private static List<Field> collectFields(Class<?> clazz) {
+	protected static List<Field> collectFields(Class<?> clazz) {
 		List<Field> fields = new ArrayList<>();
 		fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
 
@@ -160,6 +122,32 @@ public class ContainerUtils {
 			fields.addAll(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
 		}
 		return fields;
+	}
+
+	/**
+	 * Collect injectors.
+	 *
+	 * @param field the field
+	 * @return the list
+	 */
+	protected static List<InjectorStrategy> collectInjectors(Field field) {
+
+		return Environment.INJECTORS.keySet().stream().filter(clazz -> field.isAnnotationPresent(clazz))
+				.map(clazz -> Environment.INJECTORS.get(clazz)).collect(Collectors.toList());
+	}
+
+	/**
+	 * Contains interface class.
+	 *
+	 * @param clazzImpl
+	 *            the clazz impl
+	 * @param interfaceClazz
+	 *            the interface clazz
+	 * @return true, if successful
+	 */
+	protected static boolean containsInterfaceClass(Class<?> clazzImpl, Class<?> interfaceClazz) {
+
+		return collecInterfaces(clazzImpl).contains(interfaceClazz);
 	}
 
 	/**
@@ -178,8 +166,7 @@ public class ContainerUtils {
 
 		} catch (ClassNotFoundException e) {
 
-			throw new EnvironmentException(String.format(
-					"%s don't have default implementation class. Provide default implementation or registry one.", clazz.getName()), e);
+			throw new EnvironmentException(Errors.NO_CMPT_REGISTERED.arguments(clazz.getName()).throwable(e));
 		}
 
 		return clazzImpl;
@@ -203,32 +190,34 @@ public class ContainerUtils {
 		return Optional.empty();
 	}
 
+	
 	/**
-	 * Instatiate.
+	 * Instatiate new class.
 	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param clazz
-	 *            the clazz
+	 * @param <T> the generic type
+	 * @param clazz the clazz
 	 * @return the t
-	 * @throws InstantiationException
-	 *             the instantiation exception
-	 * @throws IllegalAccessException
-	 *             the illegal access exception
+	 * @throws EnvironmentException the environment exception
 	 */
-	protected static <T> T instatiate(Class<T> clazz) throws InstantiationException, IllegalAccessException {
+	protected static <T> T instatiate(Class<T> clazz) throws EnvironmentException {
 
-		T result = clazz.newInstance();
+		try {
 
-		if (containsInterfaceClass(clazz, ParameterizedTypeRetention.class)) {
+			T result = clazz.newInstance();
 
-			Type[] types = ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments();
-			((ParameterizedTypeRetention) result).setTypes(types);
+			if (containsInterfaceClass(clazz, ParameterizedTypeRetention.class)) {
+
+				Type[] types = ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments();
+				((ParameterizedTypeRetention) result).setTypes(types);
+			}
+
+			ContainerUtils.processInjection(clazz, result);
+			return result;
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			throw new EnvironmentException(Errors.FAILED_INSTANTIATION.throwable(e));
 		}
-
-		ContainerUtils.processInjection(clazz, result);
-
-		return result;
 	}
 
 	/**
@@ -257,18 +246,25 @@ public class ContainerUtils {
 	 *            the clazz impl
 	 * @return true, if is available for store instantiate
 	 */
-	protected static boolean isAvailableForStoreInstantiate(Class<?> clazzImpl) {
+	protected static boolean isValidComponent(Class<?> clazzImpl) {
 
 		Optional<Class<?>> optionalClazzInterface = findComponentInterface(clazzImpl);
-
 		if (!optionalClazzInterface.isPresent() || !isAvailableForRegister(clazzImpl)) {
 
 			return false;
 		}
+		return true;
+	}
 
-		Component component = optionalClazzInterface.get().getAnnotation(Component.class);
+	/**
+	 * Checks if is valid resource.
+	 *
+	 * @param clazzImpl the clazz impl
+	 * @return true, if is valid resource
+	 */
+	protected static boolean isValidResource(Class<?> clazzImpl) {
 
-		return !component.scope().equals(Scope.FACTORY);
+		return clazzImpl.isAnnotationPresent(Resource.class);
 	}
 
 	/**
@@ -281,7 +277,7 @@ public class ContainerUtils {
 	 */
 	protected static void performComponentScanner(String componentScanner) throws EnvironmentException {
 		// Validate if component contain all scan quote.
-		if (!componentScanner.endsWith(ComponentScanner.ALL_SCAN_QUOTE)) {
+		if (!componentScanner.endsWith(ALL_SCAN_QUOTE)) {
 			try {
 
 				Class<?> clazz = Class.forName(componentScanner);
@@ -291,11 +287,11 @@ public class ContainerUtils {
 
 			} catch (ClassNotFoundException e) {
 
-				throw new EnvironmentException(e);
+				throw new EnvironmentException(Errors.NO_CMPT_REGISTERED.throwable(e));
 			}
 		}
 
-		my(ComponentScanner.class).scanAndExecute(componentScanner, clazzName -> {
+		scanAndExecute(componentScanner, clazzName -> {
 			try {
 
 				Class<?> clazz = Class.forName(clazzName);
@@ -309,5 +305,51 @@ public class ContainerUtils {
 				log.error(e.getMessage(), e);
 			}
 		});
+	}
+
+	/**
+	 * Scan and execute.
+	 *
+	 * @param packageConvetion the package convetion
+	 * @param perform the perform
+	 */
+	protected static void scanAndExecute(String packageConvetion, Perform<String> perform) {
+		String packageForScan = packageConvetion;
+		if (packageForScan.endsWith(".*")) {
+			packageForScan = packageForScan.substring(0, packageForScan.length() - 2);
+		}
+
+		List<String> matchingClasses = new ArrayList<>();
+		new FastClasspathScanner(packageForScan).scan().getNamesOfAllClasses().forEach(matchingClasses::add);
+
+		matchingClasses.forEach(clazzName -> {
+
+			perform.doIt(clazzName);
+		});
+	}
+
+	/**
+	 * Sets the field.
+	 *
+	 * @param result the result
+	 * @param field the field
+	 * @throws IllegalAccessException the illegal access exception
+	 * @throws ClassNotFoundException the class not found exception
+	 */
+	protected static void setField(Object result, Field field) throws IllegalAccessException, ClassNotFoundException {
+
+		List<InjectorStrategy> injectors = collectInjectors(field);
+		if (injectors.isEmpty()) {
+
+			return;
+		}
+
+		if (injectors.size() > 1) {
+
+			log.warn("More than one Injector founded for field [%s] on [%s] class. ");
+		}
+
+		InjectorStrategy injector = injectors.get(0);
+		injector.inject(result, field);
 	}
 }

@@ -17,81 +17,97 @@ package org.jspare.core.config;
 
 import java.util.Map;
 
-import org.jspare.core.container.Component;
-import org.jspare.core.container.Scope;
+import org.apache.commons.configuration.Configuration;
+import org.jspare.core.annotation.Component;
 
 /**
  * The Interface CommonsConfig.
  *
  * <br>
  *
- * It is used for manipulating configuration applications
+ * It is used for manipulating the configuration of an application
+ *
+ * This interface extends {@link Configuration } from Apache Commons, And its
+ * responsibility is to facilitate the manipulation of the settings.
  *
  * @author pflima
  * @since 30/03/2016
  */
-@Component(scope = Scope.APPLICATION)
-public interface CommonsConfig {
+@Component
+public interface CommonsConfig extends Configuration {
 
 	/**
-	 * Gets the.
+	 * Gets the property key from configuration.
 	 *
-	 * @param name the name
+	 * @param key
+	 *            the key
 	 * @return the string
 	 */
-	String get(String name);
+	String get(String key);
 
 	/**
-	 * Gets the.
+	 * Gets the property key from configuration, if anyone value is setted the
+	 * defaultValue is returned.
 	 *
-	 * @param <T> the generic type
-	 * @param name the name
-	 * @param defaultValue the default value
-	 * @return the t
+	 * @param key
+	 *            the name
+	 * @param defaultValue
+	 *            the default value
+	 * @return the string
 	 */
-	<T> T get(String name, Object defaultValue);
+	String get(String key, String defaultValue);
 
 	/**
-	 * Load file.
+	 * Load new file to component instance.
 	 *
-	 * @param fileToLoad the file to load
+	 * @param fileToLoad
+	 *            the file to load
 	 */
 	void loadFile(String fileToLoad);
 
 	/**
-	 * Put.
+	 * Put property into configuration.
 	 *
-	 * @param name the name
-	 * @param value the value
+	 * @param key
+	 *            the name
+	 * @param value
+	 *            the value
 	 */
-	void put(String name, String value);
+	void put(String key, Object value);
 
 	/**
-	 * Put.
+	 * Put property into configuration overwriting original if the variable is
+	 * setted to do this.
 	 *
-	 * @param name the name
-	 * @param value the value
-	 * @param overwrite the overwrite
+	 * @param key
+	 *            the name
+	 * @param value
+	 *            the value
+	 * @param overwrite
+	 *            the overwrite
 	 */
-	void put(String name, String value, boolean overwrite);
+	void put(String key, Object value, boolean overwrite);
 
 	/**
-	 * Put all.
+	 * Put all paramters overwritingoriginal if the variable is setted to do
+	 * this.
 	 *
-	 * @param parameters the parameters
-	 * @param overwrite the overwrite
+	 * @param parameters
+	 *            the parameters
+	 * @param overwrite
+	 *            the overwrite
 	 */
-	void putAll(Map<String, String> parameters, boolean overwrite);
+	void putAll(Map<String, Object> parameters, boolean overwrite);
 
 	/**
-	 * Removes the.
-	 *
-	 * @param name the name
-	 */
-	void remove(String name);
-
-	/**
-	 * Store.
+	 * Store and overwrite the configuration file.
 	 */
 	void store();
+
+	/**
+	 * Return one {@link Map } with the balues.
+	 *
+	 * @return the map
+	 */
+	Map<String, Object> values();
 }

@@ -13,12 +13,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.container.usage;
+package org.jspare.core.exception;
 
-import org.jspare.core.annotation.Component;
+import static org.jspare.core.container.Environment.registryResource;
 
-@Component
-public interface LoginDao {
+import org.junit.Test;
 
-	boolean validate(String username, String password);
+public class EnvironmentExceptionTest {
+
+	class Foo {
+
+	}
+
+	@Test(expected = EnvironmentException.class)
+	public void throwEnvironmentExceptionTest() {
+
+		registryResource(new Foo());
+	}
 }

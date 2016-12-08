@@ -46,7 +46,9 @@ public class InjectionScanningTest extends AbstractApplicationTest {
 	@Override
 	protected EnvironmentBuilder toLoad() {
 
-		return EnvironmentBuilder.create().scan("org.jspare.core.dummy.application.*");
+		return EnvironmentBuilder.create()
+				.scan("org.jspare.core.dummy.application.*")
+				.scan("org.jspare.core.dummy.usage");
 	}
 
 }

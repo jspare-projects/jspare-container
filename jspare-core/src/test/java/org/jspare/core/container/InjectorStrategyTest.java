@@ -17,23 +17,27 @@ package org.jspare.core.container;
 
 import static org.jspare.core.container.Environment.my;
 
+import org.jspare.core.AbstractApplicationTest;
+import org.jspare.core.bootstrap.EnvironmentBuilder;
 import org.jspare.core.dummy.DummyBar;
 import org.jspare.core.dummy.DummyBarStrategy;
 import org.jspare.core.dummy.FooDummyResource;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class InjectorStrategyTest {
+public class InjectorStrategyTest extends AbstractApplicationTest {
 
 	@Test
 	public void injectStrategyTest() {
-
-		Environment.release();
-		Environment.registryInjector(DummyBar.class, new DummyBarStrategy());
 
 		FooDummyResource foo = my(FooDummyResource.class);
 
 		Assert.assertNotNull(foo.getBar());
 	}
 
+	@Override
+	protected EnvironmentBuilder toLoad() {
+
+		return EnvironmentBuilder.create().addInjector(DummyBar.class, new DummyBarStrategy());
+	}
 }

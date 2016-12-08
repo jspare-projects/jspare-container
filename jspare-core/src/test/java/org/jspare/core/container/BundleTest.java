@@ -15,36 +15,25 @@
  */
 package org.jspare.core.container;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import static org.jspare.core.container.Environment.my;
 
-/**
- * The Class ComponentKey.
- *
- * Used to index components on {@link Environment }
- *
- * The annotation {@link EqualsAndHashCode } are responsible to generate a valid
- * and optimized hashcode to perform on iterate of Map.
- *
- */
-@AllArgsConstructor
-@EqualsAndHashCode
-public class ComponentKey {
+import org.jspare.core.AbstractApplicationTest;
+import org.jspare.core.bootstrap.EnvironmentBuilder;
+import org.jspare.core.dummy.DummyBundle;
+import org.junit.Assert;
+import org.junit.Test;
 
-	/**
-	 * Gets the clazz interface.
-	 *
-	 * @return the clazz interface
-	 */
-	@Getter
-	private final Class<?> clazzInterface;
+public class BundleTest extends AbstractApplicationTest {
 
-	/**
-	 * Gets the qualifier.
-	 *
-	 * @return the qualifier
-	 */
-	@Getter
-	private String qualifier;
+	@Test
+	public void bundleLoadTest() {
+
+		Assert.assertTrue(my(Context.class).getAs("test"));
+	}
+
+	@Override
+	protected EnvironmentBuilder toLoad() {
+
+		return EnvironmentBuilder.create().addBundle(DummyBundle.class);
+	}
 }

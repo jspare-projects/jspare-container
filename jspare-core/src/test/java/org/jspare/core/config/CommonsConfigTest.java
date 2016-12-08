@@ -16,9 +16,12 @@
 package org.jspare.core.config;
 
 import static org.jspare.core.container.Environment.CONFIG;
-import static org.jspare.core.container.Environment.my;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.util.Collections;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 public class CommonsConfigTest {
@@ -39,8 +42,22 @@ public class CommonsConfigTest {
 	@Test
 	public void loadAndGetConfigFromComponentTest() {
 
-		CommonsConfig config = my(CommonsConfig.class);
+		CommonsConfig config = CONFIG;
 		assertEnv(config);
+	}
+	
+	@Test
+	public void simplePutTest() {
+
+		CONFIG.put("test", "true");
+		assertTrue(Boolean.valueOf(CONFIG.get("test")));
+	}
+	
+	@Test
+	public void simplePutAllTest() {
+
+		CONFIG.putAll(Collections.singletonMap("test", "true"), true);
+		assertTrue(Boolean.valueOf(CONFIG.get("test")));
 	}
 
 	@Test
@@ -48,6 +65,14 @@ public class CommonsConfigTest {
 
 		CONFIG.put("env", "PRD", true);
 		assertEquals("PRD", CONFIG.get("env"));
+	}
+	
+	@Test
+	public void failLoadFileTest(){
+
+		CONFIG.clear();
+		CONFIG.loadFile("invalidfile");
+		Assert.assertTrue(CONFIG.values().size() == 0);
 	}
 
 	private void assertEnv(CommonsConfig config) {

@@ -55,6 +55,8 @@ public class InjectionQualifiedTest extends AbstractApplicationTest {
 	@Override
 	protected EnvironmentBuilder toLoad() {
 
-		return new EnvironmentBuilder().registryComponent(QualifiedOne.class).registryComponent(QualifiedTwo.class);
+		return new EnvironmentBuilder()
+				.registryComponent(QualifiedOne.class)
+				.registryComponent("org.jspare.core.dummy.application.qualified.QualifiedTwo");
 	}
 }

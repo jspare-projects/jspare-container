@@ -15,6 +15,7 @@
  */
 package org.jspare.core.container;
 
+import static org.jspare.core.container.Environment.factory;
 import static org.jspare.core.container.Environment.my;
 import static org.jspare.core.container.Environment.registryComponent;
 import static org.junit.Assert.assertNotNull;
@@ -48,6 +49,8 @@ public class InjectionTest {
 	@Test
 	public void testContainerComponentsInstantiation() {
 
+		registryComponent(CmptImpl.class);
+		
 		Cmpt c1 = my(Cmpt.class);
 		assertNotNull(c1);
 		assertTrue(c1 instanceof CmptImpl);
@@ -113,10 +116,12 @@ public class InjectionTest {
 		Cmpt c1 = my(Cmpt.class, "Qualifier1");
 		assertNotNull(c1);
 		assertTrue(c1 instanceof CmptQualifierOneImpl);
+		
+		Cmpt c1Factory = factory(Cmpt.class, "Qualifier1");
+		assertNotNull(c1Factory);
 
 		Cmpt c2 = my(Cmpt.class, "Qualifier2");
 		assertNotNull(c2);
 		assertTrue(c2 instanceof CmptQualifierTwoImpl);
 	}
-
 }

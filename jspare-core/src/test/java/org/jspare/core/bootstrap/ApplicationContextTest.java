@@ -15,6 +15,8 @@
  */
 package org.jspare.core.bootstrap;
 
+import org.jspare.core.dummy.DummyBoostrap;
+import org.jspare.core.dummy.DummyInvalidBoostrap;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,5 +38,26 @@ public class ApplicationContextTest {
 		application.run();
 
 		Assert.assertTrue(application.getContext().getAs(KEY));
+	}
+	
+	@Test
+	public void runBootstrapTest(){
+		
+		Application application = Application.create(DummyBoostrap.class);
+		Assert.assertNotNull(application);
+		
+		Application.run(DummyBoostrap.class);
+	}
+	
+	@Test(expected=IllegalAccessException.class)
+	public void invalidBootstrapTest(){
+		
+		Application.create(DummyInvalidBoostrap.class);
+	}
+	
+	@Test(expected=IllegalAccessException.class)
+	public void invalidRunBootstrapTest(){
+		
+		Application.run(DummyInvalidBoostrap.class);
 	}
 }

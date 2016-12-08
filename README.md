@@ -6,16 +6,17 @@
 
 ## Description
 
-The JSpare Container provide an core environment container for your java 8 applications. Prepare applications uncoupled and componentized. Using JSpare Container your application will contain several features that can help to define your application, such as:
+The JSpare Container provide an core environment container for your java applications. Prepare applications uncoupled and componentized. Using JSpare Container your application will contain several features that can help to define your application, such as:
 
-* Application container
-* Easy way to create components, uncoupling your architecture 
-* Inversion control with injection on your class
-* Qualification for inversion control
-* Configuration based on external config file
-* Native resource loader for classpath and external resources
-* Native serializer to json, base64 and byte[]
-* New collections like: TreeNode, TimedMap and MultiValueMap
+* Easy Bootstrap for your Java application
+* Simple environment configuration
+* Forget all annoying application mapping, like the legacy of xml
+* Modern and intuitive Java Container
+* Inversion control with direct injection in your class
+* Easy way to create components and resources, uncoupling your architecture
+* Qualification and a practical way to change implementation of a component
+* Commons Configuration based on "Apache Commons Configuration"
+* Simple conventions, for improve your experience
 
 ## Installation and Getting Started
 
@@ -29,7 +30,7 @@ For maven:
 <parent>
 	<groupId>org.jspare</groupId>
 	<artifactId>jspare-core</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 </parent>
 ```
 

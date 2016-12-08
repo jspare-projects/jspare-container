@@ -41,7 +41,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "org.jspare:jspare-core:1.0.0"
+    compile "org.jspare:jspare-core:2.0.0"
 }
 ```
 

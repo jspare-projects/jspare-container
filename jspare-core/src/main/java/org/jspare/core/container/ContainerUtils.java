@@ -58,6 +58,17 @@ public final class ContainerUtils {
 	private static final String ALL_SCAN_QUOTE = ".*";
 	
 	/**
+	 * Process environment injection using the container.
+	 *
+	 * @param result the result
+	 */
+	public static void processInjection(Object result) {
+		
+		Class<?> clazz = result.getClass();
+		processInjection(clazz, result);
+	}
+	
+	/**
 	 * Process injection.
 	 *
 	 * @param clazz
@@ -319,13 +330,7 @@ public final class ContainerUtils {
 			packageForScan = packageForScan.substring(0, packageForScan.length() - 2);
 		}
 
-		List<String> matchingClasses = new ArrayList<>();
-		new FastClasspathScanner(packageForScan).scan().getNamesOfAllClasses().forEach(matchingClasses::add);
-
-		matchingClasses.forEach(clazzName -> {
-
-			perform.doIt(clazzName);
-		});
+		new FastClasspathScanner(packageForScan).scan().getNamesOfAllClasses().forEach(perform::doIt);
 	}
 
 	/**

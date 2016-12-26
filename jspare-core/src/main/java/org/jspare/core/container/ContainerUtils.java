@@ -56,27 +56,16 @@ public final class ContainerUtils {
 
 	/** The Constant ALL_SCAN_QUOTE. */
 	private static final String ALL_SCAN_QUOTE = ".*";
-	
+
 	/**
 	 * Process environment injection using the container.
 	 *
-	 * @param result the result
-	 */
-	public static void processInjection(Object result) {
-		
-		Class<?> clazz = result.getClass();
-		processInjection(clazz, result);
-	}
-	
-	/**
-	 * Process injection.
-	 *
-	 * @param clazz
-	 *            the clazz
 	 * @param result
 	 *            the result
 	 */
-	public static void processInjection(Class<?> clazz, Object result) {
+	public static void processInjection(Object result) {
+
+		Class<?> clazz = result.getClass();
 		try {
 
 			for (Field field : collectFields(clazz)) {
@@ -97,6 +86,23 @@ public final class ContainerUtils {
 
 			throw new EnvironmentException(Errors.INVALID_INJECTION);
 		}
+	}
+
+	/**
+	 * Process injection. <br>
+	 * <p>
+	 * Deprecated method, use {@link ContainerUtils }.processInjection(Object
+	 * result)
+	 * </p>
+	 *
+	 * @param clazz
+	 *            the clazz
+	 * @param result
+	 *            the result
+	 */
+	@Deprecated
+	public static void processInjection(Class<?> clazz, Object result) {
+		processInjection(result);
 	}
 
 	/**
@@ -138,7 +144,8 @@ public final class ContainerUtils {
 	/**
 	 * Collect injectors.
 	 *
-	 * @param field the field
+	 * @param field
+	 *            the field
 	 * @return the list
 	 */
 	protected static List<InjectorStrategy> collectInjectors(Field field) {
@@ -201,14 +208,16 @@ public final class ContainerUtils {
 		return Optional.empty();
 	}
 
-	
 	/**
 	 * Instatiate new class.
 	 *
-	 * @param <T> the generic type
-	 * @param clazz the clazz
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
 	 * @return the t
-	 * @throws EnvironmentException the environment exception
+	 * @throws EnvironmentException
+	 *             the environment exception
 	 */
 	protected static <T> T instatiate(Class<T> clazz) throws EnvironmentException {
 
@@ -270,7 +279,8 @@ public final class ContainerUtils {
 	/**
 	 * Checks if is valid resource.
 	 *
-	 * @param clazzImpl the clazz impl
+	 * @param clazzImpl
+	 *            the clazz impl
 	 * @return true, if is valid resource
 	 */
 	protected static boolean isValidResource(Class<?> clazzImpl) {
@@ -321,8 +331,10 @@ public final class ContainerUtils {
 	/**
 	 * Scan and execute.
 	 *
-	 * @param packageConvetion the package convetion
-	 * @param perform the perform
+	 * @param packageConvetion
+	 *            the package convetion
+	 * @param perform
+	 *            the perform
 	 */
 	protected static void scanAndExecute(String packageConvetion, Perform<String> perform) {
 		String packageForScan = packageConvetion;
@@ -336,10 +348,14 @@ public final class ContainerUtils {
 	/**
 	 * Sets the field.
 	 *
-	 * @param result the result
-	 * @param field the field
-	 * @throws IllegalAccessException the illegal access exception
-	 * @throws ClassNotFoundException the class not found exception
+	 * @param result
+	 *            the result
+	 * @param field
+	 *            the field
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws ClassNotFoundException
+	 *             the class not found exception
 	 */
 	protected static void setField(Object result, Field field) throws IllegalAccessException, ClassNotFoundException {
 

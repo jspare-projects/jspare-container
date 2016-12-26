@@ -14,3 +14,4 @@ hs_err_pid*
 .settings/
 jspare-core/.classpath
 jspare-core/.gitignore
+jspare-core-android-support/.classpath

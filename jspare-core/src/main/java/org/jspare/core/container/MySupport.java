@@ -37,6 +37,6 @@ public abstract class MySupport {
 	 */
 	public MySupport() {
 
-		ContainerUtils.processInjection(this.getClass(), this);
+		ContainerUtils.processInjection(this);
 	}
 }

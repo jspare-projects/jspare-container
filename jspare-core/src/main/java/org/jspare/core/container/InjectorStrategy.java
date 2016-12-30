@@ -31,10 +31,10 @@ public interface InjectorStrategy {
 	 * 
 	 * It is called when container invoke the process of injection of control.
 	 *
-	 * @param result
-	 *            the result
+	 * @param obj
+	 *            the obj
 	 * @param field
 	 *            the field
 	 */
-	void inject(Object result, Field field);
+	void inject(Object obj, Field field);
 }

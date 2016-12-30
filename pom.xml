@@ -7,7 +7,7 @@
 	<version>2.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>JSpare Parent</name>
+	<name>JSpare Container</name>
 	<url>http://jspare.org</url>
 	<description>
        The JSpare Framework core environment container. Write componentized and modern java applications.
@@ -33,6 +33,18 @@
 	<issueManagement>
 		<url>https://github.com/jspare-projects/jspare-container/issues</url>
 	</issueManagement>
+	
+	<ciManagement>
+		<url>https://travis-ci.org/jspare-projects/jspare-container</url>
+	</ciManagement>
+	
+	<distributionManagement>
+		<repository>
+			<id>bintray-jspare-maven</id>
+			<name>jspare-maven</name>
+			<url>https://api.bintray.com/maven/jspare/maven/jspare-container/;publish=1</url>
+		</repository>
+	</distributionManagement>
 
 	<developers>
 		<developer>
@@ -179,12 +191,5 @@
 		</dependency>
 
 	</dependencies>
-
-	<distributionManagement>
-		<repository>
-			<id>bintray-jspare-maven</id>
-			<name>jspare-maven</name>
-			<url>https://api.bintray.com/maven/jspare/maven/jspare-container/;publish=1</url>
-		</repository>
-	</distributionManagement>
+	
 </project>

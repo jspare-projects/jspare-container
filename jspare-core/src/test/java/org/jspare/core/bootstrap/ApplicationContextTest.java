@@ -43,7 +43,7 @@ public class ApplicationContextTest {
 	@Test
 	public void runBootstrapTest(){
 		
-		Application application = Application.create(DummyBoostrap.class);
+		Runner application = Application.create(DummyBoostrap.class);
 		Assert.assertNotNull(application);
 		
 		Application.run(DummyBoostrap.class);

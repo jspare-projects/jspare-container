@@ -15,38 +15,15 @@
  */
 package org.jspare.core.bootstrap;
 
-import static org.jspare.core.container.Environment.registryResource;
+import org.jspare.core.container.ContainerUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jspare.core.container.Context;
-
-import lombok.Getter;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 
 /**
- * The Class Application.
- *
- * <br>
- *
- * Class used to perform the bootstrapping an application using the framework
- *
- * The life cycle used when start are called following methods of the class:
- * <ul>
- * <li>setup</li>
- * <li>mySupport</li>
- * <li>build all builders</li>
- * <li>start</li>
- * </ul>
+ * The Interface Core.
  */
-@Slf4j
-public abstract class Application implements Runner {
-
-	/** The Constant builders. */
-	private static final List<Builder> builders = new ArrayList<>();
-
+public interface Runner {
+	
 	/**
 	 * The Create method is responsible for instantiate new Application by
 	 * Reflection.
@@ -74,46 +51,17 @@ public abstract class Application implements Runner {
 		Runner instance = create(bootstrapClazz);
 		instance.run();
 	}
-
-	@Getter
-	private Context context;
-
-	/**
-	 * Builder.
-	 *
-	 * @param builder
-	 *            the builder
-	 * @return the application
-	 */
-	public Application builder(Builder builder) {
-
-		builders.add(builder);
-		return this;
-	}
-
+	
 	/**
 	 * The Run method is responsible for invoking the application, the
 	 * application life cycle depends on the call of this method.
 	 */
-	public void run() {
-
-		long start = System.currentTimeMillis();
-
-		log.info("Starting Application");
-
-		context = new Context();
-		registryResource(context);
+	@SneakyThrows
+	default void run() {
 
 		setup();
 
 		mySupport();
-
-		log.info("Loading Builders");
-		buildAll();
-
-		long end = System.currentTimeMillis();
-
-		log.info("Application loaded at {} ms", end - start);
 
 		start();
 	}
@@ -123,13 +71,26 @@ public abstract class Application implements Runner {
 	 * at this point the application is ready to load all the components and
 	 * resources.
 	 */
-	public abstract void start();
+	default void start() throws Exception{
+		
+	};
 
 	/**
-	 * Builds the all.
+	 * The My support. After initializing the components through the setup
+	 * method, this method is invoked to resolve any dependency injection in the
+	 * application class.
 	 */
-	private void buildAll() {
+	default void mySupport() {
 
-		builders.forEach(b -> b.build());
+		ContainerUtils.processInjection(this);
+	}
+
+	/**
+	 * The setup method, configures the application, it is the first method
+	 * invoked when starting the application initialization stream, this method
+	 * must be overwritten when there is a need to dictate new behaviors for the
+	 * components of an application.
+	 */
+	default void setup() {
 	}
 }

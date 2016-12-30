@@ -29,7 +29,7 @@ public abstract class AbstractApplicationTest {
 		}
 
 		@Override
-		protected void setup() {
+		public void setup() {
 
 			builder(toLoad());
 		}

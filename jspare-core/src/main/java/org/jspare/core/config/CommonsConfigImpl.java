@@ -138,7 +138,7 @@ public class CommonsConfigImpl extends PropertiesConfiguration implements Common
 		try {
 
 			PropertiesConfiguration targetConfiguration = new PropertiesConfiguration(fileToLoad);
-			configuration.getKeys().forEachRemaining(k -> targetConfiguration.setProperty(k, configuration.getProperties(k)));
+			values().forEach((k,v) -> targetConfiguration.setProperty(k, v));
 			targetConfiguration.save();
 
 		} catch (ConfigurationException e) {

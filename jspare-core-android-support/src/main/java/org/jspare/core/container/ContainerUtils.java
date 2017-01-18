@@ -59,8 +59,6 @@ public final class ContainerUtils {
 	/**
 	 * Process injection.
 	 *
-	 * @param clazz
-	 *            the clazz
 	 * @param result
 	 *            the result
 	 */

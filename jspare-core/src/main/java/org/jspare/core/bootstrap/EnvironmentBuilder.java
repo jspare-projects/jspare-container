@@ -15,7 +15,6 @@
  */
 package org.jspare.core.bootstrap;
 
-import static org.jspare.core.container.Environment.CONFIG;
 import static org.jspare.core.container.Environment.scanAndRegistryComponents;
 
 import java.lang.annotation.Annotation;
@@ -114,21 +113,7 @@ public class EnvironmentBuilder implements Builder {
 		});
 
 	}
-
-	/**
-	 * Put config.
-	 *
-	 * @param key
-	 *            the key
-	 * @param value
-	 *            the value
-	 * @return the application builder
-	 */
-	public EnvironmentBuilder putConfig(String key, String value) {
-		CONFIG.put(key, value, true);
-		return this;
-	}
-
+	
 	/**
 	 * Registry component.
 	 *

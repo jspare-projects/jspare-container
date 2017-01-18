@@ -24,7 +24,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.lang.StringUtils;
 import org.jspare.core.annotation.Inject;
 import org.jspare.core.annotation.Qualifier;
-import org.jspare.core.config.CommonsConfig;
 import org.jspare.core.container.strategy.InjectStrategy;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.exception.Errors;
@@ -65,14 +64,6 @@ public abstract class Environment {
 
 	/** The Constant instances. */
 	private static final Map<Class<?>, Object> IMPL_2_INSTANCE = new ConcurrentHashMap<>(RES_INITIAL_CAPACITY, RES_LOAD_FACTOR);
-
-	/**
-	 * The Constant CONFIG. Through the CONFIG variable the default settings
-	 * interface is exposed by the environment being available in a static way
-	 * for every application. This is done to aid and facilitate access to this
-	 * standard component within an application.
-	 */
-	public static final CommonsConfig CONFIG = my(CommonsConfig.class);
 
 	static {
 

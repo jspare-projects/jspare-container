@@ -134,7 +134,7 @@ public abstract class Application {
 	 */
 	protected void mySupport() {
 
-		ContainerUtils.processInjection(this.getClass(), this);
+		ContainerUtils.processInjection(this);
 	}
 
 	/**

@@ -64,8 +64,10 @@ public final class ContainerUtils {
 	 * @param result
 	 *            the result
 	 */
-	public static void processInjection(Class<?> clazz, Object result) {
+	public static void processInjection(Object result) {
 		try {
+			
+			Class<?> clazz = result.getClass();
 
 			for (Field field : collectFields(clazz)) {
 
@@ -216,7 +218,7 @@ public final class ContainerUtils {
 				((ParameterizedTypeRetention) result).setTypes(types);
 			}
 
-			ContainerUtils.processInjection(clazz, result);
+			ContainerUtils.processInjection(result);
 			return result;
 
 		} catch (InstantiationException | IllegalAccessException e) {

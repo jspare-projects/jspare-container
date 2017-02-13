@@ -18,6 +18,7 @@ package org.jspare.core.container.strategy;
 import static org.jspare.core.container.Environment.factory;
 import static org.jspare.core.container.Environment.my;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 import org.jspare.core.annotation.Inject;
@@ -33,6 +34,9 @@ import org.jspare.core.exception.Errors;
  * 
  */
 public class InjectStrategy implements InjectorStrategy {
+  
+    public InjectStrategy() {
+    }
 
 	/* (non-Javadoc)
 	 * @see org.jspare.core.container.InjectorStrategy#inject(java.lang.Object, java.lang.reflect.Field)
@@ -62,4 +66,10 @@ public class InjectStrategy implements InjectorStrategy {
 			throw new EnvironmentException(Errors.INVALID_INJECTION.throwable(e));
 		}
 	}
+
+  @Override
+  public Class<? extends Annotation> annotationType() {
+
+    return Inject.class;
+  }
 }

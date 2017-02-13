@@ -42,5 +42,7 @@ public abstract class AbstractApplicationTest {
 		new BootstrapUnitTest().run();
 	}
 
-	protected abstract EnvironmentBuilder toLoad();
+	protected EnvironmentBuilder toLoad(){
+	  return EnvironmentBuilder.create();
+	}
 }

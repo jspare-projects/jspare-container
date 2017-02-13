@@ -24,6 +24,7 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.dummy.annotation.ClassInjected;
 import org.jspare.core.dummy.notcomponent.NotCmpt;
 import org.jspare.core.dummy.notcomponent.NotCmptImpl;
@@ -41,7 +42,7 @@ import org.junit.Test;
  * @author pflima
  * @since 05/10/2015
  */
-public class InjectionTest {
+public class InjectionTest extends AbstractApplicationTest {
 
 	/**
 	 * Test container components instantiation.

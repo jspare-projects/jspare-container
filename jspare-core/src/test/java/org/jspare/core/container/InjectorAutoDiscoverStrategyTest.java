@@ -15,29 +15,20 @@
  */
 package org.jspare.core.container;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
+import static org.jspare.core.container.Environment.my;
 
-/**
- * The Interface Injector.
- *
- * It is responsible for defining the way of instantiation of a component used
- * by the annotation injection.
- *
- */
-public interface InjectorStrategy {
+import org.jspare.core.AbstractApplicationTest;
+import org.jspare.core.dummy.FooDummyResource;
+import org.junit.Assert;
+import org.junit.Test;
 
-	/**
-	 * Inject method.
-	 * 
-	 * It is called when container invoke the process of injection of control.
-	 *
-	 * @param obj
-	 *            the obj
-	 * @param field
-	 *            the field
-	 */
-	void inject(Object obj, Field field);
-	
-	Class<? extends Annotation> annotationType();
+public class InjectorAutoDiscoverStrategyTest extends AbstractApplicationTest {
+
+	@Test
+	public void injectStrategyTest() {
+
+		FooDummyResource foo = my(FooDummyResource.class);
+
+		Assert.assertNotNull(foo.getBar());
+	}
 }

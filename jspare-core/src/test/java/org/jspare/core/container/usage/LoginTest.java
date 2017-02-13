@@ -20,11 +20,12 @@ import static org.jspare.core.container.Environment.registryComponent;
 
 import java.util.Optional;
 
+import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.container.Environment;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LoginTest {
+public class LoginTest extends AbstractApplicationTest {
 
 	@Test
 	public void anotherLoginDaoTest() {

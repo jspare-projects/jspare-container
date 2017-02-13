@@ -15,6 +15,7 @@
  */
 package org.jspare.core.dummy;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 import org.jspare.core.container.InjectorStrategy;
@@ -30,4 +31,10 @@ public class DummyBarStrategy implements InjectorStrategy {
 		field.setAccessible(true);
 		field.set(result, new Bar());
 	}
+
+  @Override
+  public Class<? extends Annotation> annotationType() {
+    
+    return DummyBar.class;
+  }
 }

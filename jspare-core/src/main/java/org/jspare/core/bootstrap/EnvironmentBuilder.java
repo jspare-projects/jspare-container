@@ -79,11 +79,18 @@ public class EnvironmentBuilder implements Builder {
 		return this;
 	}
 	
+	@Deprecated
 	public EnvironmentBuilder addInjector(Class<? extends Annotation> annClazz, InjectorStrategy injector) {
 
 		Environment.registryInjector(annClazz, injector);
 		return this;
 	}
+	
+    public EnvironmentBuilder addInjector(InjectorStrategy injector) {
+
+        Environment.registryInjector(injector);
+        return this;
+    }
 
 	/*
 	 * (non-Javadoc)

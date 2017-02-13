@@ -19,7 +19,6 @@ import static org.jspare.core.container.Environment.my;
 
 import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.bootstrap.EnvironmentBuilder;
-import org.jspare.core.dummy.DummyBar;
 import org.jspare.core.dummy.DummyBarStrategy;
 import org.jspare.core.dummy.FooDummyResource;
 import org.junit.Assert;
@@ -37,7 +36,9 @@ public class InjectorStrategyTest extends AbstractApplicationTest {
 
 	@Override
 	protected EnvironmentBuilder toLoad() {
+	  
+	  System.setProperty(Keys.IGNORE_AUTO_INJECTORS, Boolean.TRUE.toString());
 
-		return EnvironmentBuilder.create().addInjector(DummyBar.class, new DummyBarStrategy());
+		return EnvironmentBuilder.create().addInjector(new DummyBarStrategy());
 	}
 }

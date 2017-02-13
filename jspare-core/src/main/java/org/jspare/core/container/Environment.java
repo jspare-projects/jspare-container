@@ -22,12 +22,11 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.StringUtils;
-import org.jspare.core.annotation.Inject;
 import org.jspare.core.annotation.Qualifier;
-import org.jspare.core.container.strategy.InjectStrategy;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.exception.Errors;
 
+import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 import lombok.Synchronized;
 
 /**
@@ -65,10 +64,24 @@ public abstract class Environment {
 	/** The Constant instances. */
 	private static final Map<Class<?>, Object> IMPL_2_INSTANCE = new ConcurrentHashMap<>(RES_INITIAL_CAPACITY, RES_LOAD_FACTOR);
 
-	static {
-
-		// Initialize Injectors of Environment
-		registryInjector(Inject.class, new InjectStrategy());
+	/**
+	 * Setup environment.
+	 */
+	public static void load(){
+	  
+	  String ignoreInjectors = System.getProperty(Keys.IGNORE_AUTO_INJECTORS, Boolean.FALSE.toString());
+	  if(Boolean.TRUE.toString().equals(ignoreInjectors)) return;
+	  
+	  new FastClasspathScanner(StringUtils.EMPTY).matchClassesImplementing(InjectorStrategy.class, c -> {
+        
+        try {
+          
+          InjectorStrategy injector = ContainerUtils.instatiate(c);
+          registryInjector(injector);
+        } catch (Exception e) {
+          // ignore invalid injector
+        }
+      }).scan();
 	}
 
 	/**
@@ -139,6 +152,11 @@ public abstract class Environment {
 	public static <T> T my(Class<T> clazz) {
 
 		return my(clazz, Qualifier.EMPTY);
+	}
+	
+	public static <T> T my(Class<? extends Annotation> injector, Class<T> clazz){
+	  
+	  return null;
 	}
 
 	/**
@@ -229,15 +247,35 @@ public abstract class Environment {
 	 * It is necessary to make the identification of the dependency and pass the
 	 * instance already started to the environment
 	 *
+	 * Registry injector are deprecated since update 2.1.0 with auto inject discovery feature.
+	 *
 	 * @param annClazz
 	 *            the ann clazz
 	 * @param injector
 	 *            the injector
 	 */
+	@Deprecated
 	public static void registryInjector(Class<? extends Annotation> annClazz, InjectorStrategy injector) {
 
 		INJECTORS.put(annClazz, injector);
 	}
+	
+	/**
+     * Registry injector method
+     * 
+     * Method responsible for registering in the environment all the injection
+     * dependency injection strategy and inversion of the application.
+     * 
+     * It is necessary to make the identification of the dependency and pass the
+     * instance already started to the environment
+     *
+     * @param injector
+     *            the injector
+     */
+	public static void registryInjector(InjectorStrategy injector) {
+
+      INJECTORS.put(injector.annotationType(), injector);
+  }
 
 	/**
 	 * Registry resource on Environment.

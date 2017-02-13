@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jspare.core.container.Context;
+import org.jspare.core.container.Environment;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -96,6 +97,8 @@ public abstract class Application implements Runner {
 	 * application life cycle depends on the call of this method.
 	 */
 	public void run() {
+	  
+	    Environment.load();
 
 		long start = System.currentTimeMillis();
 

@@ -231,7 +231,7 @@ public final class ContainerUtils {
 				((ParameterizedTypeRetention) result).setTypes(types);
 			}
 
-			ContainerUtils.processInjection(clazz, result);
+			ContainerUtils.processInjection(result);
 			return result;
 
 		} catch (InstantiationException | IllegalAccessException e) {

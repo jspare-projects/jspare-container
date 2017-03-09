@@ -3,7 +3,6 @@
 ## Status
 
 [![Build Status](https://travis-ci.org/jspare-projects/jspare-container.svg?branch=master)](https://travis-ci.org/jspare-projects/jspare-container)
-
 [![Javadocs](http://www.javadoc.io/badge/org.jspare/jspare-core.svg)](http://www.javadoc.io/doc/org.jspare/jspare-core)
 
 ## Description
@@ -32,7 +31,7 @@ For maven:
 <parent>
 	<groupId>org.jspare</groupId>
 	<artifactId>jspare-core</artifactId>
-	<version>2.0.1</version>
+	<version>2.1.0</version>
 </parent>
 ```
 
@@ -43,7 +42,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "org.jspare:jspare-core:2.0.1"
+    compile "org.jspare:jspare-core:2.1.0"
 }
 ```
 

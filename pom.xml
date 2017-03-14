@@ -162,7 +162,6 @@
 
 	<modules>
 		<module>jspare-core</module>
-		<module>jspare-core-android-support</module>
 	</modules>
 
 	<dependencies>

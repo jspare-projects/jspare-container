@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jspare-core/jspare-core.iml" filepath="$PROJECT_DIR$/jspare-core/jspare-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jspare-core-android-support/jspare-core-android-support.iml" filepath="$PROJECT_DIR$/jspare-core-android-support/jspare-core-android-support.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jspare-parent.iml" filepath="$PROJECT_DIR$/jspare-parent.iml" />
+    </modules>
+  </component>
+</project>

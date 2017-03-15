@@ -18,13 +18,13 @@ package org.jspare.core.container.usage;
 
 public class LoginDaoWithoutMaster implements LoginDao {
 
-	@Override
-	public boolean validate(String username, String password) {
+    @Override
+    public boolean validate(String username, String password) {
 
-		if (username.equals("admin")) {
-			return false;
-		}
+        if (username.equals("admin")) {
+            return false;
+        }
 
-		return username.equals(password);
-	}
+        return username.equals(password);
+    }
 }

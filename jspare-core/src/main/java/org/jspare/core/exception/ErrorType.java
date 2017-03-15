@@ -26,29 +26,26 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class ErrorType {
 
-	public static ErrorType create(int code, String message) {
+    @Getter
+    private final int code;
+    private final String message;
+    @Getter
+    @Setter
+    private Throwable throwable;
+    private Object[] arguments;
 
-		return new ErrorType(code, message);
-	}
+    public static ErrorType create(int code, String message) {
 
-	@Getter
-	private final int code;
+        return new ErrorType(code, message);
+    }
 
-	private final String message;
+    public ErrorType arguments(Object... arguments) {
+        this.arguments = arguments;
+        return this;
+    }
 
-	@Getter
-	@Setter
-	private Throwable throwable;
+    public String message() {
 
-	private Object[] arguments;
-
-	public ErrorType arguments(Object... arguments) {
-		this.arguments = arguments;
-		return this;
-	}
-
-	public String message() {
-
-		return String.format(message, arguments);
-	}
+        return String.format(message, arguments);
+    }
 }

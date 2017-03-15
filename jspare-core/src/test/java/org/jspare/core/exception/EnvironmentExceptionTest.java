@@ -15,19 +15,19 @@
  */
 package org.jspare.core.exception;
 
-import static org.jspare.core.container.Environment.registryResource;
-
 import org.junit.Test;
+
+import static org.jspare.core.container.Environment.*;
 
 public class EnvironmentExceptionTest {
 
-	class Foo {
+    @Test(expected = EnvironmentException.class)
+    public void throwEnvironmentExceptionTest() {
 
-	}
+        registryResource(new Foo());
+    }
 
-	@Test(expected = EnvironmentException.class)
-	public void throwEnvironmentExceptionTest() {
+    class Foo {
 
-		registryResource(new Foo());
-	}
+    }
 }

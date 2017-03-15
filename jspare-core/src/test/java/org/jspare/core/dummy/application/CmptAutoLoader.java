@@ -26,10 +26,10 @@ import org.jspare.core.annotation.Component;
 @Component
 public interface CmptAutoLoader {
 
-	/**
-	 * Test.
-	 *
-	 * @return the string
-	 */
-	String test();
+    /**
+     * Test.
+     *
+     * @return the string
+     */
+    String test();
 }

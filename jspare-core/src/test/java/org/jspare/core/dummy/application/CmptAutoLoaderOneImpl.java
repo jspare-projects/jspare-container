@@ -23,13 +23,13 @@ package org.jspare.core.dummy.application;
  */
 public class CmptAutoLoaderOneImpl implements CmptAutoLoader {
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.jspare.core.context.additional.CmptAutoLoader#test()
-	 */
-	@Override
-	public String test() {
-		return getClass().getSimpleName();
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.jspare.core.context.additional.CmptAutoLoader#test()
+     */
+    @Override
+    public String test() {
+        return getClass().getSimpleName();
+    }
 }

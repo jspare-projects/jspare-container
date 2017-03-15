@@ -15,31 +15,31 @@
  */
 package org.jspare.core.annotation;
 
+import org.jspare.core.container.Environment;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.jspare.core.container.Environment;
-
 /**
  * The Interface Resource.
- *
+ * <p>
  * <br>
- *
+ * <p>
  * Is defined as a stereotype for injection and sharing within an application. A
  * Resource defines an class of implementation that is capable of being
  * manipulated and managed by the environment. <br>
- *
+ * <p>
  * Every resource registered and mapped by the {@link Environment } can be
  * retrieved through the injection of dependencies within the application, the
  * life cycle of this component starts when it is called through the
  * environment.
- *
+ * <p>
  * <br>
- *
+ * <p>
  * Notes:
- *
+ * <p>
  * <ul>
  * <li>A resource can not be exposed as an interface since it is the direct
  * implementation.</li>
@@ -48,7 +48,7 @@ import org.jspare.core.container.Environment;
  * @author pflima
  * @since 05/10/2015
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Resource {
 

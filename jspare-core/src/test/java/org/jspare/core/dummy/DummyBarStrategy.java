@@ -15,26 +15,25 @@
  */
 package org.jspare.core.dummy;
 
+import lombok.SneakyThrows;
+import org.jspare.core.container.InjectorStrategy;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-import org.jspare.core.container.InjectorStrategy;
-
-import lombok.SneakyThrows;
-
 public class DummyBarStrategy implements InjectorStrategy {
 
-	@Override
-	@SneakyThrows
-	public void inject(Object result, Field field) {
+    @Override
+    @SneakyThrows
+    public void inject(Object result, Field field) {
 
-		field.setAccessible(true);
-		field.set(result, new Bar());
-	}
+        field.setAccessible(true);
+        field.set(result, new Bar());
+    }
 
-  @Override
-  public Class<? extends Annotation> annotationType() {
-    
-    return DummyBar.class;
-  }
+    @Override
+    public Class<? extends Annotation> annotationType() {
+
+        return DummyBar.class;
+    }
 }

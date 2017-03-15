@@ -27,13 +27,13 @@ import org.jspare.core.dummy.usage.Cmpt;
 @Qualifier("Qualifier2")
 public class CmptQualifierTwoImpl implements Cmpt {
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.jspare.core.container.additional.usage.Cmpt#print()
-	 */
-	@Override
-	public String print() {
-		return getClass().getSimpleName();
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.jspare.core.container.additional.usage.Cmpt#print()
+     */
+    @Override
+    public String print() {
+        return getClass().getSimpleName();
+    }
 }

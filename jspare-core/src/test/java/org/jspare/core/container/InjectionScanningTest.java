@@ -15,10 +15,6 @@
  */
 package org.jspare.core.container;
 
-import static org.jspare.core.container.Environment.my;
-import static org.jspare.core.container.Environment.registryComponent;
-import static org.junit.Assert.assertTrue;
-
 import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.bootstrap.EnvironmentBuilder;
 import org.jspare.core.dummy.application.CmptAutoLoader;
@@ -27,28 +23,31 @@ import org.jspare.core.dummy.application.CmptAutoLoaderTwoImpl;
 import org.jspare.core.dummy.application.more.CmptAutoLoaderThreeImpl;
 import org.junit.Test;
 
+import static org.jspare.core.container.Environment.*;
+import static org.junit.Assert.assertTrue;
+
 public class InjectionScanningTest extends AbstractApplicationTest {
 
-	@Test
-	public void testScanning() {
+    @Test
+    public void testScanning() {
 
-		registryComponent(CmptAutoLoaderOneImpl.class);
-		CmptAutoLoader cmptAutoLoader = my(CmptAutoLoader.class);
-		assertTrue(cmptAutoLoader instanceof CmptAutoLoaderOneImpl);
+        registryComponent(CmptAutoLoaderOneImpl.class);
+        CmptAutoLoader cmptAutoLoader = my(CmptAutoLoader.class);
+        assertTrue(cmptAutoLoader instanceof CmptAutoLoaderOneImpl);
 
-		cmptAutoLoader = my(CmptAutoLoader.class, "CmptAutoLoaderTwoImpl");
-		assertTrue(cmptAutoLoader instanceof CmptAutoLoaderTwoImpl);
+        cmptAutoLoader = my(CmptAutoLoader.class, "CmptAutoLoaderTwoImpl");
+        assertTrue(cmptAutoLoader instanceof CmptAutoLoaderTwoImpl);
 
-		cmptAutoLoader = my(CmptAutoLoader.class, "CmptAutoLoaderThreeImpl");
-		assertTrue(cmptAutoLoader instanceof CmptAutoLoaderThreeImpl);
-	}
+        cmptAutoLoader = my(CmptAutoLoader.class, "CmptAutoLoaderThreeImpl");
+        assertTrue(cmptAutoLoader instanceof CmptAutoLoaderThreeImpl);
+    }
 
-	@Override
-	protected EnvironmentBuilder toLoad() {
+    @Override
+    protected EnvironmentBuilder toLoad() {
 
-		return EnvironmentBuilder.create()
-				.scan("org.jspare.core.dummy.application.*")
-				.scan("org.jspare.core.dummy.usage");
-	}
+        return EnvironmentBuilder.create()
+                .scan("org.jspare.core.dummy.application.*")
+                .scan("org.jspare.core.dummy.usage");
+    }
 
 }

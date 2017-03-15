@@ -31,7 +31,7 @@ import java.lang.annotation.Target;
  * @since 05/10/2015
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.METHOD })
+@Target({ElementType.METHOD})
 public @interface After {
 
 }

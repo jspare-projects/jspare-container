@@ -21,24 +21,24 @@ import lombok.SneakyThrows;
  * The Class Bootstrap.
  */
 public class Bootstrap {
-	
-	@SneakyThrows
-	@SuppressWarnings("unchecked")
-	public static void main(String[] args){
-		
-		if(args.length < 1){
-			
-			throw new RuntimeException("Cannot start application, no class specified for initialization");
-		}
-		
-		String className = args[0];
-		Class<?> clazz = Class.forName(className);
-		
-		if(!clazz.isAssignableFrom(Runner.class)){
-			
-			throw new RuntimeException("The class informed cannot be initialized by container, make sure that implemens Runner interface.");
-		}
-		
-		Runner.run((Class<? extends Runner>) clazz);
-	}
+
+    @SneakyThrows
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args) {
+
+        if (args.length < 1) {
+
+            throw new RuntimeException("Cannot start application, no class specified for initialization");
+        }
+
+        String className = args[0];
+        Class<?> clazz = Class.forName(className);
+
+        if (!clazz.isAssignableFrom(Runner.class)) {
+
+            throw new RuntimeException("The class informed cannot be initialized by container, make sure that implemens Runner interface.");
+        }
+
+        Runner.run((Class<? extends Runner>) clazz);
+    }
 }

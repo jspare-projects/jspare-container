@@ -21,30 +21,29 @@ import lombok.Getter;
 
 /**
  * The Class ComponentKey.
- *
+ * <p>
  * Used to index components on {@link Environment }
- *
+ * <p>
  * The annotation {@link EqualsAndHashCode } are responsible to generate a valid
  * and optimized hashcode to perform on iterate of Map.
- *
  */
 @AllArgsConstructor
 @EqualsAndHashCode
 public class ComponentKey {
 
-	/**
-	 * Gets the clazz interface.
-	 *
-	 * @return the clazz interface
-	 */
-	@Getter
-	private final Class<?> clazzInterface;
+    /**
+     * Gets the clazz interface.
+     *
+     * @return the clazz interface
+     */
+    @Getter
+    private final Class<?> clazzInterface;
 
-	/**
-	 * Gets the qualifier.
-	 *
-	 * @return the qualifier
-	 */
-	@Getter
-	private String qualifier;
+    /**
+     * Gets the qualifier.
+     *
+     * @return the qualifier
+     */
+    @Getter
+    private String qualifier;
 }

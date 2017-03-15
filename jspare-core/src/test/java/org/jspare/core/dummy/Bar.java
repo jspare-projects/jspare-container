@@ -17,8 +17,8 @@ package org.jspare.core.dummy;
 
 public class Bar {
 
-	public int maxIntegerValue() {
+    public int maxIntegerValue() {
 
-		return Integer.MAX_VALUE;
-	}
+        return Integer.MAX_VALUE;
+    }
 }

@@ -15,15 +15,14 @@
  */
 package org.jspare.core.dummy;
 
-import org.jspare.core.annotation.Resource;
-
 import lombok.Getter;
+import org.jspare.core.annotation.Resource;
 
 @Resource
 public class FooDummyResource {
 
-	@DummyBar
-	@Getter
-	private Bar bar;
+    @DummyBar
+    @Getter
+    private Bar bar;
 
 }

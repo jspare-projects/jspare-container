@@ -15,15 +15,6 @@
  */
 package org.jspare.core.container;
 
-import static org.jspare.core.container.Environment.factory;
-import static org.jspare.core.container.Environment.my;
-import static org.jspare.core.container.Environment.registryComponent;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.dummy.annotation.ClassInjected;
 import org.jspare.core.dummy.notcomponent.NotCmpt;
@@ -36,6 +27,9 @@ import org.jspare.core.dummy.usage.CmptOtherImpl;
 import org.jspare.core.exception.EnvironmentException;
 import org.junit.Test;
 
+import static org.jspare.core.container.Environment.*;
+import static org.junit.Assert.*;
+
 /**
  * The Class EnvironmentTest.
  *
@@ -44,85 +38,88 @@ import org.junit.Test;
  */
 public class InjectionTest extends AbstractApplicationTest {
 
-	/**
-	 * Test container components instantiation.
-	 */
-	@Test
-	public void testContainerComponentsInstantiation() {
+    /**
+     * Test container components instantiation.
+     */
+    @Test
+    public void testContainerComponentsInstantiation() {
 
-		registryComponent(CmptImpl.class);
-		
-		Cmpt c1 = my(Cmpt.class);
-		assertNotNull(c1);
-		assertTrue(c1 instanceof CmptImpl);
+        registryComponent(CmptImpl.class);
 
-		Cmpt c2 = my(Cmpt.class);
-		assertSame(c1, c2);
+        Cmpt c1 = my(Cmpt.class);
+        assertNotNull(c1);
+        assertTrue(c1 instanceof CmptImpl);
 
-		registryComponent(new CmptImpl());
-		registryComponent(new CmptOtherImpl());
+        Cmpt c2 = my(Cmpt.class);
+        assertSame(c1, c2);
 
-		Cmpt c3 = my(Cmpt.class);
-		assertNotSame(c1, c3);
-		assertTrue(c3 instanceof CmptOtherImpl);
-	}
+        registryComponent(new CmptImpl());
+        registryComponent(new CmptOtherImpl());
 
-	/**
-	 * Test invalid components instantiation.
-	 */
-	@Test
-	public void testInvalidComponentsInstantiation() {
+        Cmpt c3 = my(Cmpt.class);
+        assertNotSame(c1, c3);
+        assertTrue(c3 instanceof CmptOtherImpl);
+    }
 
-		try {
-			registryComponent(new NotCmptImpl());
-			fail();
+    /**
+     * Test invalid components instantiation.
+     */
+    @Test
+    public void testInvalidComponentsInstantiation() {
 
-		} catch (EnvironmentException e) {
-			/* ignore */}
+        try {
+            registryComponent(new NotCmptImpl());
+            fail();
 
-		try {
-			registryComponent(new NotCmptImpl());
-			fail();
+        } catch (EnvironmentException e) {
+            /* ignore */
+        }
 
-		} catch (EnvironmentException e) {
-			/* ignore */}
+        try {
+            registryComponent(new NotCmptImpl());
+            fail();
 
-		try {
-			my(NotCmpt.class);
-			fail();
+        } catch (EnvironmentException e) {
+			/* ignore */
+        }
 
-		} catch (EnvironmentException e) {
-			/* ignore */}
-	}
+        try {
+            my(NotCmpt.class);
+            fail();
 
-	/**
-	 * Test my annotation.
-	 */
-	@Test
-	public void testMyAnnotation() {
+        } catch (EnvironmentException e) {
+			/* ignore */
+        }
+    }
 
-		ClassInjected classInjected = new ClassInjected();
-		assertNotNull(classInjected.getCmpt());
-	}
+    /**
+     * Test my annotation.
+     */
+    @Test
+    public void testMyAnnotation() {
 
-	/**
-	 * Test invalid components instantiation.
-	 */
-	@Test
-	public void testQualifierComponentsInstantiation() {
+        ClassInjected classInjected = new ClassInjected();
+        assertNotNull(classInjected.getCmpt());
+    }
 
-		registryComponent(new CmptQualifierOneImpl());
-		registryComponent(new CmptQualifierTwoImpl());
+    /**
+     * Test invalid components instantiation.
+     */
+    @Test
+    public void testQualifierComponentsInstantiation() {
 
-		Cmpt c1 = my(Cmpt.class, "Qualifier1");
-		assertNotNull(c1);
-		assertTrue(c1 instanceof CmptQualifierOneImpl);
-		
-		Cmpt c1Factory = factory(Cmpt.class, "Qualifier1");
-		assertNotNull(c1Factory);
+        registryComponent(new CmptQualifierOneImpl());
+        registryComponent(new CmptQualifierTwoImpl());
 
-		Cmpt c2 = my(Cmpt.class, "Qualifier2");
-		assertNotNull(c2);
-		assertTrue(c2 instanceof CmptQualifierTwoImpl);
-	}
+        Cmpt c1 = my(Cmpt.class, "Qualifier1");
+        assertNotNull(c1);
+        assertTrue(c1 instanceof CmptQualifierOneImpl);
+
+        Cmpt c1Factory = factory(Cmpt.class, "Qualifier1");
+        assertNotNull(c1Factory);
+
+        Cmpt c2 = my(Cmpt.class, "Qualifier2");
+        assertNotNull(c2);
+        assertTrue(c2 instanceof CmptQualifierTwoImpl);
+    }
 }

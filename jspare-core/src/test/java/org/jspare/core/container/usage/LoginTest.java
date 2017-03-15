@@ -15,34 +15,33 @@
  */
 package org.jspare.core.container.usage;
 
-import static org.jspare.core.container.Environment.my;
-import static org.jspare.core.container.Environment.registryComponent;
-
-import java.util.Optional;
-
 import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.container.Environment;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Optional;
+
+import static org.jspare.core.container.Environment.*;
+
 public class LoginTest extends AbstractApplicationTest {
 
-	@Test
-	public void anotherLoginDaoTest() {
+    @Test
+    public void anotherLoginDaoTest() {
 
-		Environment.release();
-		registryComponent(LoginDaoWithoutMaster.class);
+        Environment.release();
+        registryComponent(LoginDaoWithoutMaster.class);
 
-		Assert.assertFalse(my(LoginDao.class).validate("admin", "admin"));
+        Assert.assertFalse(my(LoginDao.class).validate("admin", "admin"));
 
-		Optional<String> token = my(LoginService.class).login("admin", "admin");
-		Assert.assertFalse(token.isPresent());
-	}
+        Optional<String> token = my(LoginService.class).login("admin", "admin");
+        Assert.assertFalse(token.isPresent());
+    }
 
-	@Test
-	public void usageTest() {
-		Environment.release();
-		Optional<String> token = my(LoginService.class).login("admin", "admin");
-		Assert.assertTrue(token.isPresent());
-	}
+    @Test
+    public void usageTest() {
+        Environment.release();
+        Optional<String> token = my(LoginService.class).login("admin", "admin");
+        Assert.assertTrue(token.isPresent());
+    }
 }

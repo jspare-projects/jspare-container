@@ -22,9 +22,9 @@ import java.lang.annotation.Target;
 
 /**
  * The Interface Component.
- *
+ * <p>
  * <br>
- *
+ * <p>
  * A component defines an interface that is capable of being manipulated and
  * managed by the environment. <br>
  * The behavior that exerts a component in an interface provides the usage is
@@ -41,7 +41,7 @@ import java.lang.annotation.Target;
  * @author pflima
  * @since 05/10/2015
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Component {
 

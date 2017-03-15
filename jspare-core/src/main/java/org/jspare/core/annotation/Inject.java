@@ -32,16 +32,16 @@ import java.lang.annotation.Target;
  * @since 05/10/2015
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD })
+@Target({ElementType.FIELD})
 public @interface Inject {
 
-	/**
-	 * The factory value indicate to environment that you need one new instance
-	 * of component injected.
-	 *
-	 * By default the value is false.
-	 *
-	 * @return true, if successful
-	 */
-	boolean factory() default false;
+    /**
+     * The factory value indicate to environment that you need one new instance
+     * of component injected.
+     * <p>
+     * By default the value is false.
+     *
+     * @return true, if successful
+     */
+    boolean factory() default false;
 }

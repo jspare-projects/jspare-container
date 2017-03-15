@@ -28,16 +28,18 @@ import java.lang.annotation.Target;
  * @since 05/10/2015
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.TYPE, ElementType.FIELD })
+@Target({ElementType.TYPE, ElementType.FIELD})
 public @interface Qualifier {
 
-	/** The Constant EMPTY. */
-	public static final String EMPTY = "";
+    /**
+     * The Constant EMPTY.
+     */
+    public static final String EMPTY = "";
 
-	/**
-	 * Value.
-	 *
-	 * @return the string
-	 */
-	String value();
+    /**
+     * Value.
+     *
+     * @return the string
+     */
+    String value();
 }

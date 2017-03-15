@@ -22,42 +22,42 @@ import org.junit.Test;
 
 public class ApplicationContextTest {
 
-	private static final String KEY = "key";
+    private static final String KEY = "key";
 
-	@Test
-	public void contextTest() {
+    @Test
+    public void contextTest() {
 
-		Application application = new Application() {
+        Application application = new Application() {
 
-			@Override
-			public void start() {
+            @Override
+            public void start() {
 
-				getContext().put(KEY, true);
-			}
-		};
-		application.run();
+                getContext().put(KEY, true);
+            }
+        };
+        application.run();
 
-		Assert.assertTrue(application.getContext().getAs(KEY));
-	}
-	
-	@Test
-	public void runBootstrapTest(){
-		
-		Runner application = Application.create(DummyBoostrap.class);
-		Assert.assertNotNull(application);
-		
-		Application.run(DummyBoostrap.class);
-	}
-	
-	@Test(expected=IllegalAccessException.class)
-	public void invalidBootstrapTest(){
-		
-		Application.create(DummyInvalidBoostrap.class);
-	}
-	
-	@Test(expected=IllegalAccessException.class)
-	public void invalidRunBootstrapTest(){
-		
-		Application.run(DummyInvalidBoostrap.class);
-	}
+        Assert.assertTrue(application.getContext().getAs(KEY));
+    }
+
+    @Test
+    public void runBootstrapTest() {
+
+        Runner application = Application.create(DummyBoostrap.class);
+        Assert.assertNotNull(application);
+
+        Application.run(DummyBoostrap.class);
+    }
+
+    @Test(expected = IllegalAccessException.class)
+    public void invalidBootstrapTest() {
+
+        Application.create(DummyInvalidBoostrap.class);
+    }
+
+    @Test(expected = IllegalAccessException.class)
+    public void invalidRunBootstrapTest() {
+
+        Application.run(DummyInvalidBoostrap.class);
+    }
 }

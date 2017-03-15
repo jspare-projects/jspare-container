@@ -20,24 +20,21 @@ import java.lang.reflect.Field;
 
 /**
  * The Interface Injector.
- *
+ * <p>
  * It is responsible for defining the way of instantiation of a component used
  * by the annotation injection.
- *
  */
 public interface InjectorStrategy {
 
-	/**
-	 * Inject method.
-	 * 
-	 * It is called when container invoke the process of injection of control.
-	 *
-	 * @param obj
-	 *            the obj
-	 * @param field
-	 *            the field
-	 */
-	void inject(Object obj, Field field);
-	
-	Class<? extends Annotation> annotationType();
+    /**
+     * Inject method.
+     * <p>
+     * It is called when container invoke the process of injection of control.
+     *
+     * @param obj   the obj
+     * @param field the field
+     */
+    void inject(Object obj, Field field);
+
+    Class<? extends Annotation> annotationType();
 }

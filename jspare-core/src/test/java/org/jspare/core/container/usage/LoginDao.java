@@ -20,5 +20,5 @@ import org.jspare.core.annotation.Component;
 @Component
 public interface LoginDao {
 
-	boolean validate(String username, String password);
+    boolean validate(String username, String password);
 }

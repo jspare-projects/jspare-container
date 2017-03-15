@@ -25,8 +25,8 @@ package org.jspare.core.bootstrap;
 @FunctionalInterface
 public interface Bundle {
 
-	/**
-	 * Registry components.
-	 */
-	void registryComponents();
+    /**
+     * Registry components.
+     */
+    void registryComponents();
 }

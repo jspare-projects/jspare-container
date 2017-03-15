@@ -26,17 +26,19 @@ import org.jspare.core.dummy.annotation.CmptWithAnnotation;
  */
 public class CmptImpl implements Cmpt {
 
-	/** The cmpt helper. */
-	@Inject
-	private CmptWithAnnotation cmptHelper;
+    /**
+     * The cmpt helper.
+     */
+    @Inject
+    private CmptWithAnnotation cmptHelper;
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.jspare.core.container.additional.usage.Cmpt#print()
-	 */
-	@Override
-	public String print() {
-		return getClass().getSimpleName();
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.jspare.core.container.additional.usage.Cmpt#print()
+     */
+    @Override
+    public String print() {
+        return getClass().getSimpleName();
+    }
 }

@@ -15,9 +15,6 @@
  */
 package org.jspare.core.container;
 
-import static org.jspare.core.container.Environment.my;
-import static org.junit.Assert.assertTrue;
-
 import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.bootstrap.EnvironmentBuilder;
 import org.jspare.core.dummy.application.qualified.Qualified;
@@ -28,35 +25,38 @@ import org.jspare.core.dummy.usage.Cmpt;
 import org.jspare.core.exception.EnvironmentException;
 import org.junit.Test;
 
+import static org.jspare.core.container.Environment.*;
+import static org.junit.Assert.assertTrue;
+
 public class InjectionQualifiedTest extends AbstractApplicationTest {
 
-	@Test
-	public void testQualifiedComponents() {
+    @Test
+    public void testQualifiedComponents() {
 
-		Qualified multiple = my(Qualified.class);
-		assertTrue(multiple instanceof QualifiedImpl);
+        Qualified multiple = my(Qualified.class);
+        assertTrue(multiple instanceof QualifiedImpl);
 
-		Qualified multipleOne = my(Qualified.class, "MultipleOne");
-		assertTrue(multipleOne instanceof QualifiedOne);
+        Qualified multipleOne = my(Qualified.class, "MultipleOne");
+        assertTrue(multipleOne instanceof QualifiedOne);
 
-		Qualified multipleTwo = my(Qualified.class, "MultipleTwo");
-		assertTrue(multipleTwo instanceof QualifiedTwo);
-	}
+        Qualified multipleTwo = my(Qualified.class, "MultipleTwo");
+        assertTrue(multipleTwo instanceof QualifiedTwo);
+    }
 
-	/**
-	 * Test invalid components instantiation.
-	 */
-	@Test(expected = EnvironmentException.class)
-	public void testQualifierComponentsInstantiationWithoutRegistry() {
+    /**
+     * Test invalid components instantiation.
+     */
+    @Test(expected = EnvironmentException.class)
+    public void testQualifierComponentsInstantiationWithoutRegistry() {
 
-		my(Cmpt.class, "QualifierThatNotExist");
-	}
+        my(Cmpt.class, "QualifierThatNotExist");
+    }
 
-	@Override
-	protected EnvironmentBuilder toLoad() {
+    @Override
+    protected EnvironmentBuilder toLoad() {
 
-		return new EnvironmentBuilder()
-				.registryComponent(QualifiedOne.class)
-				.registryComponent("org.jspare.core.dummy.application.qualified.QualifiedTwo");
-	}
+        return new EnvironmentBuilder()
+                .registryComponent(QualifiedOne.class)
+                .registryComponent("org.jspare.core.dummy.application.qualified.QualifiedTwo");
+    }
 }

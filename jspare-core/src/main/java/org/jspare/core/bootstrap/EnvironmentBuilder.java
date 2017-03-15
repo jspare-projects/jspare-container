@@ -15,149 +15,139 @@
  */
 package org.jspare.core.bootstrap;
 
-import static org.jspare.core.container.Environment.scanAndRegistryComponents;
-
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.jspare.core.container.Environment;
 import org.jspare.core.container.InjectorStrategy;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.exception.Errors;
 
-import lombok.extern.slf4j.Slf4j;
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
 
-/** The Constant log. */
-@Slf4j
+import static org.jspare.core.container.Environment.*;
+
 /**
- *
  * Builder your Environment with this implementation of Builder.
- *
  */
 public class EnvironmentBuilder implements Builder {
 
-	/**
-	 * Creates the.
-	 *
-	 * @return the application builder
-	 */
-	public static EnvironmentBuilder create() {
+    /**
+     * The bundles.
+     */
+    private List<Class<? extends Bundle>> bundles;
+    /**
+     * The clazz components.
+     */
+    private List<Class<?>> clazzComponents;
+    /**
+     * The declared components.
+     */
+    private List<String> declaredComponents;
 
-		return new EnvironmentBuilder();
-	}
+    /**
+     * Instantiates a new application builder.
+     */
+    public EnvironmentBuilder() {
 
-	/** The bundles. */
-	private List<Class<? extends Bundle>> bundles;
+        bundles = new ArrayList<>();
+        clazzComponents = new ArrayList<>();
+        declaredComponents = new ArrayList<>();
+    }
 
-	/** The clazz components. */
-	private List<Class<?>> clazzComponents;
+    /**
+     * Creates the.
+     *
+     * @return the application builder
+     */
+    public static EnvironmentBuilder create() {
 
-	/** The declared components. */
-	private List<String> declaredComponents;
-	
-	/**
-	 * Instantiates a new application builder.
-	 */
-	public EnvironmentBuilder() {
+        return new EnvironmentBuilder();
+    }
 
-		bundles = new ArrayList<>();
-		clazzComponents = new ArrayList<>();
-		declaredComponents = new ArrayList<>();
-	}
+    /**
+     * Adds the bundle.
+     *
+     * @param bundleClazz the bundle clazz
+     * @return the application builder
+     */
+    public EnvironmentBuilder addBundle(Class<? extends Bundle> bundleClazz) {
 
-	/**
-	 * Adds the bundle.
-	 *
-	 * @param bundleClazz
-	 *            the bundle clazz
-	 * @return the application builder
-	 */
-	public EnvironmentBuilder addBundle(Class<? extends Bundle> bundleClazz) {
+        bundles.add(bundleClazz);
+        return this;
+    }
 
-		bundles.add(bundleClazz);
-		return this;
-	}
-	
-	@Deprecated
-	public EnvironmentBuilder addInjector(Class<? extends Annotation> annClazz, InjectorStrategy injector) {
+    @Deprecated
+    public EnvironmentBuilder addInjector(Class<? extends Annotation> annClazz, InjectorStrategy injector) {
 
-		Environment.registryInjector(annClazz, injector);
-		return this;
-	}
-	
+        Environment.registryInjector(annClazz, injector);
+        return this;
+    }
+
     public EnvironmentBuilder addInjector(InjectorStrategy injector) {
 
         Environment.registryInjector(injector);
         return this;
     }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.jspare.core.container.Builder#build()
-	 */
-	@Override
-	public void build() {
-		
-		log.info("Loading declared components");
-		scanAndRegistryComponents(declaredComponents);
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.jspare.core.container.Builder#build()
+     */
+    @Override
+    public void build() {
 
-		log.info("Loading declared clazz components");
-		clazzComponents.forEach(clazz -> Environment.registryComponent(clazz));
+        scanAndRegistryComponents(declaredComponents);
 
-		log.info("Loading bundles");
-		bundles.forEach(clazz -> {
+        clazzComponents.forEach(clazz -> Environment.registryComponent(clazz));
 
-			log.info("Loading bundle [{}]", clazz.getName());
-			try {
-				Bundle instance = clazz.newInstance();
-				instance.registryComponents();
-			} catch (InstantiationException | IllegalAccessException e) {
+        bundles.forEach(clazz -> {
 
-				throw new EnvironmentException(Errors.FAILED_INSTANTIATION.throwable(e));
-			}
-		});
+            try {
+                Bundle instance = clazz.newInstance();
+                instance.registryComponents();
+            } catch (InstantiationException | IllegalAccessException e) {
 
-	}
-	
-	/**
-	 * Registry component.
-	 *
-	 * @param clazz
-	 *            the clazz
-	 * @return the application builder
-	 */
-	public EnvironmentBuilder registryComponent(Class<?> clazz) {
+                throw new EnvironmentException(Errors.FAILED_INSTANTIATION.throwable(e));
+            }
+        });
 
-		clazzComponents.add(clazz);
-		return this;
-	}
+    }
 
-	/**
-	 * Registry component.
-	 *
-	 * @param clazz
-	 *            the clazz
-	 * @return the application builder
-	 */
-	public EnvironmentBuilder registryComponent(String clazz) {
+    /**
+     * Registry component.
+     *
+     * @param clazz the clazz
+     * @return the application builder
+     */
+    public EnvironmentBuilder registryComponent(Class<?> clazz) {
 
-		declaredComponents.add(clazz);
-		return this;
-	}
+        clazzComponents.add(clazz);
+        return this;
+    }
 
-	/**
-	 * Scan one class or package for add to environment of container.
-	 *
-	 * @param package2scan
-	 *            the package2scan
-	 * @return the application builder
-	 */
-	public EnvironmentBuilder scan(String package2scan) {
+    /**
+     * Registry component.
+     *
+     * @param clazz the clazz
+     * @return the application builder
+     */
+    public EnvironmentBuilder registryComponent(String clazz) {
 
-		String packageFormated = package2scan.endsWith(".*") ? package2scan : String.format("%s.*", package2scan);
-		declaredComponents.add(packageFormated);
-		return this;
-	}
+        declaredComponents.add(clazz);
+        return this;
+    }
+
+    /**
+     * Scan one class or package for add to environment of container.
+     *
+     * @param package2scan the package2scan
+     * @return the application builder
+     */
+    public EnvironmentBuilder scan(String package2scan) {
+
+        String packageFormated = package2scan.endsWith(".*") ? package2scan : String.format("%s.*", package2scan);
+        declaredComponents.add(packageFormated);
+        return this;
+    }
 }

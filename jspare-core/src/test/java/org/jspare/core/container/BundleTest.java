@@ -15,25 +15,25 @@
  */
 package org.jspare.core.container;
 
-import static org.jspare.core.container.Environment.my;
-
 import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.bootstrap.EnvironmentBuilder;
 import org.jspare.core.dummy.DummyBundle;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.jspare.core.container.Environment.*;
+
 public class BundleTest extends AbstractApplicationTest {
 
-	@Test
-	public void bundleLoadTest() {
+    @Test
+    public void bundleLoadTest() {
 
-		Assert.assertTrue(my(Context.class).getAs("test"));
-	}
+        Assert.assertTrue(my(Context.class).getAs("test"));
+    }
 
-	@Override
-	protected EnvironmentBuilder toLoad() {
+    @Override
+    protected EnvironmentBuilder toLoad() {
 
-		return EnvironmentBuilder.create().addBundle(DummyBundle.class);
-	}
+        return EnvironmentBuilder.create().addBundle(DummyBundle.class);
+    }
 }

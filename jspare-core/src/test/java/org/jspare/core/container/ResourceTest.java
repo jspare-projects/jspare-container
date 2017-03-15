@@ -15,38 +15,37 @@
  */
 package org.jspare.core.container;
 
-import static org.jspare.core.container.Environment.factory;
-import static org.jspare.core.container.Environment.my;
-
 import org.jspare.core.dummy.FooResource;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.jspare.core.container.Environment.*;
+
 public class ResourceTest {
 
-	@Test
-	public void resourceInjectionTest() {
+    @Test
+    public void resourceInjectionTest() {
 
-		Environment.release();
+        Environment.release();
 
-		FooResource foo = my(FooResource.class);
+        FooResource foo = my(FooResource.class);
 
-		// Test injection
-		Assert.assertNotNull(foo);
+        // Test injection
+        Assert.assertNotNull(foo);
 
-		// Test default value of dummy data
-		Assert.assertEquals(FooResource.DEFAULT, foo.getDefaultName());
+        // Test default value of dummy data
+        Assert.assertEquals(FooResource.DEFAULT, foo.getDefaultName());
 
-		foo.setDefaultName("test");
+        foo.setDefaultName("test");
 
-		// Test reference retention
-		Assert.assertEquals("test", my(FooResource.class).getDefaultName());
+        // Test reference retention
+        Assert.assertEquals("test", my(FooResource.class).getDefaultName());
 
-		// Test factory instantiation
-		Assert.assertEquals(FooResource.DEFAULT, factory(FooResource.class).getDefaultName());
+        // Test factory instantiation
+        Assert.assertEquals(FooResource.DEFAULT, factory(FooResource.class).getDefaultName());
 
-		// Test original reference retention
-		Assert.assertEquals("test", my(FooResource.class).getDefaultName());
-	}
+        // Test original reference retention
+        Assert.assertEquals("test", my(FooResource.class).getDefaultName());
+    }
 
 }

@@ -15,35 +15,35 @@
  */
 package org.jspare.core.container;
 
-import java.util.HashMap;
-
 import org.jspare.core.annotation.Resource;
+
+import java.util.HashMap;
 
 /**
  * The Class Context.
- *
+ * <p>
  * Used for store context of application. Your implementation extends the
  * {@link HashMap }.
  */
 @Resource
 public class Context extends HashMap<Object, Object> {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 2876291977103253345L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 2876291977103253345L;
 
 
-	/**
-	 * Gets the generic type expected.
-	 *
-	 * @param <T> the generic type
-	 * @param key the key
-	 * @return the as
-	 */
-	@SuppressWarnings("unchecked")
-	public <T> T getAs(Object key) {
+    /**
+     * Gets the generic type expected.
+     *
+     * @param <T> the generic type
+     * @param key the key
+     * @return the as
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getAs(Object key) {
 
-		return (T) get(key);
-	}
+        return (T) get(key);
+    }
 }

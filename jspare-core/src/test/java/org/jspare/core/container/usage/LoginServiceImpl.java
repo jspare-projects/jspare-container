@@ -15,41 +15,41 @@
  */
 package org.jspare.core.container.usage;
 
+import org.jspare.core.annotation.Inject;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.jspare.core.annotation.Inject;
-
 public class LoginServiceImpl implements LoginService {
 
-	private static Map<String, String> user2token = new HashMap<>();
+    private static Map<String, String> user2token = new HashMap<>();
 
-	@Inject
-	private LoginDao loginDao;
+    @Inject
+    private LoginDao loginDao;
 
-	@Override
-	public Optional<String> login(String username, String password) {
+    @Override
+    public Optional<String> login(String username, String password) {
 
-		if (user2token.containsKey(username)) {
+        if (user2token.containsKey(username)) {
 
-			return Optional.of(user2token.get(username));
-		}
+            return Optional.of(user2token.get(username));
+        }
 
-		if (!loginDao.validate(username, password)) {
+        if (!loginDao.validate(username, password)) {
 
-			return Optional.empty();
-		}
+            return Optional.empty();
+        }
 
-		String token = UUID.randomUUID().toString();
-		user2token.put(username, token);
-		return Optional.of(token);
-	}
+        String token = UUID.randomUUID().toString();
+        user2token.put(username, token);
+        return Optional.of(token);
+    }
 
-	@Override
-	public boolean validate(String token) {
+    @Override
+    public boolean validate(String token) {
 
-		return user2token.values().contains(token);
-	}
+        return user2token.values().contains(token);
+    }
 }

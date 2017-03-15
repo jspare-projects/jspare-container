@@ -15,61 +15,59 @@
  */
 package org.jspare.core.container.strategy;
 
-import static org.jspare.core.container.Environment.factory;
-import static org.jspare.core.container.Environment.my;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-
 import org.jspare.core.annotation.Inject;
 import org.jspare.core.annotation.Qualifier;
 import org.jspare.core.container.InjectorStrategy;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.exception.Errors;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+
+import static org.jspare.core.container.Environment.*;
+
 /**
  * The Class InjectStrategy.
- *  
- *  Strategy responsible to provide dependency injection by {@link Inject } annotation.
- * 
+ * <p>
+ * Strategy responsible to provide dependency injection by {@link Inject } annotation.
  */
 public class InjectStrategy implements InjectorStrategy {
-  
+
     public InjectStrategy() {
     }
 
-	/* (non-Javadoc)
-	 * @see org.jspare.core.container.InjectorStrategy#inject(java.lang.Object, java.lang.reflect.Field)
-	 */
-	@Override
-	public void inject(Object result, Field field) {
+    /* (non-Javadoc)
+     * @see org.jspare.core.container.InjectorStrategy#inject(java.lang.Object, java.lang.reflect.Field)
+     */
+    @Override
+    public void inject(Object result, Field field) {
 
-		try {
+        try {
 
-			Inject inject = field.getAnnotation(Inject.class);
+            Inject inject = field.getAnnotation(Inject.class);
 
-			String qualifier = Qualifier.EMPTY;
-			if (field.isAnnotationPresent(Qualifier.class)) {
-				qualifier = field.getAnnotation(Qualifier.class).value();
-			}
-			field.setAccessible(true);
+            String qualifier = Qualifier.EMPTY;
+            if (field.isAnnotationPresent(Qualifier.class)) {
+                qualifier = field.getAnnotation(Qualifier.class).value();
+            }
+            field.setAccessible(true);
 
-			if (inject.factory()) {
+            if (inject.factory()) {
 
-				field.set(result, factory(Class.forName(field.getType().getName()), qualifier));
-			} else {
+                field.set(result, factory(Class.forName(field.getType().getName()), qualifier));
+            } else {
 
-				field.set(result, my(Class.forName(field.getType().getName()), qualifier));
-			}
-		} catch (IllegalArgumentException | IllegalAccessException | ClassNotFoundException e) {
+                field.set(result, my(Class.forName(field.getType().getName()), qualifier));
+            }
+        } catch (IllegalArgumentException | IllegalAccessException | ClassNotFoundException e) {
 
-			throw new EnvironmentException(Errors.INVALID_INJECTION.throwable(e));
-		}
-	}
+            throw new EnvironmentException(Errors.INVALID_INJECTION.throwable(e));
+        }
+    }
 
-  @Override
-  public Class<? extends Annotation> annotationType() {
+    @Override
+    public Class<? extends Annotation> annotationType() {
 
-    return Inject.class;
-  }
+        return Inject.class;
+    }
 }

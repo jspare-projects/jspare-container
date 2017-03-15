@@ -17,7 +17,7 @@ package org.jspare.core.bootstrap;
 
 /**
  * The Interface Builder.
- *
+ * <p>
  * Used to aid in the construction of an Application
  *
  * @author pflima
@@ -26,8 +26,8 @@ package org.jspare.core.bootstrap;
 @FunctionalInterface
 public interface Builder {
 
-	/**
-	 * Invoke build of resource.
-	 */
-	void build();
+    /**
+     * Invoke build of resource.
+     */
+    void build();
 }

@@ -15,10 +15,9 @@
  */
 package org.jspare.core.dummy.annotation;
 
+import lombok.Getter;
 import org.jspare.core.annotation.Inject;
 import org.jspare.core.container.MySupport;
-
-import lombok.Getter;
 
 /**
  * The Class ClassInjected.
@@ -28,32 +27,34 @@ import lombok.Getter;
  */
 public class ClassInjected extends MySupport {
 
-	/** The cmpt. */
-	@Inject
+    /**
+     * The cmpt.
+     */
+    @Inject
 
-	/**
-	 * Gets the cmpt.
-	 *
-	 * @return the cmpt
-	 */
+    /**
+     * Gets the cmpt.
+     *
+     * @return the cmpt
+     */
 
-	/**
-	 * Gets the cmpt.
-	 *
-	 * @return the cmpt
-	 */
+    /**
+     * Gets the cmpt.
+     *
+     * @return the cmpt
+     */
 
-	/**
-	 * Gets the cmpt.
-	 *
-	 * @return the cmpt
-	 */
+    /**
+     * Gets the cmpt.
+     *
+     * @return the cmpt
+     */
 
-	/**
-	 * Gets the cmpt.
-	 *
-	 * @return the cmpt
-	 */
-	@Getter
-	private CmptWithAnnotation cmpt;
+    /**
+     * Gets the cmpt.
+     *
+     * @return the cmpt
+     */
+    @Getter
+    private CmptWithAnnotation cmpt;
 }

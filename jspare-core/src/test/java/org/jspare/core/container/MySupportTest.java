@@ -22,12 +22,12 @@ import org.junit.Test;
 
 public class MySupportTest extends MySupport {
 
-	@Inject
-	private FooResource foo;
+    @Inject
+    private FooResource foo;
 
-	@Test
-	public void mySupportInjectionTest() {
+    @Test
+    public void mySupportInjectionTest() {
 
-		Assert.assertNotNull(foo);
-	}
+        Assert.assertNotNull(foo);
+    }
 }

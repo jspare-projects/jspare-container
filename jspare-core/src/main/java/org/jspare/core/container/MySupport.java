@@ -18,9 +18,8 @@ package org.jspare.core.container;
 import org.jspare.core.bootstrap.Application;
 
 /**
- *
  * MySupport Class
- *
+ * <p>
  * <h2>Important:</h2>
  * <ul>
  * <li>For {@link Application} the ContainerUtils .processInjection never is
@@ -28,15 +27,14 @@ import org.jspare.core.bootstrap.Application;
  * </ul>
  *
  * @author pflima
- *
  */
 public abstract class MySupport {
 
-	/**
-	 * Instantiates a new my support.
-	 */
-	public MySupport() {
+    /**
+     * Instantiates a new my support.
+     */
+    public MySupport() {
 
-		ContainerUtils.processInjection(this);
-	}
+        ContainerUtils.processInjection(this);
+    }
 }

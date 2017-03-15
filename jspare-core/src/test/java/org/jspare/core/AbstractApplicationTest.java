@@ -21,28 +21,28 @@ import org.junit.Before;
 
 public abstract class AbstractApplicationTest {
 
-	class BootstrapUnitTest extends Application {
+    @Before
+    public void setup() {
 
-		@Override
-		public void start() {
+        // Simulate static main invocation
+        new BootstrapUnitTest().run();
+    }
 
-		}
+    protected EnvironmentBuilder toLoad() {
+        return EnvironmentBuilder.create();
+    }
 
-		@Override
-		public void setup() {
+    class BootstrapUnitTest extends Application {
 
-			builder(toLoad());
-		}
-	}
+        @Override
+        public void start() {
 
-	@Before
-	public void setup() {
+        }
 
-		// Simulate static main invocation
-		new BootstrapUnitTest().run();
-	}
+        @Override
+        public void setup() {
 
-	protected EnvironmentBuilder toLoad(){
-	  return EnvironmentBuilder.create();
-	}
+            builder(toLoad());
+        }
+    }
 }

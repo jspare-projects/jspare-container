@@ -15,20 +15,20 @@
  */
 package org.jspare.core.container;
 
-import static org.jspare.core.container.Environment.my;
-
 import org.jspare.core.AbstractApplicationTest;
 import org.jspare.core.dummy.FooDummyResource;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.jspare.core.container.Environment.*;
+
 public class InjectorAutoDiscoverStrategyTest extends AbstractApplicationTest {
 
-	@Test
-	public void injectStrategyTest() {
+    @Test
+    public void injectStrategyTest() {
 
-		FooDummyResource foo = my(FooDummyResource.class);
+        FooDummyResource foo = my(FooDummyResource.class);
 
-		Assert.assertNotNull(foo.getBar());
-	}
+        Assert.assertNotNull(foo.getBar());
+    }
 }

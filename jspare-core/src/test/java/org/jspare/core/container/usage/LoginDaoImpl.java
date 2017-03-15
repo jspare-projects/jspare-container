@@ -17,9 +17,9 @@ package org.jspare.core.container.usage;
 
 public class LoginDaoImpl implements LoginDao {
 
-	@Override
-	public boolean validate(String username, String password) {
+    @Override
+    public boolean validate(String username, String password) {
 
-		return password.equals(username);
-	}
+        return password.equals(username);
+    }
 }

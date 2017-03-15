@@ -15,17 +15,16 @@
  */
 package org.jspare.core.dummy;
 
-import org.jspare.core.annotation.Resource;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.jspare.core.annotation.Resource;
 
 @Resource
 public class FooResource {
 
-	public static final String DEFAULT = "Default";
+    public static final String DEFAULT = "Default";
 
-	@Getter
-	@Setter
-	private String defaultName = DEFAULT;
+    @Getter
+    @Setter
+    private String defaultName = DEFAULT;
 }

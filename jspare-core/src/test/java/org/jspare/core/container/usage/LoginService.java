@@ -15,14 +15,14 @@
  */
 package org.jspare.core.container.usage;
 
-import java.util.Optional;
-
 import org.jspare.core.annotation.Component;
+
+import java.util.Optional;
 
 @Component
 public interface LoginService {
 
-	Optional<String> login(String username, String password);
+    Optional<String> login(String username, String password);
 
-	boolean validate(String token);
+    boolean validate(String token);
 }

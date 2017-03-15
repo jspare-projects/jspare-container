@@ -19,19 +19,17 @@ import java.lang.reflect.Type;
 
 /**
  * The Interface ParameterizedTypeRetention. <br>
- *
+ * <p>
  * Makes the retention of a parameterized type in a class, this interface should
  * be implemented when you have the need to retain the data on the type
  * parameterized generic and use the inversion of control at the same time.
- *
  */
 public interface ParameterizedTypeRetention {
 
-	/**
-	 * Sets the types.
-	 *
-	 * @param types
-	 *            the new types
-	 */
-	void setTypes(Type[] types);
+    /**
+     * Sets the types.
+     *
+     * @param types the new types
+     */
+    void setTypes(Type[] types);
 }

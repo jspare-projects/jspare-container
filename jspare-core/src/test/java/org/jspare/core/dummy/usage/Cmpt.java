@@ -26,10 +26,10 @@ import org.jspare.core.annotation.Component;
 @Component
 public interface Cmpt {
 
-	/**
-	 * Prints the.
-	 *
-	 * @return the string
-	 */
-	String print();
+    /**
+     * Prints the.
+     *
+     * @return the string
+     */
+    String print();
 }

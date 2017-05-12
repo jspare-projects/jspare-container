@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 JSpare.org.
+ * Copyright 2017 JSpare.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,14 +15,21 @@
  */
 package org.jspare.core;
 
-import org.junit.Before;
+import java.lang.reflect.Type;
 
-public abstract class AbstractApplicationTest {
+/**
+ * The Interface ParameterizedTypeRetention. <br>
+ * <p>
+ * Makes the retention of a parameterized type in a class, this interface should
+ * be implemented when you have the need to retain the data on the type
+ * parameterized generic and use the inversion of control at the same time.
+ */
+public interface ParameterizedTypeRetention {
 
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
+  /**
+   * Sets the types.
+   *
+   * @param types the new types
+   */
+  void setTypes(Type[] types);
 }

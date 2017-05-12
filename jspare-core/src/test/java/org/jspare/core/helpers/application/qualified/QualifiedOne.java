@@ -13,16 +13,17 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.application.qualified;
 
-import org.junit.Before;
+import javax.inject.Named;
 
-public abstract class AbstractApplicationTest {
+/**
+ * The Class MultipleOne.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+@Named("QualifiedOne")
+public class QualifiedOne implements Qualified {
 
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
 }

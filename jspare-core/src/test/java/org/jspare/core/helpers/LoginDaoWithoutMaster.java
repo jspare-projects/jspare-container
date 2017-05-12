@@ -13,16 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
 
-import org.junit.Before;
+package org.jspare.core.helpers;
 
-public abstract class AbstractApplicationTest {
+public class LoginDaoWithoutMaster implements LoginDao {
 
-  @Before
-  public void setup() {
+  @Override
+  public boolean validate(String username, String password) {
 
-    Environment.destroy();
-    Environment.create();
+    if (username.equals("admin")) {
+      return false;
+    }
+
+    return username.equals(password);
   }
 }

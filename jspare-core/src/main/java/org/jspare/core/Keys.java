@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 JSpare.org.
+ * Copyright 2017 JSpare.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,14 +15,7 @@
  */
 package org.jspare.core;
 
-import org.junit.Before;
+public final class Keys {
 
-public abstract class AbstractApplicationTest {
-
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
+  public static final String IGNORE_AUTO_INJECTORS = "jspare.ignoreInjectors";
 }

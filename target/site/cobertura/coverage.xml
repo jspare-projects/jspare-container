@@ -1,0 +1,1632 @@
+<?xml version="1.0"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+
+<coverage line-rate="0.6798679867986799" branch-rate="0.4411764705882353" lines-covered="206" lines-valid="303" branches-covered="75" branches-valid="170" complexity="1.8928571428571428" version="2.1.1" timestamp="1494598524240">
+	<sources>
+		<source>--source</source>
+		<source>C:/tools/repositories/jspare-projects/jspare-container/jspare-core/src/main/java</source>
+		<source>C:/tools/repositories/jspare-projects/jspare-container/jspare-core/target/generated-sources/annotations</source>
+	</sources>
+	<packages>
+		<package name="org.jspare.core" line-rate="0.5" branch-rate="0.3" complexity="1.2142857142857142">
+			<classes>
+				<class name="org.jspare.core.AbstractModule" filename="org/jspare/core/AbstractModule.java" line-rate="0.23333333333333334" branch-rate="0.3" complexity="2.5">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="18" hits="2" branch="false"/>
+								<line number="19" hits="2" branch="false"/>
+								<line number="20" hits="2" branch="false"/>
+								<line number="21" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="defaultLoad" signature="()V" line-rate="0.75" branch-rate="0.75" complexity="0">
+							<lines>
+								<line number="28" hits="4" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="30" hits="2" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="31" hits="0" branch="false"/>
+								<line number="34" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="load" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="25" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="provides" signature="(Ljava/lang/reflect/Method;)V" line-rate="0.0" branch-rate="0.0" complexity="0">
+							<lines>
+								<line number="37" hits="0" branch="false"/>
+								<line number="38" hits="0" branch="false"/>
+								<line number="39" hits="0" branch="false"/>
+								<line number="40" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="41" hits="0" branch="false"/>
+								<line number="42" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="44" hits="0" branch="false"/>
+								<line number="45" hits="0" branch="false"/>
+								<line number="46" hits="0" branch="false"/>
+								<line number="48" hits="0" branch="false"/>
+								<line number="49" hits="0" branch="false"/>
+								<line number="53" hits="0" branch="false"/>
+								<line number="54" hits="0" branch="false"/>
+								<line number="55" hits="0" branch="false"/>
+								<line number="57" hits="0" branch="false"/>
+								<line number="58" hits="0" branch="false"/>
+								<line number="60" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="61" hits="0" branch="false"/>
+								<line number="62" hits="0" branch="false"/>
+								<line number="63" hits="0" branch="false"/>
+								<line number="65" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="18" hits="2" branch="false"/>
+						<line number="19" hits="2" branch="false"/>
+						<line number="20" hits="2" branch="false"/>
+						<line number="21" hits="2" branch="false"/>
+						<line number="25" hits="0" branch="false"/>
+						<line number="28" hits="4" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="30" hits="2" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="31" hits="0" branch="false"/>
+						<line number="34" hits="2" branch="false"/>
+						<line number="37" hits="0" branch="false"/>
+						<line number="38" hits="0" branch="false"/>
+						<line number="39" hits="0" branch="false"/>
+						<line number="40" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="41" hits="0" branch="false"/>
+						<line number="42" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="44" hits="0" branch="false"/>
+						<line number="45" hits="0" branch="false"/>
+						<line number="46" hits="0" branch="false"/>
+						<line number="48" hits="0" branch="false"/>
+						<line number="49" hits="0" branch="false"/>
+						<line number="53" hits="0" branch="false"/>
+						<line number="54" hits="0" branch="false"/>
+						<line number="55" hits="0" branch="false"/>
+						<line number="57" hits="0" branch="false"/>
+						<line number="58" hits="0" branch="false"/>
+						<line number="60" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="61" hits="0" branch="false"/>
+						<line number="62" hits="0" branch="false"/>
+						<line number="63" hits="0" branch="false"/>
+						<line number="65" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.Application" filename="org/jspare/core/Application.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="35" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="create" signature="(Ljava/lang/Class;)Lorg/jspare/core/Runner;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="44" hits="2" branch="false"/>
+								<line number="46" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="run" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="68" hits="1" branch="false"/>
+								<line number="70" hits="1" branch="false"/>
+								<line number="72" hits="1" branch="false"/>
+								<line number="74" hits="1" branch="false"/>
+								<line number="76" hits="1" branch="false"/>
+								<line number="78" hits="1" branch="false"/>
+								<line number="79" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="run" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="55" hits="1" branch="false"/>
+								<line number="58" hits="2" branch="false"/>
+								<line number="59" hits="1" branch="false"/>
+								<line number="60" hits="1" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="35" hits="2" branch="false"/>
+						<line number="44" hits="2" branch="false"/>
+						<line number="46" hits="4" branch="false"/>
+						<line number="55" hits="1" branch="false"/>
+						<line number="58" hits="2" branch="false"/>
+						<line number="59" hits="1" branch="false"/>
+						<line number="60" hits="1" branch="false"/>
+						<line number="68" hits="1" branch="false"/>
+						<line number="70" hits="1" branch="false"/>
+						<line number="72" hits="1" branch="false"/>
+						<line number="74" hits="1" branch="false"/>
+						<line number="76" hits="1" branch="false"/>
+						<line number="78" hits="1" branch="false"/>
+						<line number="79" hits="1" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.ApplicationContext" filename="org/jspare/core/ApplicationContext.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.Component" filename="org/jspare/core/Component.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.Factory" filename="org/jspare/core/Factory.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.ImplementationResolver" filename="org/jspare/core/ImplementationResolver.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.ImplementedBy" filename="org/jspare/core/ImplementedBy.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.InjectorAdapter" filename="org/jspare/core/InjectorAdapter.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.Keys" filename="org/jspare/core/Keys.java" line-rate="0.0" branch-rate="1.0" complexity="0.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="18" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="18" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.MembersInjector" filename="org/jspare/core/MembersInjector.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.Module" filename="org/jspare/core/Module.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.Modules" filename="org/jspare/core/Modules.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.MySupport" filename="org/jspare/core/MySupport.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="34" hits="4" branch="false"/>
+								<line number="35" hits="4" branch="false"/>
+								<line number="36" hits="4" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="34" hits="4" branch="false"/>
+						<line number="35" hits="4" branch="false"/>
+						<line number="36" hits="4" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.ParameterizedTypeRetention" filename="org/jspare/core/ParameterizedTypeRetention.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.jspare.core.Provides" filename="org/jspare/core/Provides.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.jspare.core.exception" line-rate="0.6842105263157895" branch-rate="1.0" complexity="1.0">
+			<classes>
+				<class name="org.jspare.core.exception.EnvironmentException" filename="org/jspare/core/exception/EnvironmentException.java" line-rate="0.75" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Lorg/jspare/core/exception/ErrorType;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="51" hits="1" branch="false"/>
+								<line number="52" hits="1" branch="false"/>
+								<line number="53" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="getError" signature="()Lorg/jspare/core/exception/ErrorType;" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="41" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="41" hits="0" branch="false"/>
+						<line number="51" hits="1" branch="false"/>
+						<line number="52" hits="1" branch="false"/>
+						<line number="53" hits="1" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.exception.ErrorType" filename="org/jspare/core/exception/ErrorType.java" line-rate="0.5555555555555556" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(ILjava/lang/String;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="25" hits="5" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(ILjava/lang/String;Ljava/lang/Throwable;[Ljava/lang/Object;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="24" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="arguments" signature="([Ljava/lang/Object;)Lorg/jspare/core/exception/ErrorType;" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="43" hits="0" branch="false"/>
+								<line number="44" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="code" signature="()I" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="29" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="create" signature="(ILjava/lang/String;)Lorg/jspare/core/exception/ErrorType;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="39" hits="5" branch="false"/>
+							</lines>
+						</method>
+						<method name="message" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="49" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="throwable" signature="()Ljava/lang/Throwable;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="32" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="throwable" signature="(Ljava/lang/Throwable;)Lorg/jspare/core/exception/ErrorType;" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="33" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="24" hits="0" branch="false"/>
+						<line number="25" hits="5" branch="false"/>
+						<line number="29" hits="1" branch="false"/>
+						<line number="32" hits="1" branch="false"/>
+						<line number="33" hits="0" branch="false"/>
+						<line number="39" hits="5" branch="false"/>
+						<line number="43" hits="0" branch="false"/>
+						<line number="44" hits="0" branch="false"/>
+						<line number="49" hits="1" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.exception.Errors" filename="org/jspare/core/exception/Errors.java" line-rate="0.8333333333333334" branch-rate="1.0" complexity="0.0">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="23" hits="1" branch="false"/>
+								<line number="26" hits="1" branch="false"/>
+								<line number="29" hits="1" branch="false"/>
+								<line number="31" hits="1" branch="false"/>
+								<line number="34" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="21" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="21" hits="0" branch="false"/>
+						<line number="23" hits="1" branch="false"/>
+						<line number="26" hits="1" branch="false"/>
+						<line number="29" hits="1" branch="false"/>
+						<line number="31" hits="1" branch="false"/>
+						<line number="34" hits="1" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.jspare.core.internal" line-rate="0.7399103139013453" branch-rate="0.4605263157894737" complexity="2.5">
+			<classes>
+				<class name="org.jspare.core.internal.ApplicationContextImpl" filename="org/jspare/core/internal/ApplicationContextImpl.java" line-rate="0.7971014492753623" branch-rate="0.625" complexity="1.7333333333333334">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="45" hits="11" branch="false"/>
+								<line number="46" hits="11" branch="false"/>
+								<line number="47" hits="11" branch="false"/>
+								<line number="48" hits="11" branch="false"/>
+								<line number="49" hits="11" branch="false"/>
+								<line number="53" hits="11" branch="false"/>
+								<line number="55" hits="11" branch="false"/>
+								<line number="56" hits="11" branch="false"/>
+								<line number="57" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="addImplementationProvider" signature="(Lorg/jspare/core/ImplementationResolver;)Lorg/jspare/core/ApplicationContext;" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="168" hits="0" branch="false"/>
+								<line number="169" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="addInjector" signature="(Lorg/jspare/core/InjectorAdapter;)Lorg/jspare/core/ApplicationContext;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="174" hits="2" branch="false"/>
+								<line number="175" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="getInstance" signature="(Ljava/lang/Class;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="78" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="getInstance" signature="(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="104" hits="22" branch="false"/>
+								<line number="105" hits="21" branch="false"/>
+								<line number="106" hits="21" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="108" hits="14" branch="false"/>
+								<line number="109" hits="14" branch="false"/>
+								<line number="111" hits="14" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="113" hits="13" branch="false"/>
+								<line number="115" hits="14" branch="false"/>
+								<line number="118" hits="7" branch="false"/>
+							</lines>
+						</method>
+						<method name="inject" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="211" hits="20" branch="false"/>
+								<line number="212" hits="20" branch="false"/>
+								<line number="213" hits="20" branch="false"/>
+							</lines>
+						</method>
+						<method name="loadModule" signature="(Ljava/lang/Class;)Lorg/jspare/core/ApplicationContext;" line-rate="0.0" branch-rate="0.0" complexity="0">
+							<lines>
+								<line number="182" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="183" hits="0" branch="false"/>
+								<line number="188" hits="0" branch="false"/>
+								<line number="189" hits="0" branch="false"/>
+								<line number="190" hits="0" branch="false"/>
+								<line number="191" hits="0" branch="false"/>
+								<line number="192" hits="0" branch="false"/>
+								<line number="193" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="loadModule" signature="(Lorg/jspare/core/Module;)Lorg/jspare/core/ApplicationContext;" line-rate="0.8" branch-rate="0.5" complexity="0">
+							<lines>
+								<line number="200" hits="2" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="201" hits="0" branch="false"/>
+								<line number="203" hits="2" branch="false"/>
+								<line number="204" hits="2" branch="false"/>
+								<line number="205" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="provide" signature="(Ljava/lang/Class;)Ljava/lang/Object;" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="124" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="provide" signature="(Ljava/lang/Class;Ljava/lang/Class;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="138" hits="1" branch="false"/>
+								<line number="139" hits="1" branch="false"/>
+								<line number="140" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="provide" signature="(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="130" hits="2" branch="false"/>
+								<line number="131" hits="2" branch="false"/>
+								<line number="132" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="registry" signature="(Lorg/jspare/core/internal/Bind;)Lorg/jspare/core/ApplicationContext;" line-rate="0.8333333333333334" branch-rate="0.5" complexity="0">
+							<lines>
+								<line number="143" hits="34" branch="false"/>
+								<line number="145" hits="23" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="146" hits="23" branch="false"/>
+								<line number="147" hits="23" branch="false"/>
+								<line number="148" hits="23" branch="false"/>
+								<line number="149" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="registry" signature="(Lorg/jspare/core/internal/Bind;Ljava/lang/Object;)Lorg/jspare/core/ApplicationContext;" line-rate="0.8571428571428571" branch-rate="0.5" complexity="0">
+							<lines>
+								<line number="151" hits="18" branch="false"/>
+								<line number="153" hits="18" branch="true" condition-coverage="50% (2/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+										<condition number="1" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="156" hits="18" branch="false"/>
+								<line number="158" hits="18" branch="false"/>
+								<line number="161" hits="18" branch="false"/>
+								<line number="162" hits="18" branch="false"/>
+								<line number="163" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="release" signature="()Lorg/jspare/core/ApplicationContext;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="222" hits="3" branch="false"/>
+								<line number="223" hits="3" branch="false"/>
+								<line number="224" hits="3" branch="false"/>
+								<line number="225" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="retrieveBind" signature="(Ljava/lang/Class;Ljava/lang/String;)Lorg/jspare/core/internal/Bind;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="230" hits="24" branch="false"/>
+								<line number="232" hits="24" branch="false"/>
+								<line number="234" hits="24" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="237" hits="10" branch="false"/>
+								<line number="238" hits="9" branch="false"/>
+								<line number="240" hits="23" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="45" hits="11" branch="false"/>
+						<line number="46" hits="11" branch="false"/>
+						<line number="47" hits="11" branch="false"/>
+						<line number="48" hits="11" branch="false"/>
+						<line number="49" hits="11" branch="false"/>
+						<line number="53" hits="11" branch="false"/>
+						<line number="55" hits="11" branch="false"/>
+						<line number="56" hits="11" branch="false"/>
+						<line number="57" hits="11" branch="false"/>
+						<line number="78" hits="1" branch="false"/>
+						<line number="104" hits="22" branch="false"/>
+						<line number="105" hits="21" branch="false"/>
+						<line number="106" hits="21" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="108" hits="14" branch="false"/>
+						<line number="109" hits="14" branch="false"/>
+						<line number="111" hits="14" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="113" hits="13" branch="false"/>
+						<line number="115" hits="14" branch="false"/>
+						<line number="118" hits="7" branch="false"/>
+						<line number="124" hits="0" branch="false"/>
+						<line number="130" hits="2" branch="false"/>
+						<line number="131" hits="2" branch="false"/>
+						<line number="132" hits="2" branch="false"/>
+						<line number="138" hits="1" branch="false"/>
+						<line number="139" hits="1" branch="false"/>
+						<line number="140" hits="1" branch="false"/>
+						<line number="143" hits="34" branch="false"/>
+						<line number="145" hits="23" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="146" hits="23" branch="false"/>
+						<line number="147" hits="23" branch="false"/>
+						<line number="148" hits="23" branch="false"/>
+						<line number="149" hits="0" branch="false"/>
+						<line number="151" hits="18" branch="false"/>
+						<line number="153" hits="18" branch="true" condition-coverage="50% (2/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+								<condition number="1" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="156" hits="18" branch="false"/>
+						<line number="158" hits="18" branch="false"/>
+						<line number="161" hits="18" branch="false"/>
+						<line number="162" hits="18" branch="false"/>
+						<line number="163" hits="0" branch="false"/>
+						<line number="168" hits="0" branch="false"/>
+						<line number="169" hits="0" branch="false"/>
+						<line number="174" hits="2" branch="false"/>
+						<line number="175" hits="2" branch="false"/>
+						<line number="182" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="183" hits="0" branch="false"/>
+						<line number="188" hits="0" branch="false"/>
+						<line number="189" hits="0" branch="false"/>
+						<line number="190" hits="0" branch="false"/>
+						<line number="191" hits="0" branch="false"/>
+						<line number="192" hits="0" branch="false"/>
+						<line number="193" hits="0" branch="false"/>
+						<line number="200" hits="2" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="201" hits="0" branch="false"/>
+						<line number="203" hits="2" branch="false"/>
+						<line number="204" hits="2" branch="false"/>
+						<line number="205" hits="2" branch="false"/>
+						<line number="211" hits="20" branch="false"/>
+						<line number="212" hits="20" branch="false"/>
+						<line number="213" hits="20" branch="false"/>
+						<line number="222" hits="3" branch="false"/>
+						<line number="223" hits="3" branch="false"/>
+						<line number="224" hits="3" branch="false"/>
+						<line number="225" hits="3" branch="false"/>
+						<line number="230" hits="24" branch="false"/>
+						<line number="232" hits="24" branch="false"/>
+						<line number="234" hits="24" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="237" hits="10" branch="false"/>
+						<line number="238" hits="9" branch="false"/>
+						<line number="240" hits="23" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.internal.Bind" filename="org/jspare/core/internal/Bind.java" line-rate="1.0" branch-rate="0.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="bind" signature="(Ljava/lang/Class;)Lorg/jspare/core/internal/Bind;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="34" hits="20" branch="false"/>
+							</lines>
+						</method>
+						<method name="bindKey" signature="()Lorg/jspare/core/internal/Key;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="38" hits="62" branch="false"/>
+							</lines>
+						</method>
+						<method name="canEqual" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="from" signature="()Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="28" hits="29" branch="false"/>
+							</lines>
+						</method>
+						<method name="from" signature="(Ljava/lang/Class;)Lorg/jspare/core/internal/Bind;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="hashCode" signature="()I" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="name" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="29" hits="62" branch="false"/>
+							</lines>
+						</method>
+						<method name="name" signature="(Ljava/lang/String;)Lorg/jspare/core/internal/Bind;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="singleton" signature="()Z" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="31" hits="46" branch="false"/>
+							</lines>
+						</method>
+						<method name="singleton" signature="(Z)Lorg/jspare/core/internal/Bind;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="to" signature="()Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="30" hits="110" branch="false"/>
+							</lines>
+						</method>
+						<method name="to" signature="(Ljava/lang/Class;)Lorg/jspare/core/internal/Bind;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="0.0" complexity="0">
+							<lines>
+								<line number="25" hits="118" branch="true" condition-coverage="0% (0/34)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+										<condition number="1" type="jump" coverage="0%"/>
+										<condition number="2" type="jump" coverage="0%"/>
+										<condition number="3" type="jump" coverage="0%"/>
+										<condition number="4" type="jump" coverage="0%"/>
+										<condition number="5" type="jump" coverage="0%"/>
+										<condition number="6" type="jump" coverage="0%"/>
+										<condition number="7" type="jump" coverage="0%"/>
+										<condition number="8" type="jump" coverage="0%"/>
+										<condition number="9" type="jump" coverage="0%"/>
+										<condition number="10" type="jump" coverage="0%"/>
+										<condition number="11" type="jump" coverage="0%"/>
+										<condition number="12" type="jump" coverage="0%"/>
+										<condition number="13" type="jump" coverage="0%"/>
+										<condition number="14" type="jump" coverage="0%"/>
+										<condition number="15" type="jump" coverage="0%"/>
+										<condition number="16" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="25" hits="118" branch="true" condition-coverage="0% (0/34)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+								<condition number="1" type="jump" coverage="0%"/>
+								<condition number="2" type="jump" coverage="0%"/>
+								<condition number="3" type="jump" coverage="0%"/>
+								<condition number="4" type="jump" coverage="0%"/>
+								<condition number="5" type="jump" coverage="0%"/>
+								<condition number="6" type="jump" coverage="0%"/>
+								<condition number="7" type="jump" coverage="0%"/>
+								<condition number="8" type="jump" coverage="0%"/>
+								<condition number="9" type="jump" coverage="0%"/>
+								<condition number="10" type="jump" coverage="0%"/>
+								<condition number="11" type="jump" coverage="0%"/>
+								<condition number="12" type="jump" coverage="0%"/>
+								<condition number="13" type="jump" coverage="0%"/>
+								<condition number="14" type="jump" coverage="0%"/>
+								<condition number="15" type="jump" coverage="0%"/>
+								<condition number="16" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="28" hits="29" branch="false"/>
+						<line number="29" hits="62" branch="false"/>
+						<line number="30" hits="110" branch="false"/>
+						<line number="31" hits="46" branch="false"/>
+						<line number="34" hits="20" branch="false"/>
+						<line number="38" hits="62" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.internal.InstanceAwareFactory" filename="org/jspare/core/internal/InstanceAwareFactory.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Lorg/jspare/core/InjectorAdapter;Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="29" hits="1" branch="false"/>
+								<line number="30" hits="1" branch="false"/>
+								<line number="31" hits="1" branch="false"/>
+								<line number="32" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="get" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="37" hits="1" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="29" hits="1" branch="false"/>
+						<line number="30" hits="1" branch="false"/>
+						<line number="31" hits="1" branch="false"/>
+						<line number="32" hits="1" branch="false"/>
+						<line number="37" hits="1" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.internal.InstanceFactory" filename="org/jspare/core/internal/InstanceFactory.java" line-rate="0.6578947368421053" branch-rate="0.4444444444444444" complexity="0.0">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="37" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Lorg/jspare/core/ApplicationContext;Lorg/jspare/core/internal/Bind;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="42" hits="16" branch="false"/>
+								<line number="43" hits="16" branch="false"/>
+								<line number="44" hits="16" branch="false"/>
+								<line number="45" hits="16" branch="false"/>
+							</lines>
+						</method>
+						<method name="allowedConstructors" signature="(Ljava/lang/Class;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="get" signature="()Ljava/lang/Object;" line-rate="0.4666666666666667" branch-rate="0.25" complexity="0">
+							<lines>
+								<line number="49" hits="16" branch="false"/>
+								<line number="50" hits="16" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="52" hits="0" branch="false"/>
+								<line number="55" hits="16" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="57" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="58" hits="0" branch="false"/>
+								<line number="62" hits="16" branch="false"/>
+								<line number="65" hits="16" branch="false"/>
+								<line number="66" hits="16" branch="false"/>
+								<line number="67" hits="16" branch="false"/>
+								<line number="68" hits="0" branch="false"/>
+								<line number="70" hits="0" branch="false"/>
+								<line number="72" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="74" hits="0" branch="false"/>
+								<line number="77" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="instantiate" signature="(Ljava/lang/reflect/Constructor;)Ljava/lang/Object;" line-rate="0.7058823529411765" branch-rate="0.625" complexity="0">
+							<lines>
+								<line number="83" hits="16" branch="false"/>
+								<line number="85" hits="16" branch="false"/>
+								<line number="86" hits="16" branch="false"/>
+								<line number="87" hits="19" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="88" hits="3" branch="false"/>
+								<line number="89" hits="3" branch="true" condition-coverage="50% (2/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+										<condition number="1" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="91" hits="0" branch="false"/>
+								<line number="92" hits="0" branch="false"/>
+								<line number="93" hits="0" branch="false"/>
+								<line number="95" hits="3" branch="false"/>
+								<line number="96" hits="3" branch="false"/>
+								<line number="99" hits="16" branch="false"/>
+								<line number="101" hits="16" branch="false"/>
+								<line number="102" hits="16" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="104" hits="0" branch="false"/>
+								<line number="105" hits="0" branch="false"/>
+								<line number="107" hits="16" branch="false"/>
+							</lines>
+						</method>
+						<method name="lambda$allowedConstructors$0" signature="(Ljava/lang/reflect/Constructor;)Z" line-rate="1.0" branch-rate="0.5" complexity="0">
+							<lines>
+								<line number="111" hits="32" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="37" hits="1" branch="false"/>
+						<line number="42" hits="16" branch="false"/>
+						<line number="43" hits="16" branch="false"/>
+						<line number="44" hits="16" branch="false"/>
+						<line number="45" hits="16" branch="false"/>
+						<line number="49" hits="16" branch="false"/>
+						<line number="50" hits="16" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="52" hits="0" branch="false"/>
+						<line number="55" hits="16" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="57" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="58" hits="0" branch="false"/>
+						<line number="62" hits="16" branch="false"/>
+						<line number="65" hits="16" branch="false"/>
+						<line number="66" hits="16" branch="false"/>
+						<line number="67" hits="16" branch="false"/>
+						<line number="68" hits="0" branch="false"/>
+						<line number="70" hits="0" branch="false"/>
+						<line number="72" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="74" hits="0" branch="false"/>
+						<line number="77" hits="0" branch="false"/>
+						<line number="83" hits="16" branch="false"/>
+						<line number="85" hits="16" branch="false"/>
+						<line number="86" hits="16" branch="false"/>
+						<line number="87" hits="19" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="88" hits="3" branch="false"/>
+						<line number="89" hits="3" branch="true" condition-coverage="50% (2/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+								<condition number="1" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="91" hits="0" branch="false"/>
+						<line number="92" hits="0" branch="false"/>
+						<line number="93" hits="0" branch="false"/>
+						<line number="95" hits="3" branch="false"/>
+						<line number="96" hits="3" branch="false"/>
+						<line number="99" hits="16" branch="false"/>
+						<line number="101" hits="16" branch="false"/>
+						<line number="102" hits="16" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="104" hits="0" branch="false"/>
+						<line number="105" hits="0" branch="false"/>
+						<line number="107" hits="16" branch="false"/>
+						<line number="111" hits="32" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+					</lines>
+				</class>
+				<class name="org.jspare.core.internal.InternalBinder" filename="org/jspare/core/internal/InternalBinder.java" line-rate="1.0" branch-rate="0.9444444444444444" complexity="0.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/util/List;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="32" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="createBind" signature="(Lorg/jspare/core/internal/Bind;)Lorg/jspare/core/internal/Bind;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="49" hits="23" branch="false"/>
+								<line number="50" hits="23" branch="false"/>
+							</lines>
+						</method>
+						<method name="createBind" signature="(Lorg/jspare/core/internal/Key;)Lorg/jspare/core/internal/Bind;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="39" hits="10" branch="false"/>
+								<line number="40" hits="10" branch="false"/>
+								<line number="41" hits="10" branch="false"/>
+								<line number="43" hits="10" branch="false"/>
+								<line number="45" hits="9" branch="false"/>
+							</lines>
+						</method>
+						<method name="isSingleton" signature="(Ljava/lang/Class;)Z" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="70" hits="40" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="isSingleton" signature="(Lorg/jspare/core/internal/Bind;)Z" line-rate="1.0" branch-rate="0.8333333333333334" complexity="0">
+							<lines>
+								<line number="66" hits="32" branch="true" condition-coverage="83% (5/6)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+										<condition number="1" type="jump" coverage="100%"/>
+										<condition number="2" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="lambda$isSingleton$0" signature="(Ljava/lang/annotation/Annotation;)Z" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="71" hits="32" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="lambda$qualify$1" signature="(Lorg/jspare/core/internal/Bind;Ljava/lang/annotation/Annotation;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="82" hits="7" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="83" hits="1" branch="false"/>
+								<line number="85" hits="7" branch="false"/>
+							</lines>
+						</method>
+						<method name="lookupBind" signature="(Lorg/jspare/core/internal/Bind;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="54" hits="33" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="55" hits="10" branch="false"/>
+								<line number="56" hits="10" branch="false"/>
+								<line number="58" hits="32" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="60" hits="30" branch="false"/>
+								<line number="62" hits="32" branch="false"/>
+								<line number="63" hits="32" branch="false"/>
+							</lines>
+						</method>
+						<method name="qualify" signature="(Lorg/jspare/core/internal/Bind;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="75" hits="30" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="76" hits="3" branch="false"/>
+								<line number="77" hits="3" branch="false"/>
+								<line number="79" hits="27" branch="false"/>
+								<line number="86" hits="27" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="32" hits="11" branch="false"/>
+						<line number="39" hits="10" branch="false"/>
+						<line number="40" hits="10" branch="false"/>
+						<line number="41" hits="10" branch="false"/>
+						<line number="43" hits="10" branch="false"/>
+						<line number="45" hits="9" branch="false"/>
+						<line number="49" hits="23" branch="false"/>
+						<line number="50" hits="23" branch="false"/>
+						<line number="54" hits="33" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="55" hits="10" branch="false"/>
+						<line number="56" hits="10" branch="false"/>
+						<line number="58" hits="32" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="60" hits="30" branch="false"/>
+						<line number="62" hits="32" branch="false"/>
+						<line number="63" hits="32" branch="false"/>
+						<line number="66" hits="32" branch="true" condition-coverage="83% (5/6)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="100%"/>
+								<condition number="2" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="70" hits="40" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="71" hits="32" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="75" hits="30" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="76" hits="3" branch="false"/>
+						<line number="77" hits="3" branch="false"/>
+						<line number="79" hits="27" branch="false"/>
+						<line number="82" hits="7" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="83" hits="1" branch="false"/>
+						<line number="85" hits="7" branch="false"/>
+						<line number="86" hits="27" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.internal.InternalImplementationFinder" filename="org/jspare/core/internal/InternalImplementationFinder.java" line-rate="0.9090909090909091" branch-rate="0.7" complexity="8.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/util/List;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="29" hits="10" branch="false"/>
+							</lines>
+						</method>
+						<method name="find" signature="(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Class;" line-rate="0.9" branch-rate="0.7" complexity="0">
+							<lines>
+								<line number="37" hits="10" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="38" hits="4" branch="false"/>
+								<line number="41" hits="6" branch="false"/>
+								<line number="42" hits="6" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="43" hits="6" branch="false"/>
+								<line number="44" hits="6" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="45" hits="0" branch="false"/>
+								<line number="47" hits="6" branch="true" condition-coverage="75% (3/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+										<condition number="1" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="49" hits="1" branch="false"/>
+								<line number="51" hits="5" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="29" hits="10" branch="false"/>
+						<line number="37" hits="10" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="38" hits="4" branch="false"/>
+						<line number="41" hits="6" branch="false"/>
+						<line number="42" hits="6" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="43" hits="6" branch="false"/>
+						<line number="44" hits="6" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="45" hits="0" branch="false"/>
+						<line number="47" hits="6" branch="true" condition-coverage="75% (3/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+								<condition number="1" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="49" hits="1" branch="false"/>
+						<line number="51" hits="5" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.internal.Key" filename="org/jspare/core/internal/Key.java" line-rate="1.0" branch-rate="0.4090909090909091" complexity="0.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="25" hits="86" branch="false"/>
+							</lines>
+						</method>
+						<method name="canEqual" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="getName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="28" hits="202" branch="false"/>
+							</lines>
+						</method>
+						<method name="getType" signature="()Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="27" hits="202" branch="false"/>
+							</lines>
+						</method>
+						<method name="hashCode" signature="()I" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="0.4090909090909091" complexity="0">
+							<lines>
+								<line number="24" hits="192" branch="true" condition-coverage="40% (9/22)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+										<condition number="1" type="jump" coverage="50%"/>
+										<condition number="2" type="jump" coverage="50%"/>
+										<condition number="3" type="jump" coverage="50%"/>
+										<condition number="4" type="jump" coverage="0%"/>
+										<condition number="5" type="jump" coverage="50%"/>
+										<condition number="6" type="jump" coverage="50%"/>
+										<condition number="7" type="jump" coverage="0%"/>
+										<condition number="8" type="jump" coverage="50%"/>
+										<condition number="9" type="jump" coverage="50%"/>
+										<condition number="10" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="24" hits="192" branch="true" condition-coverage="40% (9/22)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+								<condition number="1" type="jump" coverage="50%"/>
+								<condition number="2" type="jump" coverage="50%"/>
+								<condition number="3" type="jump" coverage="50%"/>
+								<condition number="4" type="jump" coverage="0%"/>
+								<condition number="5" type="jump" coverage="50%"/>
+								<condition number="6" type="jump" coverage="50%"/>
+								<condition number="7" type="jump" coverage="0%"/>
+								<condition number="8" type="jump" coverage="50%"/>
+								<condition number="9" type="jump" coverage="50%"/>
+								<condition number="10" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="25" hits="86" branch="false"/>
+						<line number="27" hits="202" branch="false"/>
+						<line number="28" hits="202" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.internal.MembersInjectorImpl" filename="org/jspare/core/internal/MembersInjectorImpl.java" line-rate="0.4489795918367347" branch-rate="0.5909090909090909" complexity="8.5">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/util/Map;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="30" hits="20" branch="false"/>
+							</lines>
+						</method>
+						<method name="checkCustomInjectors" signature="(Ljava/lang/Object;Ljava/lang/reflect/Field;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="116" hits="15" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="118" hits="2" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="120" hits="1" branch="false"/>
+								<line number="121" hits="1" branch="false"/>
+								<line number="122" hits="1" branch="false"/>
+								<line number="124" hits="2" branch="false"/>
+								<line number="125" hits="15" branch="false"/>
+							</lines>
+						</method>
+						<method name="inject" signature="(Ljava/lang/Object;)V" line-rate="0.34146341463414637" branch-rate="0.5" complexity="0">
+							<lines>
+								<line number="38" hits="20" branch="false"/>
+								<line number="40" hits="40" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="45" hits="20" branch="true" condition-coverage="75% (3/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+										<condition number="1" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="48" hits="15" branch="false"/>
+								<line number="49" hits="0" branch="false"/>
+								<line number="51" hits="0" branch="false"/>
+								<line number="52" hits="15" branch="false"/>
+								<line number="53" hits="0" branch="false"/>
+								<line number="56" hits="5" branch="false"/>
+								<line number="57" hits="5" branch="false"/>
+								<line number="59" hits="5" branch="false"/>
+								<line number="61" hits="5" branch="false"/>
+								<line number="62" hits="0" branch="false"/>
+								<line number="64" hits="0" branch="false"/>
+								<line number="65" hits="5" branch="false"/>
+								<line number="68" hits="41" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="73" hits="21" branch="true" condition-coverage="25% (1/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+										<condition number="1" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="74" hits="0" branch="false"/>
+								<line number="77" hits="0" branch="false"/>
+								<line number="78" hits="0" branch="false"/>
+								<line number="79" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="80" hits="0" branch="false"/>
+								<line number="81" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="83" hits="0" branch="false"/>
+								<line number="84" hits="0" branch="false"/>
+								<line number="85" hits="0" branch="false"/>
+								<line number="87" hits="0" branch="false"/>
+								<line number="88" hits="0" branch="false"/>
+								<line number="92" hits="0" branch="false"/>
+								<line number="93" hits="0" branch="false"/>
+								<line number="94" hits="0" branch="false"/>
+								<line number="97" hits="0" branch="false"/>
+								<line number="98" hits="0" branch="false"/>
+								<line number="102" hits="20" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="104" hits="0" branch="false"/>
+								<line number="105" hits="0" branch="false"/>
+								<line number="106" hits="0" branch="false"/>
+								<line number="108" hits="0" branch="false"/>
+								<line number="109" hits="0" branch="false"/>
+								<line number="110" hits="0" branch="false"/>
+								<line number="112" hits="20" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="30" hits="20" branch="false"/>
+						<line number="38" hits="20" branch="false"/>
+						<line number="40" hits="40" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="45" hits="20" branch="true" condition-coverage="75% (3/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="48" hits="15" branch="false"/>
+						<line number="49" hits="0" branch="false"/>
+						<line number="51" hits="0" branch="false"/>
+						<line number="52" hits="15" branch="false"/>
+						<line number="53" hits="0" branch="false"/>
+						<line number="56" hits="5" branch="false"/>
+						<line number="57" hits="5" branch="false"/>
+						<line number="59" hits="5" branch="false"/>
+						<line number="61" hits="5" branch="false"/>
+						<line number="62" hits="0" branch="false"/>
+						<line number="64" hits="0" branch="false"/>
+						<line number="65" hits="5" branch="false"/>
+						<line number="68" hits="41" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="73" hits="21" branch="true" condition-coverage="25% (1/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+								<condition number="1" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="74" hits="0" branch="false"/>
+						<line number="77" hits="0" branch="false"/>
+						<line number="78" hits="0" branch="false"/>
+						<line number="79" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="80" hits="0" branch="false"/>
+						<line number="81" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="83" hits="0" branch="false"/>
+						<line number="84" hits="0" branch="false"/>
+						<line number="85" hits="0" branch="false"/>
+						<line number="87" hits="0" branch="false"/>
+						<line number="88" hits="0" branch="false"/>
+						<line number="92" hits="0" branch="false"/>
+						<line number="93" hits="0" branch="false"/>
+						<line number="94" hits="0" branch="false"/>
+						<line number="97" hits="0" branch="false"/>
+						<line number="98" hits="0" branch="false"/>
+						<line number="102" hits="20" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="104" hits="0" branch="false"/>
+						<line number="105" hits="0" branch="false"/>
+						<line number="106" hits="0" branch="false"/>
+						<line number="108" hits="0" branch="false"/>
+						<line number="109" hits="0" branch="false"/>
+						<line number="110" hits="0" branch="false"/>
+						<line number="112" hits="20" branch="false"/>
+						<line number="116" hits="15" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="118" hits="2" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="120" hits="1" branch="false"/>
+						<line number="121" hits="1" branch="false"/>
+						<line number="122" hits="1" branch="false"/>
+						<line number="124" hits="2" branch="false"/>
+						<line number="125" hits="15" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.internal.ReflectionUtils" filename="org/jspare/core/internal/ReflectionUtils.java" line-rate="0.7857142857142857" branch-rate="0.5" complexity="0.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="36" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="collecInterfaces" signature="(Ljava/lang/Class;)Ljava/util/List;" line-rate="1.0" branch-rate="0.5" complexity="0">
+							<lines>
+								<line number="67" hits="16" branch="false"/>
+								<line number="68" hits="16" branch="false"/>
+								<line number="70" hits="16" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="72" hits="16" branch="false"/>
+								<line number="74" hits="16" branch="false"/>
+							</lines>
+						</method>
+						<method name="getPostConstructMethods" signature="(Ljava/lang/Class;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+							</lines>
+						</method>
+						<method name="getQualifier" signature="(Ljava/lang/reflect/AnnotatedElement;)Ljava/lang/String;" line-rate="0.7142857142857143" branch-rate="0.6666666666666666" complexity="0">
+							<lines>
+								<line number="39" hits="11" branch="false"/>
+								<line number="41" hits="11" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="42" hits="0" branch="false"/>
+								<line number="45" hits="17" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="47" hits="6" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="48" hits="0" branch="false"/>
+								<line number="52" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="lambda$getPostConstructMethods$0" signature="(Ljava/lang/reflect/Method;)Z" line-rate="1.0" branch-rate="0.25" complexity="0">
+							<lines>
+								<line number="57" hits="41" branch="true" condition-coverage="25% (1/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+										<condition number="1" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="36" hits="0" branch="false"/>
+						<line number="39" hits="11" branch="false"/>
+						<line number="41" hits="11" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="42" hits="0" branch="false"/>
+						<line number="45" hits="17" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="47" hits="6" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="48" hits="0" branch="false"/>
+						<line number="52" hits="11" branch="false"/>
+						<line number="57" hits="41" branch="true" condition-coverage="25% (1/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+								<condition number="1" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="67" hits="16" branch="false"/>
+						<line number="68" hits="16" branch="false"/>
+						<line number="70" hits="16" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="72" hits="16" branch="false"/>
+						<line number="74" hits="16" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.jspare.core.resolver" line-rate="0.3076923076923077" branch-rate="0.25" complexity="6.5">
+			<classes>
+				<class name="org.jspare.core.resolver.ComponentResolver" filename="org/jspare/core/resolver/ComponentResolver.java" line-rate="0.4444444444444444" branch-rate="0.5" complexity="9.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="26" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="supply" signature="(Ljava/lang/Class;)Ljava/lang/Class;" line-rate="0.375" branch-rate="0.5" complexity="0">
+							<lines>
+								<line number="34" hits="6" branch="true" condition-coverage="50% (2/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+										<condition number="1" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="35" hits="0" branch="false"/>
+								<line number="39" hits="6" branch="false"/>
+								<line number="42" hits="6" branch="false"/>
+								<line number="43" hits="0" branch="false"/>
+								<line number="48" hits="0" branch="false"/>
+								<line number="49" hits="0" branch="false"/>
+								<line number="51" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="26" hits="11" branch="false"/>
+						<line number="34" hits="6" branch="true" condition-coverage="50% (2/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+								<condition number="1" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="35" hits="0" branch="false"/>
+						<line number="39" hits="6" branch="false"/>
+						<line number="42" hits="6" branch="false"/>
+						<line number="43" hits="0" branch="false"/>
+						<line number="48" hits="0" branch="false"/>
+						<line number="49" hits="0" branch="false"/>
+						<line number="51" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.jspare.core.resolver.ImplementedByResolver" filename="org/jspare/core/resolver/ImplementedByResolver.java" line-rate="0.0" branch-rate="0.0" complexity="4.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+							<lines>
+								<line number="24" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="supply" signature="(Ljava/lang/Class;)Ljava/lang/Class;" line-rate="0.0" branch-rate="0.0" complexity="0">
+							<lines>
+								<line number="29" hits="0" branch="true" condition-coverage="0% (0/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+										<condition number="1" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="30" hits="0" branch="false"/>
+								<line number="32" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="24" hits="0" branch="false"/>
+						<line number="29" hits="0" branch="true" condition-coverage="0% (0/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+								<condition number="1" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="30" hits="0" branch="false"/>
+						<line number="32" hits="0" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

@@ -13,16 +13,13 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.notcomponent;
 
-import org.junit.Before;
-
-public abstract class AbstractApplicationTest {
-
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
+/**
+ * The Interface NotCmpt.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public interface NotCmpt {
 }

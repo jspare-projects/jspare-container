@@ -13,16 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.usage;
 
-import org.junit.Before;
+/**
+ * The Class CmptOtherImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class CmptOtherImpl implements Cmpt {
 
-public abstract class AbstractApplicationTest {
-
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
+  /*
+   * (non-Javadoc)
+   *
+   * @see org.jspare.core.container.additional.usage.Cmpt#print()
+   */
+  @Override
+  public String print() {
+    return getClass().getSimpleName();
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 JSpare.org.
+ * Copyright 2017 JSpare.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,30 +25,30 @@ import lombok.Getter;
  */
 public class EnvironmentException extends RuntimeException {
 
-    /**
-     * The Constant serialVersionUID.
-     */
-    private static final long serialVersionUID = 1L;
+  /**
+   * The Constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * The Constant FORMATTED_MESSAGE.
-     */
-    private static final String FORMATTED_MESSAGE = "EX%s - %s";
+  /**
+   * The Constant FORMATTED_MESSAGE.
+   */
+  private static final String FORMATTED_MESSAGE = "EX%s - %s";
 
-    /**
-     * The error.
-     */
-    @Getter
-    private final ErrorType error;
+  /**
+   * The error.
+   */
+  @Getter
+  private final ErrorType error;
 
-    /**
-     * Instantiates a new environment exception.
-     *
-     * @param error the error
-     */
-    public EnvironmentException(ErrorType error) {
+  /**
+   * Instantiates a new environment exception.
+   *
+   * @param error the error
+   */
+  public EnvironmentException(ErrorType error) {
 
-        super(String.format(FORMATTED_MESSAGE, error.code(), error.message()), error.throwable());
-        this.error = error;
-    }
+    super(String.format(FORMATTED_MESSAGE, error.code(), error.message()), error.throwable());
+    this.error = error;
+  }
 }

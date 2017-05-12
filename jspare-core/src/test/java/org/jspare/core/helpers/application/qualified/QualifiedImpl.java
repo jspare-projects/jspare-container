@@ -13,16 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.application.qualified;
 
-import org.junit.Before;
+/**
+ * The Class MultipleImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class QualifiedImpl implements Qualified {
 
-public abstract class AbstractApplicationTest {
-
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
 }

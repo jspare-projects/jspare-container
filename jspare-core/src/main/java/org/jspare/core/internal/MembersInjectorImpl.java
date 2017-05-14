@@ -16,12 +16,11 @@
 package org.jspare.core.internal;
 
 import lombok.RequiredArgsConstructor;
-import org.jspare.core.Environment;
-import org.jspare.core.InjectorAdapter;
-import org.jspare.core.MembersInjector;
+import org.jspare.core.*;
 
 import javax.inject.Inject;
 import java.lang.reflect.*;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -35,6 +34,14 @@ public final class MembersInjectorImpl implements MembersInjector {
   @Override
   public void inject(Object instance) {
 
+    Class<?> clazz = instance.getClass();
+
+    // Load Modules
+    if (clazz.isAnnotationPresent(Modules.class)) {
+      Class<? extends Module>[] modules = clazz.getAnnotation(Modules.class).value();
+      Arrays.asList(modules).forEach(Environment::loadModule);
+    }
+
     Class<?> type = instance.getClass();
 
     for (Field field : type.getDeclaredFields()) {
@@ -44,20 +51,19 @@ public final class MembersInjectorImpl implements MembersInjector {
       //may have any otherwise valid name.
       if (!field.isAnnotationPresent(Inject.class) || field.getModifiers() == Modifier.FINAL) {
 
-        try {
-          checkCustomInjectors(instance, field);
-        } catch (IllegalAccessException e) {
-          // Nulling field
-          e.printStackTrace();
-        }
+        INJECTORS.values().forEach(injector -> {
+          if (injector.isInjectable(field)) {
+            injector.inject(instance, field);
+          }
+        });
         continue;
       }
 
       Class<?> fieldType = field.getType();
       String name = ReflectionUtils.getQualifier(field);
 
-      field.setAccessible(true);
       try {
+        field.setAccessible(true);
         field.set(instance, Environment.my(fieldType, name));
       } catch (IllegalAccessException e) {
         // Nulling field
@@ -106,20 +112,6 @@ public final class MembersInjectorImpl implements MembersInjector {
       } catch (IllegalAccessException | InvocationTargetException e) {
         // PrintStack error
         e.printStackTrace();
-      }
-    }
-
-  }
-
-  private void checkCustomInjectors(Object instance, Field field) throws IllegalAccessException {
-
-    for (InjectorAdapter injector : INJECTORS.values()) {
-
-      if (injector.isInjectable(field)) {
-
-        Object value = injector.get();
-        field.setAccessible(true);
-        field.set(instance, value);
       }
     }
   }

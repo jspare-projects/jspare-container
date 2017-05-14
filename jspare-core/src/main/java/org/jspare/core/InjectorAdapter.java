@@ -15,7 +15,6 @@
  */
 package org.jspare.core;
 
-import javax.inject.Provider;
 import java.lang.reflect.Field;
 
 /**
@@ -24,7 +23,9 @@ import java.lang.reflect.Field;
  * It is responsible for defining the way of instantiation of a component used
  * by the annotation injection.
  */
-public interface InjectorAdapter<T> extends Provider<T> {
+public interface InjectorAdapter {
 
   boolean isInjectable(Field field);
+
+  void inject(Object instance, Field field);
 }

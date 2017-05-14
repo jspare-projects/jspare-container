@@ -17,9 +17,7 @@ package org.jspare.core.internal;
 
 import lombok.extern.java.Log;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.jspare.core.ApplicationContext;
-import org.jspare.core.Factory;
-import org.jspare.core.ParameterizedTypeRetention;
+import org.jspare.core.*;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.exception.Errors;
 
@@ -49,7 +47,7 @@ public class InstanceFactory<T> implements Factory<T> {
     List<Constructor> constructors = allowedConstructors(bind.to());
     if (constructors.isEmpty()) {
 
-      throw new EnvironmentException(Errors.FAILED_INSTANTIATION);
+      throw new EnvironmentException(Errors.FAILED_INSTANTIATION.arguments(bind.to().getName()));
     }
 
     if (constructors.size() > 1) {
@@ -96,6 +94,7 @@ public class InstanceFactory<T> implements Factory<T> {
       count++;
     }
 
+    constructor.setAccessible(true);
     T instance = (T) constructor.newInstance(parameters);
 
     Class<T> type = constructor.getDeclaringClass();
@@ -108,7 +107,7 @@ public class InstanceFactory<T> implements Factory<T> {
   }
 
   private List<Constructor> allowedConstructors(Class<?> clazz) {
-    return Arrays.asList(clazz.getDeclaredConstructors()).stream().filter(c -> c.getModifiers() == Modifier.PUBLIC).collect(Collectors.toList());
+    return Arrays.asList(clazz.getDeclaredConstructors()).stream().filter(c -> c.getModifiers() != Modifier.PRIVATE).collect(Collectors.toList());
   }
 
 }

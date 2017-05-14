@@ -105,8 +105,7 @@ public class ApplicationContextImpl implements ApplicationContext {
     Key key = bind.bindKey();
     if (!HOLDER.containsKey(key)) {
 
-      Provider<T> provider = new InstanceFactory<>(this, bind);
-      T instance = provider.get();
+      T instance = instantiate(bind);
 
       if (bind.singleton()) {
 
@@ -116,6 +115,16 @@ public class ApplicationContextImpl implements ApplicationContext {
     }
     //noinspection unchecked
     return (T) HOLDER.get(key);
+  }
+
+  private <T> T instantiate(Bind<T> bind) {
+    // Load Modules
+    if (bind.from().isAnnotationPresent(Modules.class)) {
+      Class<? extends Module>[] modules = bind.from().getAnnotation(Modules.class).value();
+      Arrays.asList(modules).forEach(this::loadModule);
+    }
+    Provider<T> provider = new InstanceFactory<>(this, bind);
+    return provider.get();
   }
 
   @Override
@@ -128,16 +137,7 @@ public class ApplicationContextImpl implements ApplicationContext {
   public <T> T provide(Class<T> clazz, String qualifier) {
 
     Bind<T> bind = retrieveBind(clazz, qualifier);
-    Provider<T> provider = new InstanceFactory<>(this, bind);
-    return provider.get();
-  }
-
-  @Override
-  public <T> T provide(Class<? extends InjectorAdapter> injectorClass, Class<T> clazz) {
-
-    InjectorAdapter injector = INJECTORS.get(injectorClass);
-    Factory<T> injectorAware = new InstanceAwareFactory<>(injector, clazz);
-    return injectorAware.get();
+    return  instantiate(bind);
   }
 
   @Synchronized

@@ -30,8 +30,6 @@ public interface ApplicationContext {
 
   <T> T provide(Class<T> clazz, String named);
 
-  <T> T provide(Class<? extends InjectorAdapter> injectorClass, Class<T> clazz);
-
   ApplicationContext registry(Bind bind);
 
   ApplicationContext registry(Bind bind, Object instance);

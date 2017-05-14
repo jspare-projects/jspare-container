@@ -15,25 +15,23 @@
  */
 package org.jspare.core.internal;
 
+import lombok.RequiredArgsConstructor;
 import org.jspare.core.Factory;
 import org.jspare.core.InjectorAdapter;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by paulo.ferreira on 11/05/2017.
  */
-public class InstanceAwareFactory<T> implements Factory<T> {
+@RequiredArgsConstructor
+public class InstanceAware {
 
   private final InjectorAdapter injector;
-  private final Class<T> clazz;
+  private final Object instance;
+  private final Field field;
 
-  InstanceAwareFactory(InjectorAdapter injector, Class<T> clazz) {
-    this.injector = injector;
-    this.clazz = clazz;
-  }
-
-  @Override
-  public T get() {
-    // TODO
-    return (T) injector.get();
+  public void inject() {
+    injector.inject(instance, field);
   }
 }

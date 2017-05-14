@@ -20,19 +20,6 @@ import java.lang.reflect.Proxy;
 public class CustomInjectorAdapterTest {
 
   @Test
-  public void customInjectorAwareTest() {
-
-    ApplicationContext ctx = Environment.create();
-    ctx.loadModule(new CalcModule());
-
-    Calc calc = ctx.provide(CalcInjector.class, Calc.class);
-
-    int a = 1, b = 1;
-    int result = a + b;
-    Assert.assertEquals(result, calc.sum(a, b));
-  }
-
-  @Test
   public void customInjectorFieldTest() {
 
     ApplicationContext ctx = Environment.create();
@@ -83,8 +70,8 @@ public class CustomInjectorAdapterTest {
     }
 
     @Override
-    public Object get() {
-      return Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{Calc.class}, (proxy, method, args) -> {
+    public void inject(Object instance, Field field) {
+      Object fieldValue  = Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{Calc.class}, (proxy, method, args) -> {
         int result = 0;
         if (method.getName().equals("sum")) {
           Object[] params = new Object[method.getParameterCount()];
@@ -94,6 +81,12 @@ public class CustomInjectorAdapterTest {
         }
         return result;
       });
+      try {
+        field.setAccessible(true);
+        field.set(instance, fieldValue);
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      }
     }
   }
 }

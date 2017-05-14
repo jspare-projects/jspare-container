@@ -74,5 +74,13 @@ public class ReflectionUtils {
     return interfaces;
   }
 
+  public List<Method> getMethodsWithAnnotation(Class<?> clazz, Class<? extends Annotation> ann) {
+    return Arrays.asList(clazz.getDeclaredMethods()).stream().filter(m -> m.isAnnotationPresent(ann)).collect(Collectors.toList());
+  }
+
+  public <T> T getAnnotation(AnnotatedElement element, Class<T> ann) {
+    return (T) element.getAnnotation((Class<? extends Annotation>) ann);
+  }
+
 
 }

@@ -26,7 +26,7 @@ public abstract class Errors {
   public static final ErrorType NO_CMPT_REGISTERED = ErrorType.create(1000,
     "%s don't have default implementation class. Provide default implementation or registry one.");
 
-  public static final ErrorType FAILED_INSTANTIATION = ErrorType.create(1001, "Failed to instantiate class. No valid constructors founded.");
+  public static final ErrorType FAILED_INSTANTIATION = ErrorType.create(1001, "Failed to instantiate class. No valid constructors founded for class %s.");
 
   public static final ErrorType NO_QUALIFIER_REGISTERED = ErrorType.create(1004,
     "No implementation registered for class %s with Qualifier [%s]");

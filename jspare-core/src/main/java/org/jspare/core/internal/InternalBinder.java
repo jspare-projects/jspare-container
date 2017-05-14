@@ -18,6 +18,8 @@ package org.jspare.core.internal;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.jspare.core.ImplementationResolver;
+import org.jspare.core.exception.EnvironmentException;
+import org.jspare.core.exception.Errors;
 
 import javax.inject.Named;
 import javax.inject.Qualifier;
@@ -55,6 +57,13 @@ public class InternalBinder {
       InternalImplementationFinder finder = new InternalImplementationFinder(IMPLEMENTATION_PROVIDERS);
       bind.to(finder.find(bind.from(), bind.name()));
     }
+
+    if(Objects.isNull(bind.to())){
+
+      throw new EnvironmentException(Errors.NO_CMPT_REGISTERED.arguments(bind.from().getName()));
+    }
+
+
     if (StringUtils.isEmpty(bind.name())) {
 
       qualify(bind);
@@ -63,7 +72,7 @@ public class InternalBinder {
   }
 
   private boolean isSingleton(Bind<?> bind) {
-    return bind.singleton() || isSingleton(bind.from()) || isSingleton(bind.to());
+    return bind.singleton() || isSingleton(bind.to()) || isSingleton(bind.from());
   }
 
   private boolean isSingleton(Class<?> clazz) {
@@ -72,6 +81,11 @@ public class InternalBinder {
   }
 
   private void qualify(final Bind<?> bind) {
+
+    if(Objects.isNull(bind.to())){
+      return;
+    }
+
     if (bind.to().isAnnotationPresent(Named.class)) {
       bind.name(bind.to().getAnnotation(Named.class).value());
       return;

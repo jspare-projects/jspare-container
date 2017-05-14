@@ -116,7 +116,7 @@ public final class Environment {
     getContext().registry(bind, instance);
   }
 
-  public static void loadModule(Class<? extends AbstractModule> clazz) {
+  public static void loadModule(Class<? extends Module> clazz) {
     getContext().loadModule(clazz);
   }
 

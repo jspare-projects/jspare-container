@@ -74,7 +74,7 @@ public interface Runner {
    * application class.
    */
   default void mySupport() {
-
+    Environment.inject(this);
   }
 
   /**

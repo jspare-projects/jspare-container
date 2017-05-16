@@ -24,5 +24,5 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Modules {
-  Class<? extends AbstractModule>[] value();
+  Class<? extends Module>[] value();
 }

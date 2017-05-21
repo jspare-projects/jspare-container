@@ -9,11 +9,9 @@
 
 The JSpare Container provide an core environment container for your java applications. Prepare applications uncoupled and componentized. Using JSpare Container your application will contain several features that can help to define your application, such as:
 
-* Easy Bootstrap for your Java application
-* Simple environment configuration
-* Forget all annoying application mapping, like the legacy of xml
-* Modern and intuitive Java Container
-* Inversion control with direct injection in your class
+* Easy Bootstrap for your Java application;
+* Forget all annoying application mapping, like the legacy of xml;
+* Lightweight IoC with JSR-330;
 * Easy way to create components and resources, uncoupling your architecture
 * Qualification and a practical way to change implementation of a component
 * Commons Configuration based on "Apache Commons Configuration"
@@ -45,6 +43,10 @@ dependencies {
     compile "org.jspare:jspare-core:3.0.0"
 }
 ```
+
+## Documentation
+
+You can [find the jspare-container documentation here](https://github.com/jspare-projects/jspare-container/wiki) which has extended usage instructions and other useful information. Substantial usage information can be found in the API documentation.
 
 
 ## Getting help and Reporting Issues

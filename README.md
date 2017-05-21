@@ -29,7 +29,7 @@ For maven:
 <parent>
 	<groupId>org.jspare</groupId>
 	<artifactId>jspare-core</artifactId>
-	<version>3.0.0</version>
+	<version>${jspare.version}</version>
 </parent>
 ```
 
@@ -40,7 +40,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "org.jspare:jspare-core:3.0.0"
+    compile "org.jspare:jspare-core:${jspare.version}"
 }
 ```
 

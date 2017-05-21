@@ -13,16 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.application;
 
-import org.junit.Before;
+import org.jspare.core.Component;
 
-public abstract class AbstractApplicationTest {
+/**
+ * The Interface CmptAutoLoader.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+@Component
+public interface CmptAutoLoader {
 
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
+  /**
+   * Test.
+   *
+   * @return the string
+   */
+  String test();
 }

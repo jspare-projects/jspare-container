@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 JSpare.org.
+ * Copyright 2017 JSpare.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,16 +13,25 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.internal;
 
-import org.junit.Before;
+import lombok.RequiredArgsConstructor;
+import org.jspare.core.Factory;
+import org.jspare.core.InjectorAdapter;
 
-public abstract class AbstractApplicationTest {
+import java.lang.reflect.Field;
 
-  @Before
-  public void setup() {
+/**
+ * Created by paulo.ferreira on 11/05/2017.
+ */
+@RequiredArgsConstructor
+public class InstanceAware {
 
-    Environment.destroy();
-    Environment.create();
+  private final InjectorAdapter injector;
+  private final Object instance;
+  private final Field field;
+
+  public void inject() {
+    injector.inject(instance, field);
   }
 }

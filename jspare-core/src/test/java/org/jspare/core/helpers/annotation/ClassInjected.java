@@ -13,16 +13,22 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.annotation;
 
-import org.junit.Before;
+import lombok.Getter;
+import org.jspare.core.MySupport;
 
-public abstract class AbstractApplicationTest {
+import javax.inject.Inject;
 
-  @Before
-  public void setup() {
+/**
+ * The Class ClassInjected.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class ClassInjected extends MySupport {
 
-    Environment.destroy();
-    Environment.create();
-  }
+  @Getter
+  @Inject
+  private CmptWithAnnotation cmpt;
 }

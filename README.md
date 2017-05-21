@@ -31,7 +31,7 @@ For maven:
 <parent>
 	<groupId>org.jspare</groupId>
 	<artifactId>jspare-core</artifactId>
-	<version>2.1.0</version>
+	<version>3.0.0</version>
 </parent>
 ```
 
@@ -42,7 +42,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "org.jspare:jspare-core:2.1.0"
+    compile "org.jspare:jspare-core:3.0.0"
 }
 ```
 
@@ -51,7 +51,7 @@ dependencies {
 
 Having trouble with JSpare Container? We’d like to help!
 
-* Check the reference documentation at http://jspare.org/jspare-container — they provide solutions to the most common questions.
+* Check the reference documentation at Wiki — they provide solutions to the most common questions.
 * Report bugs and issues at https://github.com/jspare-projects/jspare-container/issues
 
 ## Other Projects

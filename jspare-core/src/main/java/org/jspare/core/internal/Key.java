@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 JSpare.org.
+ * Copyright 2017 JSpare.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,16 +13,17 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.internal;
 
-import org.junit.Before;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-public abstract class AbstractApplicationTest {
-
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
+/**
+ * Created by paulo.ferreira on 06/05/2017.
+ */
+@Data
+@AllArgsConstructor
+public class Key {
+  private final Class<?> type;
+  private final String name;
 }

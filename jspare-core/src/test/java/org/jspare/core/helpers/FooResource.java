@@ -13,16 +13,19 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers;
 
-import org.junit.Before;
+import lombok.Getter;
+import lombok.Setter;
 
-public abstract class AbstractApplicationTest {
+import javax.inject.Singleton;
 
-  @Before
-  public void setup() {
+@Singleton
+public class FooResource {
 
-    Environment.destroy();
-    Environment.create();
-  }
+  public static final String DEFAULT = "Default";
+
+  @Getter
+  @Setter
+  private String defaultName = DEFAULT;
 }

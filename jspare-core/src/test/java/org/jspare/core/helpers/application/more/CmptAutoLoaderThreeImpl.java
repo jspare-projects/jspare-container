@@ -13,16 +13,25 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.application.more;
 
-import org.junit.Before;
+import org.jspare.core.helpers.application.CmptAutoLoader;
 
-public abstract class AbstractApplicationTest {
+/**
+ * The Class CmptAutoLoaderThreeImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class CmptAutoLoaderThreeImpl implements CmptAutoLoader {
 
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
+  /*
+   * (non-Javadoc)
+   *
+   * @see org.jspare.core.context.additional.CmptAutoLoader#test()
+   */
+  @Override
+  public String test() {
+    return getClass().getSimpleName();
   }
 }

@@ -13,16 +13,28 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.qualifier;
 
-import org.junit.Before;
+import org.jspare.core.helpers.usage.Cmpt;
 
-public abstract class AbstractApplicationTest {
+import javax.inject.Named;
 
-  @Before
-  public void setup() {
+/**
+ * The Class CmptQualifierOneImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+@Named("CmptQualifierOneImpl")
+public class CmptQualifierOneImpl implements Cmpt {
 
-    Environment.destroy();
-    Environment.create();
+  /*
+   * (non-Javadoc)
+   *
+   * @see org.jspare.core.container.additional.usage.Cmpt#print()
+   */
+  @Override
+  public String print() {
+    return getClass().getSimpleName();
   }
 }

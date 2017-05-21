@@ -15,14 +15,20 @@
  */
 package org.jspare.core;
 
-import org.junit.Before;
+import org.jspare.core.helpers.FooResource;
+import org.junit.Assert;
+import org.junit.Test;
 
-public abstract class AbstractApplicationTest {
+import javax.inject.Inject;
 
-  @Before
-  public void setup() {
+public class MySupportTest extends MySupport {
 
-    Environment.destroy();
-    Environment.create();
+  @Inject
+  private FooResource foo;
+
+  @Test
+  public void mySupportInjectionTest() {
+
+    Assert.assertNotNull(foo);
   }
 }

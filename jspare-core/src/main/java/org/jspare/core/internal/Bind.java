@@ -13,39 +13,28 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.exception;
+package org.jspare.core.internal;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang.StringUtils;
 
-@AllArgsConstructor
-@RequiredArgsConstructor
+/**
+ * Created by paulo.ferreira on 06/05/2017.
+ */
+@Data
 @Accessors(fluent = true)
-public class ErrorType {
+public class Bind<T> {
+  private Class<T> from;
+  private String name = StringUtils.EMPTY;
+  private Class<?> to;
+  private boolean singleton;
 
-  @Getter
-  private final int code;
-  private final String message;
-  @Getter
-  @Setter
-  private Throwable throwable;
-  private Object[] arguments;
-
-  public static ErrorType create(int code, String message) {
-
-    return new ErrorType(code, message);
+  public static <T> Bind<T> bind(Class<T> clazz) {
+    return new Bind<T>().from(clazz);
   }
 
-  public ErrorType arguments(Object... arguments) {
-    this.arguments = arguments;
-    return this;
-  }
-
-  public String message() {
-
-    return String.format(message, arguments);
+  public Key bindKey() {
+    return new Key(from, name);
   }
 }

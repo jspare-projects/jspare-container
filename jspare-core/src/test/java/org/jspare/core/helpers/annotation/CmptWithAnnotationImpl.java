@@ -13,16 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers.annotation;
 
-import org.junit.Before;
+/**
+ * The Class CmptWithAnnotationImpl.
+ *
+ * @author pflima
+ * @since 30/03/2016
+ */
+public class CmptWithAnnotationImpl implements CmptWithAnnotation {
 
-public abstract class AbstractApplicationTest {
-
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
 }

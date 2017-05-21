@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 JSpare.org.
+ * Copyright 2017 JSpare.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,14 +15,17 @@
  */
 package org.jspare.core;
 
-import org.junit.Before;
+import java.lang.reflect.Field;
 
-public abstract class AbstractApplicationTest {
+/**
+ * The Interface InjectorAdapter.
+ * <p>
+ * It is responsible for defining the way of instantiation of a component used
+ * by the annotation injection.
+ */
+public interface InjectorAdapter {
 
-  @Before
-  public void setup() {
+  boolean isInjectable(Field field);
 
-    Environment.destroy();
-    Environment.create();
-  }
+  void inject(Object instance, Field field);
 }

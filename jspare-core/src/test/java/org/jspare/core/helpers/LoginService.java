@@ -13,16 +13,16 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers;
 
-import org.junit.Before;
+import org.jspare.core.Component;
 
-public abstract class AbstractApplicationTest {
+import java.util.Optional;
 
-  @Before
-  public void setup() {
+@Component
+public interface LoginService {
 
-    Environment.destroy();
-    Environment.create();
-  }
+  Optional<String> login(String username, String password);
+
+  boolean validate(String token);
 }

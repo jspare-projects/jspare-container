@@ -13,16 +13,12 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core;
+package org.jspare.core.helpers;
 
-import org.junit.Before;
+import lombok.Getter;
 
-public abstract class AbstractApplicationTest {
+public class FooDummyResource {
 
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
+  @Getter
+  private Bar bar;
 }

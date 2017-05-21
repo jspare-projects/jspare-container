@@ -4,9 +4,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## TODO List
 
-## [1.1.0] - 2016-11-17
+- Improve Javadoc API
+- Native support to OSGi
+- Migrate to Gradle
+
+## [3.0.0]
+
+### Added
+- Allow injection of any interface registered
+- Follow JSR-330
+- Follow JSR-250
+- Improved unit tests
+- @ImplementedBy to indicate interface implementation
+
+### Updated
+- Environment My now use Injection Strategy
+- Improving Injector
+- @Component allow package impl pattern
+- @Component and @Resource indicate impl classes
+
+### Removed
+- Removed deprecated method Environment.registryInjector(Class<? extends Annotation> annClazz, InjectorStrategy injector)
+- Removed deprecated method ContainerUtils.processInjection(Class<?> clazz, Object result)
+
+## [2.1.0] - 25-02-2017
+
+### Added
+
+- Release artifcats to m2 release.
+- Added native Application Context Resource
+- Added Injector Strategy to customize inversion of control
+- Added Resource injection with @Resource for non components
+
+### Update
+
+- Improved Environment Exception and standardized error codes
+- Improved CommonsConfiguration with Apache Configurations
+- Improved unit tests to more than 85% of coverage.
+- Improved performance of Environment Container
+- Restructured Environment Container
+
+## [2.0.0] - 12-12-2016
+
+## [1.1.0] - 17-11-2016
+
 ### Added
 - Change Log file.
 

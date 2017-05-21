@@ -15,14 +15,6 @@
  */
 package org.jspare.core;
 
-import org.junit.Before;
+public class ComponentScannerTest {
 
-public abstract class AbstractApplicationTest {
-
-  @Before
-  public void setup() {
-
-    Environment.destroy();
-    Environment.create();
-  }
 }

@@ -27,9 +27,9 @@ For maven:
 
 ```xml
 <parent>
-	<groupId>org.jspare</groupId>
-	<artifactId>jspare-core</artifactId>
-	<version>${jspare.version}</version>
+  <groupId>org.jspare</groupId>
+  <artifactId>jspare-core</artifactId>
+  <version>${jspare.version}</version>
 </parent>
 ```
 

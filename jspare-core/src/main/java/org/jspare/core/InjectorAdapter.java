@@ -23,7 +23,7 @@ import java.lang.reflect.Field;
  * It is responsible for defining the way of instantiation of a component used
  * by the annotation injection.
  */
-public interface InjectorAdapter {
+public interface  InjectorAdapter {
 
   boolean isInjectable(Field field);
 

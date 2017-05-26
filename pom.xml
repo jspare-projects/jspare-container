@@ -162,6 +162,7 @@
 
   <modules>
     <module>jspare-core</module>
+    <module>jspare-jpa</module>
   </modules>
 
   <dependencies>

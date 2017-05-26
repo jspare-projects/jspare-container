@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 JSpare.org.
+ * Copyright 2016 JSpare.org.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,25 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.jspare.core.internal;
+package org.jspare.jpa.annotation;
 
-import lombok.RequiredArgsConstructor;
-import org.jspare.core.Factory;
-import org.jspare.core.InjectorAdapter;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import java.lang.reflect.Field;
+import org.jspare.jpa.PersistenceUnitProvider;
 
-/**
- * Created by paulo.ferreira on 11/05/2017.
- */
-@RequiredArgsConstructor
-public class InstanceAware {
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.FIELD })
+public @interface RepositoryInject {
 
-  private final InjectorAdapter injector;
-  private final Object instance;
-  private final Field field;
-
-  public void inject() {
-    injector.inject(instance, field);
-  }
+  String datasource() default PersistenceUnitProvider.DEFAULT_DS;
 }

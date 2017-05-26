@@ -33,16 +33,17 @@ public final class MembersInjectorImpl implements MembersInjector {
 
   @Override
   public void inject(Object instance) {
-
     Class<?> clazz = instance.getClass();
+    inject(clazz, instance);
+  }
 
-    // Load Modules
-    if (clazz.isAnnotationPresent(Modules.class)) {
-      Class<? extends Module>[] modules = clazz.getAnnotation(Modules.class).value();
-      Arrays.asList(modules).forEach(Environment::loadModule);
+  private void inject(Class<?> type, Object instance) {
+
+    // Recursive call to resolve superclass
+    if(type.getSuperclass() != null){
+
+      inject(type.getSuperclass(), instance);
     }
-
-    Class<?> type = instance.getClass();
 
     for (Field field : type.getDeclaredFields()) {
 
@@ -103,17 +104,5 @@ public final class MembersInjectorImpl implements MembersInjector {
         e.printStackTrace();
       }
     }
-
-    // JSR-250  PostConstruct
-    for (Method method : ReflectionUtils.getPostConstructMethods(type)) {
-      try {
-        method.setAccessible(true);
-        method.invoke(instance);
-      } catch (IllegalAccessException | InvocationTargetException e) {
-        // PrintStack error
-        e.printStackTrace();
-      }
-    }
   }
-
 }

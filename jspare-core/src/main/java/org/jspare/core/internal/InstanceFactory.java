@@ -60,8 +60,14 @@ public class InstanceFactory<T> implements Factory<T> {
     Constructor candidate = constructors.get(0);
     try {
 
+      // Load Modules
+      Class<?> type = bind.to();
+      if (type.isAnnotationPresent(Modules.class)) {
+        Class<? extends Module>[] modules = type.getAnnotation(Modules.class).value();
+        Arrays.asList(modules).forEach(Environment::loadModule);
+      }
+
       T instance = instantiate(candidate);
-      context.inject(instance);
       return instance;
     } catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
 
@@ -103,6 +109,20 @@ public class InstanceFactory<T> implements Factory<T> {
       Type[] types = ((ParameterizedType) type.getGenericSuperclass()).getActualTypeArguments();
       ((ParameterizedTypeRetention) instance).setTypes(types);
     }
+
+    context.inject(instance);
+
+    // JSR-250  PostConstruct
+    for (Method method : ReflectionUtils.getPostConstructMethods(type)) {
+      try {
+        method.setAccessible(true);
+        method.invoke(instance);
+      } catch (IllegalAccessException | InvocationTargetException e) {
+        // PrintStack error
+        e.printStackTrace();
+      }
+    }
+
     return instance;
   }
 

@@ -18,3 +18,5 @@ jspare-core/.gitignore
 jspare-core-android-support/.classpath
 *.factorypath
 *.iml
+jspare-jpa/target/
+target/

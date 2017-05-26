@@ -15,6 +15,7 @@
  */
 package org.jspare.core;
 
+import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -46,9 +47,27 @@ public final class Environment {
 
   /**
    * Create new instance of a ApplicationContext.
+   * <ul>
+   *     <li>Create ApplicationContext with default configurations</li>
+   *     <li>Load default Injectors from classpath</li>
+   * </ul>
    */
   public static ApplicationContext create() {
-    return create(ApplicationContext.create());
+    ApplicationContext ctx = create(ApplicationContext.create());
+
+    String ignoreInjectors = System.getProperty(Keys.IGNORE_AUTO_INJECTORS, Boolean.FALSE.toString());
+    if (!Boolean.TRUE.toString().equals(ignoreInjectors)){
+      new FastClasspathScanner(StringUtils.EMPTY).matchClassesImplementing(InjectorAdapter.class, c -> {
+
+        try {
+          InjectorAdapter injector = c.newInstance();
+          ctx.addInjector(injector);
+        } catch (Exception e) {
+          // ignore invalid injector
+        }
+      }).scan();
+    }
+    return ctx;
   }
 
   /**

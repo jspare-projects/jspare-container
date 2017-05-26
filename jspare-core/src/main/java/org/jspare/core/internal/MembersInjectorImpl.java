@@ -45,12 +45,6 @@ public final class MembersInjectorImpl implements MembersInjector {
       inject(type.getSuperclass(), instance);
     }
 
-    // Load Modules
-    if (type.isAnnotationPresent(Modules.class)) {
-      Class<? extends Module>[] modules = type.getAnnotation(Modules.class).value();
-      Arrays.asList(modules).forEach(Environment::loadModule);
-    }
-
     for (Field field : type.getDeclaredFields()) {
 
       //are annotated with @Inject.
@@ -106,17 +100,6 @@ public final class MembersInjectorImpl implements MembersInjector {
         method.invoke(instance, parameters);
       } catch (IllegalAccessException | InvocationTargetException e) {
 
-        // PrintStack error
-        e.printStackTrace();
-      }
-    }
-
-    // JSR-250  PostConstruct
-    for (Method method : ReflectionUtils.getPostConstructMethods(type)) {
-      try {
-        method.setAccessible(true);
-        method.invoke(instance);
-      } catch (IllegalAccessException | InvocationTargetException e) {
         // PrintStack error
         e.printStackTrace();
       }

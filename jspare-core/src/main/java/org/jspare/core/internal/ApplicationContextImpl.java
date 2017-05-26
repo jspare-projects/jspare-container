@@ -118,11 +118,6 @@ public class ApplicationContextImpl implements ApplicationContext {
   }
 
   private <T> T instantiate(Bind<T> bind) {
-    // Load Modules
-    if (bind.from().isAnnotationPresent(Modules.class)) {
-      Class<? extends Module>[] modules = bind.from().getAnnotation(Modules.class).value();
-      Arrays.asList(modules).forEach(this::loadModule);
-    }
     Provider<T> provider = new InstanceFactory<>(this, bind);
     return provider.get();
   }
@@ -137,7 +132,7 @@ public class ApplicationContextImpl implements ApplicationContext {
   public <T> T provide(Class<T> clazz, String qualifier) {
 
     Bind<T> bind = retrieveBind(clazz, qualifier);
-    return  instantiate(bind);
+    return instantiate(bind);
   }
 
   @Synchronized

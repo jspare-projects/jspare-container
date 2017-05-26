@@ -18,6 +18,9 @@ package org.jspare.core;
 import java.lang.annotation.*;
 
 /**
+ * Annotates methods of a {@link AbstractModule} to create a provider method binding. The method's return
+ * type is bound to its returned value.
+ *
  * Created by paulo.ferreira on 10/05/2017.
  */
 @Documented

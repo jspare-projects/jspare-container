@@ -15,6 +15,7 @@
  */
 package org.jspare.core;
 
+import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -26,15 +27,13 @@ import org.jspare.core.internal.Bind;
 import java.util.Objects;
 
 /**
- * The Class Environment.
+ * A way to control the context of your application.
  * <p>
- * Responsible for the whole framework of the container control. The environment
- * is responsible for the retention and display of framework components. Through
- * this class has access to static methods that ensure secure access to
- * instances of components registered in the environment.
+ * A environment for the whole framework of the container control.
+ * Direct access to the application context by a single point.
+ * </p>
  *
- * @author pflima
- * @since 05/10/2015
+ * @author paulo.ferreira
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Environment {
@@ -47,17 +46,34 @@ public final class Environment {
   }
 
   /**
-   * Setup environment.
+   * Create new instance of a ApplicationContext.
+   * <ul>
+   *     <li>Create ApplicationContext with default configurations</li>
+   *     <li>Load default Injectors from classpath</li>
+   * </ul>
    */
   public static ApplicationContext create() {
-    return create(ApplicationContext.create());
+    ApplicationContext ctx = create(ApplicationContext.create());
+
+    String ignoreInjectors = System.getProperty(Keys.IGNORE_AUTO_INJECTORS, Boolean.FALSE.toString());
+    if (!Boolean.TRUE.toString().equals(ignoreInjectors)){
+      new FastClasspathScanner(StringUtils.EMPTY).matchClassesImplementing(InjectorAdapter.class, c -> {
+
+        try {
+          InjectorAdapter injector = c.newInstance();
+          ctx.addInjector(injector);
+        } catch (Exception e) {
+          // ignore invalid injector
+        }
+      }).scan();
+    }
+    return ctx;
   }
 
   /**
-   * My.
+   * Returns an instance of {@code type}.
    * <p>
-   * This method is responsible for retrieving the implementation of a
-   * component of the environment, the instance of the class will be recovered
+   * A instance will be recovered
    * which is registered in the environment, noting that the scope and other
    * states should be set to register a new component in the environment when
    * performing this method will be recovered an implementation that is
@@ -65,28 +81,24 @@ public final class Environment {
    * registered, the method should register a common implementation, this one
    * is is available and provide a memory reference.
    *
-   * @param <T>   the generic type
-   * @param clazz the clazz
-   * @return the t
+   * @param clazz
+   * @param <T>
+   * @return Returns an instance of {@code type}.
    */
   public static <T> T my(Class<T> clazz) {
     return my(clazz, StringUtils.EMPTY);
   }
 
   /**
-   * My.
+   * Returns an instance of {@code type}.
    * <p>
-   * This method is responsible for retrieving the implementation of a
-   * component of the environment, the instance of the class will be recovered
+   * A instance will be recovered
    * which is registered in the environment, noting that the scope and other
    * states should be set to register a new component in the environment when
    * performing this method will be recovered an implementation that is
    * already registered in the environment, if the component has not yet been
    * registered, the method should register a common implementation, this one
    * is is available and provide a memory reference.
-   * <p>
-   * Receive the qualifier for qualify the injection, note: the implementation
-   * class need be annotated with {@link javax.inject.Named}
    *
    * @param <T>       the generic type
    * @param clazz     the clazz

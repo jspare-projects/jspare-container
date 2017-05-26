@@ -24,6 +24,7 @@ import javax.inject.Qualifier;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,16 +54,12 @@ public class ReflectionUtils {
   }
 
   public List<Method> getPostConstructMethods(Class<?> type) {
-
-    return Arrays.asList(type.getDeclaredMethods()).stream().filter(m -> m.isAnnotationPresent(PostConstruct.class) && m.getParameterCount() == 0).collect(Collectors.toList());
+    // With PostConstruct annotation
+    // Non Statis
+    // Without parameters
+    return Arrays.asList(type.getDeclaredMethods()).stream().filter(m -> m.getModifiers() != Modifier.STATIC && m.isAnnotationPresent(PostConstruct.class) && m.getParameterCount() == 0).collect(Collectors.toList());
   }
 
-  /**
-   * Collec interfaces.
-   *
-   * @param clazz the clazz
-   * @return the list
-   */
   public List<Class<?>> collecInterfaces(Class<?> clazz) {
     List<Class<?>> interfaces = new ArrayList<>();
     interfaces.addAll(Arrays.asList(clazz.getInterfaces()));
@@ -81,6 +78,4 @@ public class ReflectionUtils {
   public <T> T getAnnotation(AnnotatedElement element, Class<T> ann) {
     return (T) element.getAnnotation((Class<? extends Annotation>) ann);
   }
-
-
 }

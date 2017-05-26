@@ -18,6 +18,11 @@ package org.jspare.core;
 import javax.inject.Singleton;
 import java.lang.annotation.*;
 
+/**
+ * A pointer to the default provider type for a type.
+ *
+ * @author paulo.ferreira
+ */
 @Documented
 @Singleton
 @Target({ElementType.TYPE})

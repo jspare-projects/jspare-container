@@ -54,7 +54,7 @@ public class ReflectionUtils {
   }
 
   public List<Method> getPostConstructMethods(Class<?> type) {
-    // With PostConstruct annotation
+    // With PostConstruct module
     // Non Statis
     // Without parameters
     return Arrays.asList(type.getDeclaredMethods()).stream().filter(m -> m.getModifiers() != Modifier.STATIC && m.isAnnotationPresent(PostConstruct.class) && m.getParameterCount() == 0).collect(Collectors.toList());

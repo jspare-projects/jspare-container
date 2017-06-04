@@ -25,7 +25,7 @@ public class ImplementedByResolver implements ImplementationResolver {
 
   @Override
   public Class<?> supply(Class<?> classInterface) {
-    // Ignore non interfaces without component annotation
+    // Ignore non interfaces without component module
     if (!classInterface.isInterface() || !classInterface.isAnnotationPresent(ImplementedBy.class)) {
       return null;
     }

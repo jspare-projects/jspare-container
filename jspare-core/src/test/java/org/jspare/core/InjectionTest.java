@@ -60,7 +60,7 @@ public class InjectionTest extends AbstractApplicationTest {
   }
 
   /**
-   * Test getInstance annotation.
+   * Test getInstance module.
    */
   @Test
   public void testMyAnnotation() {

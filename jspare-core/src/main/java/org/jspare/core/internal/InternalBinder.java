@@ -92,7 +92,7 @@ public class InternalBinder {
     }
     Arrays.asList(bind.to().getAnnotations()).stream().forEach(a -> {
 
-      // With qualifier qualify with annotation name
+      // With qualifier qualify with module name
       if (a.annotationType().isAnnotationPresent(Qualifier.class)) {
         bind.name(a.annotationType().getSimpleName());
       }

@@ -30,7 +30,7 @@ public class ComponentResolver implements ImplementationResolver {
 
   @Override
   public Class<?> supply(Class<?> classInterface) {
-    // Ignore non interfaces without component annotation
+    // Ignore non interfaces without component module
     if (!classInterface.isInterface() || !classInterface.isAnnotationPresent(Component.class)) {
       return null;
     }

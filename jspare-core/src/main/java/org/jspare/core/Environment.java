@@ -119,7 +119,6 @@ public final class Environment {
     return getContext().provide(clazz, qualifier);
   }
 
-
   public static void registry(@NonNull Bind bind) {
     getContext().registry(bind);
   }

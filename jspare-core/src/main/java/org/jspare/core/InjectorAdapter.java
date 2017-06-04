@@ -21,7 +21,7 @@ import java.lang.reflect.Field;
  * The Interface InjectorAdapter.
  * <p>
  * It is responsible for defining the way of instantiation of a component used
- * by the annotation injection.
+ * by the module injection.
  */
 public interface  InjectorAdapter {
 

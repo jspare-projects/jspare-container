@@ -48,15 +48,15 @@ public final class Environment {
   /**
    * Create new instance of a ApplicationContext.
    * <ul>
-   *     <li>Create ApplicationContext with default configurations</li>
-   *     <li>Load default Injectors from classpath</li>
+   * <li>Create ApplicationContext with default configurations</li>
+   * <li>Load default Injectors from classpath</li>
    * </ul>
    */
   public static ApplicationContext create() {
     ApplicationContext ctx = create(ApplicationContext.create());
 
     String ignoreInjectors = System.getProperty(Keys.IGNORE_AUTO_INJECTORS, Boolean.FALSE.toString());
-    if (!Boolean.TRUE.toString().equals(ignoreInjectors)){
+    if (!Boolean.TRUE.toString().equals(ignoreInjectors)) {
       new FastClasspathScanner(StringUtils.EMPTY).matchClassesImplementing(InjectorAdapter.class, c -> {
 
         try {
@@ -143,6 +143,10 @@ public final class Environment {
     synchronized (context) {
       return context;
     }
+  }
+
+  public static boolean isLoaded() {
+    return !Objects.isNull(context);
   }
 
   public static void release() {

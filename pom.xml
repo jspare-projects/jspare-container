@@ -163,7 +163,20 @@
   <modules>
     <module>jspare-core</module>
     <module>jspare-jpa</module>
+    <module>jspare-unit</module>
   </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Tests Core -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
+    </dependencies>
+
+  </dependencyManagement>
 
   <dependencies>
 
@@ -193,7 +206,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
 

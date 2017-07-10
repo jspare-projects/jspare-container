@@ -51,6 +51,8 @@ public final class Environment {
    * <li>Create ApplicationContext with default configurations</li>
    * <li>Load default Injectors from classpath</li>
    * </ul>
+   *
+   * @return Returns an instance of {@link ApplicationContext}.
    */
   public static ApplicationContext create() {
     ApplicationContext ctx = create(ApplicationContext.create());
@@ -82,7 +84,6 @@ public final class Environment {
    * is is available and provide a memory reference.
    *
    * @param clazz
-   * @param <T>
    * @return Returns an instance of {@code type}.
    */
   public static <T> T my(Class<T> clazz) {
@@ -125,10 +126,6 @@ public final class Environment {
 
   public static void registry(@NonNull Bind bind, @NonNull Object instance) {
     getContext().registry(bind, instance);
-  }
-
-  public static void loadModule(Class<? extends Module> clazz) {
-    getContext().loadModule(clazz);
   }
 
   public static void inject(Object instance) {

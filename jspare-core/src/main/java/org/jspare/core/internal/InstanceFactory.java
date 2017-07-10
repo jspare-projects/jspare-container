@@ -17,7 +17,9 @@ package org.jspare.core.internal;
 
 import lombok.extern.java.Log;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.jspare.core.*;
+import org.jspare.core.ApplicationContext;
+import org.jspare.core.Factory;
+import org.jspare.core.ParameterizedTypeRetention;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.exception.Errors;
 
@@ -59,13 +61,6 @@ public class InstanceFactory<T> implements Factory<T> {
 
     Constructor candidate = constructors.get(0);
     try {
-
-      // Load Modules
-      Class<?> type = bind.to();
-      if (type.isAnnotationPresent(Modules.class)) {
-        Class<? extends Module>[] modules = type.getAnnotation(Modules.class).value();
-        Arrays.asList(modules).forEach(Environment::loadModule);
-      }
 
       T instance = instantiate(candidate);
       return instance;
@@ -112,6 +107,20 @@ public class InstanceFactory<T> implements Factory<T> {
 
     context.inject(instance);
 
+
+    postConstruct(instance.getClass(), instance);
+
+    return instance;
+  }
+
+  private void postConstruct(Class<?> type, Object instance) {
+
+    // Recursive call to resolve superclass
+    if (type.getSuperclass() != null) {
+
+      postConstruct(type.getSuperclass(), instance);
+    }
+
     // JSR-250  PostConstruct
     for (Method method : ReflectionUtils.getPostConstructMethods(type)) {
       try {
@@ -122,8 +131,6 @@ public class InstanceFactory<T> implements Factory<T> {
         e.printStackTrace();
       }
     }
-
-    return instance;
   }
 
   private List<Constructor> allowedConstructors(Class<?> clazz) {

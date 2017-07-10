@@ -46,7 +46,6 @@ public class ApplicationContextImpl implements ApplicationContext {
   private final Map<Key, Bind> BINDERS = new ConcurrentHashMap<>(RIC, RLF);
   private final Map<Key, Object> HOLDER = new ConcurrentHashMap<>(RIC, RLF);
   private final List<ImplementationResolver> IMPLEMENTATION_PROVIDERS = new ArrayList<>();
-  private final List<Class<?>> LOADED_MODULES = new ArrayList<>();
 
   private final InternalBinder BINDER;
 
@@ -171,36 +170,6 @@ public class ApplicationContextImpl implements ApplicationContext {
   }
 
   @Override
-  public ApplicationContext loadModule(Class<? extends Module> clazz) {
-
-    // If Modules is loaded
-    if (LOADED_MODULES.contains(clazz)) {
-      return this;
-    }
-
-    try {
-
-      Module module = clazz.newInstance();
-      module.load();
-      LOADED_MODULES.add(clazz);
-      return this;
-    } catch (InstantiationException | IllegalAccessException e) {
-      throw new EnvironmentException(Errors.FAILED_INSTANTIATION);
-    }
-  }
-
-  @Override
-  public ApplicationContext loadModule(Module module) {
-    // If Modules is loaded
-    if (LOADED_MODULES.contains(module.getClass())) {
-      return this;
-    }
-    module.load();
-    LOADED_MODULES.add(module.getClass());
-    return this;
-  }
-
-  @Override
   public void inject(Object instance) {
 
     MembersInjector membersInject = new MembersInjectorImpl(INJECTORS);
@@ -216,7 +185,6 @@ public class ApplicationContextImpl implements ApplicationContext {
 
     BINDERS.clear();
     HOLDER.clear();
-    LOADED_MODULES.clear();
     return this;
   }
 

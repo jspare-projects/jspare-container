@@ -10,8 +10,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
@@ -23,7 +21,7 @@ public class CustomInjectorAdapterTest {
   public void customInjectorFieldTest() {
 
     ApplicationContext ctx = Environment.create();
-    ctx.loadModule(new CalcModule());
+    ctx.addInjector(new CalcInjector());
 
     CalcExecutor executor = ctx.getInstance(CalcExecutor.class);
     Assert.assertNotNull(executor.getCalc());
@@ -48,18 +46,6 @@ public class CustomInjectorAdapterTest {
     @CalcImpl
     @Getter
     private Calc calc;
-  }
-
-  public class CalcModule extends AbstractModule {
-
-    public CalcModule() {
-      super();
-    }
-
-    @Override
-    public void load() {
-      context.addInjector(new CalcInjector());
-    }
   }
 
   public class CalcInjector implements InjectorAdapter {

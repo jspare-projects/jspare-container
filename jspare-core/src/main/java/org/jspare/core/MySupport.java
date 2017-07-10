@@ -17,7 +17,6 @@ package org.jspare.core;
 
 /**
  * MySupport Class
- * <p>
  * <h2>Important:</h2>
  * <ul>
  * <li>For {@link Application} the ContainerUtils .processInjection never is

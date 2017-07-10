@@ -65,6 +65,8 @@ public interface Runner {
    * Starts the application after the entire application lifecycle is loaded,
    * at this point the application is ready to create all the components and
    * resources.
+   *
+   * @throws Exception
    */
   void start() throws Exception;
 

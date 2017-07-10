@@ -22,13 +22,12 @@ import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.inject.Qualifier;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.AnnotatedElement;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by paulo.ferreira on 09/05/2017.
@@ -71,11 +70,20 @@ public class ReflectionUtils {
     return interfaces;
   }
 
+  public boolean hasGenericParameterizedInterfaces(Class<?> clazz){
+  return Arrays.asList(clazz.getGenericInterfaces()).stream().filter(t -> t instanceof ParameterizedType).findAny().isPresent();
+
+  }
+
   public List<Method> getMethodsWithAnnotation(Class<?> clazz, Class<? extends Annotation> ann) {
     return Arrays.asList(clazz.getDeclaredMethods()).stream().filter(m -> m.isAnnotationPresent(ann)).collect(Collectors.toList());
   }
 
   public <T> T getAnnotation(AnnotatedElement element, Class<T> ann) {
     return (T) element.getAnnotation((Class<? extends Annotation>) ann);
+  }
+
+  public static List<Field> getFieldsWithAnnotation(Class<?> clazz, Class<? extends Annotation> ann) {
+    return Arrays.asList(clazz.getDeclaredFields()).stream().filter(m -> m.isAnnotationPresent(ann)).collect(Collectors.toList());
   }
 }

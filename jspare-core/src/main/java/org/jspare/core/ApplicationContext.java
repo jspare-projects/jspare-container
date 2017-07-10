@@ -16,10 +16,6 @@ public interface ApplicationContext {
 
   ApplicationContext addInjector(InjectorAdapter injector);
 
-  ApplicationContext loadModule(Class<? extends Module> clazz);
-
-  ApplicationContext loadModule(Module module);
-
   void inject(Object instance);
 
   <T> T getInstance(Class<T> clazz);

@@ -22,6 +22,7 @@ import org.jspare.core.*;
 import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.exception.Errors;
 import org.jspare.core.resolver.ComponentResolver;
+import org.jspare.core.resolver.ImplementedByResolver;
 
 import javax.inject.Provider;
 import java.util.*;
@@ -52,6 +53,7 @@ public class ApplicationContextImpl implements ApplicationContext {
   public ApplicationContextImpl() {
 
     IMPLEMENTATION_PROVIDERS.add(new ComponentResolver());
+    IMPLEMENTATION_PROVIDERS.add(new ImplementedByResolver());
     BINDER = new InternalBinder(IMPLEMENTATION_PROVIDERS);
   }
 

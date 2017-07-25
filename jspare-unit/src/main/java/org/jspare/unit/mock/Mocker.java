@@ -8,17 +8,20 @@ package org.jspare.unit.mock;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 /**
  * The Class Mocker.
  */
-public abstract class Mocker {
+public final class Mocker {
 
-  /** The Constant MOCKED. */
-  protected static final Map<Class<?>, Map<String, Object>> MOCKED = new HashMap<>();
+  /**
+   * Allow fixed return
+   */
+  private static final Map<Class<?>, Map<String, Object>> MOCKED = new HashMap<>();
 
   /**
    * Clear returns.
@@ -29,40 +32,32 @@ public abstract class Mocker {
   }
 
   /**
-   * Do return Completable.
-   *
-   * @param mocked
-   *            the mocked
-   * @param methodName
-   *            the method name
-   * @param result
-   *            the result
-   */
-  public static void whenCompletableFutureReturn(Object mocked, String methodName, Object result) {
-    ((Mocked) mocked).fixReturn(methodName, CompletableFuture.supplyAsync(() -> result));
-  }
-
-  /**
    * Do return.
    *
-   * @param mocked
-   *            the mocked
-   * @param methodName
-   *            the method name
-   * @param result
-   *            the result
+   * @param mocked     the mocked
+   * @param methodName the method name
+   * @param result     the result
    */
   public static void whenReturn(Object mocked, String methodName, Object result) {
     ((Mocked) mocked).fixReturn(methodName, result);
   }
 
   /**
+   * Do return.
+   *
+   * @param mocked     the mocked
+   * @param methodName the method name
+   * @param result     the result
+   */
+  public static void whenReturn(Object mocked, String methodName, Function<Object[], Object> result) {
+    ((Mocked) mocked).fixReturnSupplied(methodName, result);
+  }
+
+  /**
    * Creates the proxy.
    *
-   * @param <T>
-   *            the generic type
-   * @param interfaceClass
-   *            the interface class
+   * @param <T>            the generic type
+   * @param interfaceClass the interface class
    * @return the t
    */
   @SuppressWarnings("unchecked")
@@ -78,18 +73,20 @@ public abstract class Mocker {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-          if (method.getName().equals("fixReturn")) {
+          if (Arrays.asList("fixReturn", "fixReturnSupplied").contains(method.getName())) {
             MOCKED.get(clazz).put((String) args[0], args[1]);
             return null;
           }
-
           Object result = null;
 
           if (MOCKED.get(clazz).containsKey(method.getName())) {
-            result = MOCKED.get(clazz).get(method.getName());
-            return result;
-          }
 
+            result = MOCKED.get(clazz).get(method.getName());
+            if (result instanceof Function) {
+
+              result = ((Function) result).apply(args);
+            }
+          }
           return result;
         }
       });

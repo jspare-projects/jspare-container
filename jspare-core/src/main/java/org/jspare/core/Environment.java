@@ -33,13 +33,19 @@ import java.util.Objects;
  * Direct access to the application context by a single point.
  * </p>
  *
- * @author paulo.ferreira
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Environment {
 
   protected static ApplicationContext context;
 
+  /**
+   * Responsible for a single instance of the container.
+   *
+   * @param contextGraph the application context
+   * @return one application context
+   */
   public static ApplicationContext create(ApplicationContext contextGraph) {
     context = contextGraph;
     return context;
@@ -83,7 +89,8 @@ public final class Environment {
    * registered, the method should register a common implementation, this one
    * is is available and provide a memory reference.
    *
-   * @param clazz
+   * @param clazz that will be retrieved bind from environment
+   * @param <T>   the type returned
    * @return Returns an instance of {@code type}.
    */
   public static <T> T my(Class<T> clazz) {
@@ -111,27 +118,63 @@ public final class Environment {
     return getContext().getInstance(clazz, qualifier);
   }
 
+  /**
+   * Returns an instance of the container without saving its state in the container.
+   *
+   * @param clazz the clazz
+   * @param <T>   the generic type
+   * @return the t
+   */
   public static <T> T provide(Class<T> clazz) {
 
     return provide(clazz, StringUtils.EMPTY);
   }
 
+  /**
+   * Returns an instance of the container without saving its state in the container.
+   *
+   * @param clazz     the clazz
+   * @param qualifier the qualifier
+   * @param <T>       the t
+   * @return the t
+   */
   public static <T> T provide(Class<T> clazz, String qualifier) {
     return getContext().provide(clazz, qualifier);
   }
 
+  /**
+   * Registers a Bind in the context of the application.
+   *
+   * @param bind the bind
+   */
   public static void registry(@NonNull Bind bind) {
     getContext().registry(bind);
   }
 
+  /**
+   * Register a Bind in the context of the application.
+   *
+   * @param bind     the bind
+   * @param instance the instance
+   */
   public static void registry(@NonNull Bind bind, @NonNull Object instance) {
     getContext().registry(bind, instance);
   }
 
+  /**
+   * Makes a dependency injection on the current instance requested.
+   *
+   * @param instance the instance
+   */
   public static void inject(Object instance) {
     getContext().inject(instance);
   }
 
+  /**
+   * Return the {@link ApplicationContext } instance.
+   *
+   * @return the {@link ApplicationContext}
+   */
   public static ApplicationContext getContext() {
     if (Objects.isNull(context)) {
 
@@ -142,10 +185,18 @@ public final class Environment {
     }
   }
 
+  /**
+   * Returns if context has already been initialized.
+   *
+   * @return the boolean
+   */
   public static boolean isLoaded() {
     return !Objects.isNull(context);
   }
 
+  /**
+   * Clear the environment context.
+   */
   public static void release() {
     getContext().release();
   }

@@ -21,9 +21,11 @@ import java.lang.reflect.Field;
  * The Interface InjectorAdapter.
  * <p>
  * It is responsible for defining the way of instantiation of a component used
- * by the module injection.
+ * by the module injection.</p>
+ *
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
-public interface  InjectorAdapter {
+public interface InjectorAdapter {
 
   boolean isInjectable(Field field);
 

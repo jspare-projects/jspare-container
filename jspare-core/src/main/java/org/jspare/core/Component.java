@@ -28,7 +28,7 @@ import java.lang.annotation.*;
  * convention container, any kind suffixed <b>Impl</b> It will be assumed to
  * default implementation, provided it is in the same package structure.
  *
- * @author pflima
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  * @since 05/10/2015
  */
 @Documented

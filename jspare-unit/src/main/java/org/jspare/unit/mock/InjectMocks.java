@@ -1,8 +1,3 @@
-/**
- * Copyright 2016 Senior Sistemas.
- * <p>
- * Software sob Medida
- */
 package org.jspare.unit.mock;
 
 import java.lang.annotation.ElementType;
@@ -11,9 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicate that the field annotated with this annotation will be mocker on unit test.
+ * Indicates that a field will be injected with mocks.
+ * <p>
+ * Created by paulo.ferreira on 25/07/2017.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD})
-public @interface Mock {
+@Target(ElementType.FIELD)
+public @interface InjectMocks {
 }

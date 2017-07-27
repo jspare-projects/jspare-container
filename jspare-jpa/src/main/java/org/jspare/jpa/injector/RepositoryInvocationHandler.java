@@ -15,12 +15,7 @@
  */
 package org.jspare.jpa.injector;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-
+import lombok.RequiredArgsConstructor;
 import org.jspare.core.MySupport;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
@@ -33,11 +28,13 @@ import org.springframework.transaction.interceptor.MatchAlwaysTransactionAttribu
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-import lombok.RequiredArgsConstructor;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 
 /**
  * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
- *
  */
 @RequiredArgsConstructor
 public class RepositoryInvocationHandler extends MySupport implements InvocationHandler {
@@ -48,16 +45,15 @@ public class RepositoryInvocationHandler extends MySupport implements Invocation
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object,
    * java.lang.reflect.Method, java.lang.Object[])
    */
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
     EntityManager em = emf.createEntityManager();
 
-     // Create your transaction manager and RespositoryFactory
+    // Create your transaction manager and RespositoryFactory
     final JpaTransactionManager xactManager = new JpaTransactionManager(emf);
     final JpaRepositoryFactory factory = new JpaRepositoryFactory(em);
 
@@ -72,19 +68,19 @@ public class RepositoryInvocationHandler extends MySupport implements Invocation
 
     @SuppressWarnings("rawtypes")
     Repository repository = (Repository) factory.getRepository(type);
-    
+
     // Bind the same EntityManger used to create the Repository to the thread
     TransactionSynchronizationManager.bindResource(emf, new EntityManagerHolder(em));
     TransactionSynchronizationManager.initSynchronization();
     try {
-      
+
       return method.invoke(repository, args);
     } finally {
-      
-      if(em.isOpen()){
+
+      if (em.isOpen()) {
         em.close();
       }
-      
+
       // Make sure to unbind when done with the repository instance
       TransactionSynchronizationManager.unbindResource(emf);
       TransactionSynchronizationManager.clearSynchronization();

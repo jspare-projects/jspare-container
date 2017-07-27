@@ -18,9 +18,10 @@ package org.jspare.core.internal;
 import lombok.NonNull;
 import lombok.Synchronized;
 import org.apache.commons.lang.StringUtils;
-import org.jspare.core.*;
-import org.jspare.core.exception.EnvironmentException;
-import org.jspare.core.exception.Errors;
+import org.jspare.core.ApplicationContext;
+import org.jspare.core.ImplementationResolver;
+import org.jspare.core.InjectorAdapter;
+import org.jspare.core.MembersInjector;
 import org.jspare.core.resolver.ComponentResolver;
 import org.jspare.core.resolver.ImplementedByResolver;
 
@@ -29,7 +30,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by paulo.ferreira on 10/05/2017.
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public class ApplicationContextImpl implements ApplicationContext {
 
@@ -51,57 +52,18 @@ public class ApplicationContextImpl implements ApplicationContext {
   private final InternalBinder BINDER;
 
   public ApplicationContextImpl() {
-
     IMPLEMENTATION_PROVIDERS.add(new ComponentResolver());
     IMPLEMENTATION_PROVIDERS.add(new ImplementedByResolver());
     BINDER = new InternalBinder(IMPLEMENTATION_PROVIDERS);
   }
 
-  /**
-   * My.
-   * <p>
-   * This method is responsible for retrieving the implementation of a
-   * component of the environment, the instance of the class will be recovered
-   * which is registered in the environment, noting that the scope and other
-   * states should be set to register a new component in the environment when
-   * performing this method will be recovered an implementation that is
-   * already registered in the environment, if the component has not yet been
-   * registered, the method should register a common implementation, this one
-   * is is available and provide a memory reference.
-   *
-   * @param <T>   the generic type
-   * @param clazz the clazz
-   * @return the t
-   */
   @Override
   public <T> T getInstance(Class<T> clazz) {
-
     return getInstance(clazz, StringUtils.EMPTY);
   }
 
-  /**
-   * My.
-   * <p>
-   * This method is responsible for retrieving the implementation of a
-   * component of the environment, the instance of the class will be recovered
-   * which is registered in the environment, noting that the scope and other
-   * states should be set to register a new component in the environment when
-   * performing this method will be recovered an implementation that is
-   * already registered in the environment, if the component has not yet been
-   * registered, the method should register a common implementation, this one
-   * is is available and provide a memory reference.
-   * <p>
-   * Receive the qualifier for qualify the injection, note: the implementation
-   * class need be annotated with {@link javax.inject.Named}
-   *
-   * @param <T>       the generic type
-   * @param clazz     the clazz
-   * @param qualifier the qualifier
-   * @return the t
-   */
   @Override
   public <T> T getInstance(Class<T> clazz, String qualifier) {
-
     Bind<T> bind = retrieveBind(clazz, qualifier);
     Key key = bind.bindKey();
     if (!HOLDER.containsKey(key)) {
@@ -125,13 +87,11 @@ public class ApplicationContextImpl implements ApplicationContext {
 
   @Override
   public <T> T provide(Class<T> clazz) {
-
     return provide(clazz, StringUtils.EMPTY);
   }
 
   @Override
   public <T> T provide(Class<T> clazz, String qualifier) {
-
     Bind<T> bind = retrieveBind(clazz, qualifier);
     return instantiate(bind);
   }
@@ -173,25 +133,18 @@ public class ApplicationContextImpl implements ApplicationContext {
 
   @Override
   public void inject(Object instance) {
-
     MembersInjector membersInject = new MembersInjectorImpl(INJECTORS);
     membersInject.inject(instance);
   }
 
-  /**
-   * Release the container; <br>
-   * Note: Carefull with this method, all components will be cleared.
-   */
   @Override
   public ApplicationContext release() {
-
     BINDERS.clear();
     HOLDER.clear();
     return this;
   }
 
   private <T> Bind<T> retrieveBind(Class<T> clazz, String name) {
-
     Key key = new Key(clazz, name);
     // Find Bind on Container
     Bind bind = BINDERS.get(key);

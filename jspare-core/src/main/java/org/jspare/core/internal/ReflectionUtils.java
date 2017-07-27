@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by paulo.ferreira on 09/05/2017.
@@ -70,8 +69,8 @@ public class ReflectionUtils {
     return interfaces;
   }
 
-  public boolean hasGenericParameterizedInterfaces(Class<?> clazz){
-  return Arrays.asList(clazz.getGenericInterfaces()).stream().filter(t -> t instanceof ParameterizedType).findAny().isPresent();
+  public boolean hasGenericParameterizedInterfaces(Class<?> clazz) {
+    return Arrays.asList(clazz.getGenericInterfaces()).stream().filter(t -> t instanceof ParameterizedType).findAny().isPresent();
 
   }
 

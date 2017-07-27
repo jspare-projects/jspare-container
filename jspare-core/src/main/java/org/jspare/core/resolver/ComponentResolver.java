@@ -21,7 +21,15 @@ import org.jspare.core.exception.EnvironmentException;
 import org.jspare.core.exception.Errors;
 
 /**
- * Created by paulo.ferreira on 08/05/2017.
+ * The {@link ComponentResolver}
+ * <p>Resolves an implementation when annotated from annotation {@link Component}.</p>
+ * <p>The expected behavior for this revolver is to fetch the implementations that follow the following convention:</p>
+ * <ul>
+ * <li>The implementation class must be in the same interface package with same class name and use the suffix <b>Impl</b>. For e.g: Interface: foo.Component Implementation: foo.ComponentImpl </li>
+ * <li>Or the implementation class must be in impl package after original package. For e.g: Interface: foo.Component Implementation: foo.impl.ComponentImpl.</li>
+ * </ul>
+ *
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public class ComponentResolver implements ImplementationResolver {
 
@@ -38,7 +46,6 @@ public class ComponentResolver implements ImplementationResolver {
     // Find implementation class by conventions
     Class<?> clazzImpl = null;
     try {
-
       return Class.forName(classInterface.getName().concat(SUFIX_DEFAULT_IMPL));
     } catch (ClassNotFoundException e) {
       // Next atempt

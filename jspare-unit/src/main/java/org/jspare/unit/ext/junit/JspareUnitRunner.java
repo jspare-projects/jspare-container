@@ -17,12 +17,6 @@ public class JspareUnitRunner extends BlockJUnit4ClassRunner {
 
   private final Class<?> testClass;
 
-  /**
-   * Constructs a new {@code ParentRunner} that will run {@code @TestClass}
-   *
-   * @param testClass
-   * @param builder
-   */
   public JspareUnitRunner(Class<?> testClass, RunnerBuilder builder) throws InitializationError {
     super(testClass);
     this.testClass = testClass;
@@ -30,7 +24,6 @@ public class JspareUnitRunner extends BlockJUnit4ClassRunner {
   }
 
   private void prepare() {
-
     Environment.create();
     MockerUtils.initialize(this.testClass);
   }

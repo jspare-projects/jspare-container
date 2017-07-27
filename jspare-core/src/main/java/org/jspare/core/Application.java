@@ -31,6 +31,8 @@ import lombok.SneakyThrows;
  * <li>build all builders</li>
  * <li>start</li>
  * </ul>
+ *
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public abstract class Application implements Runner {
 
@@ -54,7 +56,6 @@ public abstract class Application implements Runner {
    */
   @SneakyThrows
   public static void run(Class<? extends Runner> bootstrapClazz) {
-
     Runner instance = create(bootstrapClazz);
     instance.run();
   }
@@ -64,7 +65,6 @@ public abstract class Application implements Runner {
    * application life cycle depends on the call of this method.
    */
   public void run() {
-
     Environment.create();
 
     long start = System.currentTimeMillis();

@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by paulo.ferreira on 11/05/2017.
+ *  @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 @RequiredArgsConstructor
 public class InternalImplementationFinder {

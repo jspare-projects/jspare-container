@@ -16,9 +16,16 @@
 package org.jspare.core;
 
 /**
- * Created by paulo.ferreira on 11/05/2017.
+ * <p>Responsible for injecting dependencies into members of a class.</p>
+ *
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public interface MembersInjector {
 
+  /**
+   * Does the injection on the instance.
+   *
+   * @param instance the instance
+   */
   void inject(Object instance);
 }

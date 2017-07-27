@@ -4,7 +4,9 @@ import org.jspare.core.internal.ApplicationContextImpl;
 import org.jspare.core.internal.Bind;
 
 /**
- * Created by paulo.ferreira on 10/05/2017.
+ * The Application Context
+ *
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public interface ApplicationContext {
 

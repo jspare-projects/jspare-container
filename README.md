@@ -11,6 +11,7 @@ The Jspare Container provide an core environment container for your java applica
 
 * Lightweight IoC and DI;
 * JSR-330 and JSR-250;
+* Minimalist api to mock unit tests with DI.
 * Forget all annoying application mapping, like the legacy of xml;
 * Easy Bootstrap for your Java application;
 * Components based;

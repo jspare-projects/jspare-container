@@ -66,7 +66,7 @@ public interface Runner {
    * at this point the application is ready to create all the components and
    * resources.
    *
-   * @throws Exception
+   * @throws Exception the exception
    */
   void start() throws Exception;
 

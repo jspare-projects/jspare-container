@@ -18,9 +18,6 @@ package org.jspare.core.internal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-/**
- * Created by paulo.ferreira on 06/05/2017.
- */
 @Data
 @AllArgsConstructor
 public class Key {

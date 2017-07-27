@@ -19,7 +19,10 @@ import org.jspare.core.ImplementationResolver;
 import org.jspare.core.ImplementedBy;
 
 /**
- * Created by paulo.ferreira on 11/05/2017.
+ * The {@link ImplementedByResolver}
+ * <p>Resolves an implementation when annotated from annotation {@link ImplementedBy}. The defined class will be the implementation registered in the container.</p>
+ *
+ *  @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public class ImplementedByResolver implements ImplementationResolver {
 

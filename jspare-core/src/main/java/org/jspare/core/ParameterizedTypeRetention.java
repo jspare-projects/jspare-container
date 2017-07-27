@@ -23,6 +23,8 @@ import java.lang.reflect.Type;
  * Makes the retention of a parameterized type in a class, this interface should
  * be implemented when you have the need to retain the data on the type
  * parameterized generic and use the inversion of control at the same time.
+ *
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public interface ParameterizedTypeRetention {
 

@@ -15,6 +15,11 @@
  */
 package org.jspare.core;
 
+/**
+ * The Keys
+ *
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
+ */
 public final class Keys {
 
   public static final String IGNORE_AUTO_INJECTORS = "jspare.ignoreInjectors";

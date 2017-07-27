@@ -45,7 +45,6 @@ public class InstanceFactory<T> implements Factory<T> {
   }
 
   public T get() {
-
     List<Constructor> constructors = allowedConstructors(bind.to());
     if (constructors.isEmpty()) {
 
@@ -78,7 +77,6 @@ public class InstanceFactory<T> implements Factory<T> {
   }
 
   private T instantiate(Constructor constructor) throws IllegalAccessException, InvocationTargetException, InstantiationException {
-
     boolean injectAllParameters = constructor.isAnnotationPresent(Inject.class);
 
     Object[] parameters = new Object[constructor.getParameterCount()];
@@ -107,14 +105,12 @@ public class InstanceFactory<T> implements Factory<T> {
 
     context.inject(instance);
 
-
     postConstruct(instance.getClass(), instance);
 
     return instance;
   }
 
   private void postConstruct(Class<?> type, Object instance) {
-
     // Recursive call to resolve superclass
     if (type.getSuperclass() != null) {
 
@@ -136,5 +132,4 @@ public class InstanceFactory<T> implements Factory<T> {
   private List<Constructor> allowedConstructors(Class<?> clazz) {
     return Arrays.asList(clazz.getDeclaredConstructors()).stream().filter(c -> c.getModifiers() != Modifier.PRIVATE).collect(Collectors.toList());
   }
-
 }

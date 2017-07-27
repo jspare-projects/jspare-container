@@ -1,7 +1,7 @@
 package org.jspare.core;
 
 /**
- * Created by paulo.ferreira on 08/05/2017.
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public interface ImplementationResolver {
   Class<?> supply(Class<?> classInterface);

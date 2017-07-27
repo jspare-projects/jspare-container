@@ -20,7 +20,7 @@ import lombok.Getter;
 /**
  * The Class EnvironmentException.
  *
- * @author pflima
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  * @since 05/10/2015
  */
 public class EnvironmentException extends RuntimeException {
@@ -47,7 +47,6 @@ public class EnvironmentException extends RuntimeException {
    * @param error the error
    */
   public EnvironmentException(ErrorType error) {
-
     super(String.format(FORMATTED_MESSAGE, error.code(), error.message()), error.throwable());
     this.error = error;
   }

@@ -21,6 +21,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+/**
+ * The ErrorType
+ *
+ *  @author <a href="https://pflima92.github.io/">Paulo Lima</a>
+ */
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Accessors(fluent = true)

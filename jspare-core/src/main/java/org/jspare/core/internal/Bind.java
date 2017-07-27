@@ -20,8 +20,9 @@ import lombok.experimental.Accessors;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Created by paulo.ferreira on 06/05/2017.
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
+
 @Data
 @Accessors(fluent = true)
 public class Bind<T> {

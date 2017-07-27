@@ -17,6 +17,8 @@ package org.jspare.core.exception;
 
 /**
  * The abstract class Errors.
+ *
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public abstract class Errors {
 

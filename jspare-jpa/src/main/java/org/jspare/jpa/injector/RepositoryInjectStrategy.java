@@ -17,13 +17,6 @@ import java.lang.reflect.Proxy;
 @Slf4j
 public class RepositoryInjectStrategy extends MySupport implements InjectorAdapter {
 
-  @Data
-  @AllArgsConstructor
-  class RepositoryHolder {
-    private String datasource;
-
-  }
-
   @Inject
   private PersistenceUnitProvider provider;
 
@@ -34,7 +27,6 @@ public class RepositoryInjectStrategy extends MySupport implements InjectorAdapt
 
   @Override
   public void inject(Object result, Field field) {
-
     try {
 
       String datasourceName = field.getAnnotation(RepositoryInject.class).datasource();
@@ -44,7 +36,7 @@ public class RepositoryInjectStrategy extends MySupport implements InjectorAdapt
         return;
 
       Object repository = Proxy.newProxyInstance(RepositoryInjectStrategy.class.getClassLoader(),
-          new Class[] { field.getType(), Repository.class }, new RepositoryInvocationHandler(field.getType(), emf));
+        new Class[]{field.getType(), Repository.class}, new RepositoryInvocationHandler(field.getType(), emf));
 
       field.setAccessible(true);
       field.set(result, repository);
@@ -53,5 +45,11 @@ public class RepositoryInjectStrategy extends MySupport implements InjectorAdapt
 
       log.error("Failed to create repository {}", field.getType(), e);
     }
+  }
+
+  @Data
+  @AllArgsConstructor
+  class RepositoryHolder {
+    private String datasource;
   }
 }

@@ -2,7 +2,6 @@ package org.jspare.jpa;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.jspare.core.Environment;
 import org.jspare.core.MySupport;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -30,7 +29,6 @@ public class PersistenceUnitProviderImpl extends MySupport implements Persistenc
 
   @Override
   public void create(String datasourceName, PersistenceOptions config) {
-
     LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
     emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
     emf.setJpaProperties(createProperties(config));
@@ -45,13 +43,11 @@ public class PersistenceUnitProviderImpl extends MySupport implements Persistenc
 
   @Override
   public EntityManagerFactory getProvider() {
-
     return getProvider(DEFAULT_DS);
   }
 
   @Override
   public EntityManagerFactory getProvider(String datasourceName) {
-
     return providers.get(datasourceName);
   }
 

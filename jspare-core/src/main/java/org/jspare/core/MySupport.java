@@ -23,7 +23,7 @@ package org.jspare.core;
  * called. This class use for supply, super start method.</li>
  * </ul>
  *
- * @author pflima
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 public abstract class MySupport {
 

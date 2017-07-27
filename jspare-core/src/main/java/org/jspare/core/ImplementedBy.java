@@ -21,13 +21,12 @@ import java.lang.annotation.*;
 /**
  * A pointer to the default provider type for a type.
  *
- * @author paulo.ferreira
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 @Documented
 @Singleton
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ImplementedBy {
-
   Class<?> value();
 }

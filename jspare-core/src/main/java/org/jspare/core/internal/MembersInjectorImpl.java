@@ -16,15 +16,16 @@
 package org.jspare.core.internal;
 
 import lombok.RequiredArgsConstructor;
-import org.jspare.core.*;
+import org.jspare.core.Environment;
+import org.jspare.core.InjectorAdapter;
+import org.jspare.core.MembersInjector;
 
 import javax.inject.Inject;
 import java.lang.reflect.*;
-import java.util.Arrays;
 import java.util.Map;
 
 /**
- * Created by paulo.ferreira on 11/05/2017.
+ * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */
 @RequiredArgsConstructor
 public final class MembersInjectorImpl implements MembersInjector {
@@ -38,9 +39,8 @@ public final class MembersInjectorImpl implements MembersInjector {
   }
 
   private void inject(Class<?> type, Object instance) {
-
     // Recursive call to resolve superclass
-    if(type.getSuperclass() != null){
+    if (type.getSuperclass() != null) {
 
       inject(type.getSuperclass(), instance);
     }

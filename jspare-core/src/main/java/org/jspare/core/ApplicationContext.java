@@ -4,7 +4,11 @@ import org.jspare.core.internal.ApplicationContextImpl;
 import org.jspare.core.internal.Bind;
 
 /**
- * The Application Context
+ * The entry point to the Vertx Jspare framework.
+ *
+ * <p>ApplicationContext supports a model of development that draws clear boundaries between APIs,
+ * Implementations of these APIs, Modules which configure these implementations, and finally
+ * Applications which consist of a collection of Modules.</p>
  *
  * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
  */

@@ -18,6 +18,7 @@ package org.jspare.core.internal;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang.StringUtils;
+import org.jspare.core.Environment;
 
 /**
  * @author <a href="https://pflima92.github.io/">Paulo Lima</a>
@@ -26,6 +27,7 @@ import org.apache.commons.lang.StringUtils;
 @Data
 @Accessors(fluent = true)
 public class Bind<T> {
+
   private Class<T> from;
   private String name = StringUtils.EMPTY;
   private Class<?> to;
@@ -37,5 +39,13 @@ public class Bind<T> {
 
   public Key bindKey() {
     return new Key(from, name);
+  }
+
+  public void registry() {
+    Environment.registry(this);
+  }
+
+  public void registry(Object instance) {
+    Environment.registry(this, instance);
   }
 }
